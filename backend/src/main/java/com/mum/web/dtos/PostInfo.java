@@ -118,6 +118,21 @@ public class PostInfo implements Serializable {
 
     List<CommentInfo> commentInfos;
 
+    @Override
+    public String toString() {
+        return "PostInfo{" +
+                "postId='" + postId + '\'' +
+                ", content='" + content + '\'' +
+                ", postedDate=" + postedDate +
+                ", postedBy=" + postedBy +
+                ", numOfLike=" + numOfLike +
+                ", numOfLove=" + numOfLove +
+                ", likeUsers=" + likeUsers +
+                ", loveUsers=" + loveUsers +
+                ", commentInfos=" + commentInfos +
+                '}';
+    }
+
     /*
 
     public PostInfo(String postId, LocalDateTime postedDate, UserInfo postedBy, int numOfLike, int numOfLove, List<UserInfo> likeUsers, List<UserInfo> loveUsers, List<CommentInfo> commentInfos) {
