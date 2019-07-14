@@ -1,0 +1,3 @@
+how you like the course ? ,mc, very good , good , ok , bad,1
+how was your test ? ,mc, very good , good , ok , bad,
+other feedback ,oe
