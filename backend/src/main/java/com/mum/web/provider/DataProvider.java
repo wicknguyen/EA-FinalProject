@@ -49,15 +49,6 @@ public class DataProvider {
 
     @PostConstruct
     public void initData() {
-//        User user = new User();
-//        user.setFirstName("Quy");
-//        user.setLastName("Nguyen");
-//        user.setEmail("admin@demo.com");
-//        user.setUserId(user.getEmail());
-//        user.setPassword("admin");
-//        user.setDob(LocalDate.of(1993,1,1));
-//        this.users.add(user);
-
         ////This is for test only
         initTestData();
         initFriend();
@@ -119,9 +110,6 @@ public class DataProvider {
         for (int i = 0; i < email.length; i++) {
 
             User user = new User();
-            //
-//            user.setUserId(email[i]);
-
             user.setEmail(email[i]);
             user.setFirstName(firstName[i]);
             user.setLastName(lastName[i]);
@@ -139,7 +127,6 @@ public class DataProvider {
             post.setContent(users.get(i).getFirstName() + " posted: " + postContent[i % 2]);
             post.setUser(users.get(i));
             post.setPostedDate(dateTime);
-//            post.generatePostId();
 
             Interaction like = new Interaction();
 
@@ -149,7 +136,6 @@ public class DataProvider {
             like.setInteractionType(InteractionType.LIKE);
             dateTime = LocalDateTime.now();
             like.setActionDate(dateTime);
-//            like.generateInteractionId();
 
             post.addInteraction(like);
             like.setUser(users.get((i + 2) % email.length));
@@ -177,11 +163,9 @@ public class DataProvider {
 
             likeComment.setInteractionType(InteractionType.LIKE);
             likeComment.setUser(users.get((i + 5) % email.length));
-            //if(i%2==0)
             comment.addInteraction(like);
 
             comment.setPost(post);
-//            comment.generateCommentId();
 
             Comment reply = new Comment();
             Interaction loveComment = new Interaction();

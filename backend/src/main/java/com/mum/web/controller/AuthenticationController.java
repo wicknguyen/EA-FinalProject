@@ -23,7 +23,6 @@ public class AuthenticationController {
             throw new RuntimeException("User already existed");
         }
 
-//        user.setUserId(user.getEmail());
         int rand = (int) Math.floor(Math.random() * 14) + 1;
         user.setAvatar("100_" + rand + ".jpg");
         dataProvider.addUsers(user);
