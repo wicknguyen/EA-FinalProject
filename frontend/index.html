@@ -16,6 +16,12 @@ License: You must have a valid license purchased only from themeforest(the above
 
 <!-- begin::Head -->
 <head>
+	<script src="./assets/js/constant.js"></script>
+	<script type="text/javascript">
+		if(!localStorage.getItem(TOKEN_NAME)) {
+			window.location = './login-page.html';
+		}
+	</script>
     <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
     <script src="./assets/js/initservice.js"></script>
 
@@ -1114,7 +1120,10 @@ License: You must have a valid license purchased only from themeforest(the above
 														</div>
 													</form>
 												</div>
+
 												<div class="kt-widget3__item">
+													<!-- loop post -->
+
 													<div class="kt-widget3__header">
 														<div class="kt-widget3__user-img">
 															<img class="kt-widget3__img" src="./assets/media/users/user1.jpg" alt="">

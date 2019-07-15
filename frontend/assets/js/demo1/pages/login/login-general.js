@@ -2,6 +2,11 @@
 
 // Class Definition
 var KTLoginGeneral = function() {
+    const LOGIN_URL = "http://localhost:8080/oauth/token";
+    const TOKEN_AUTH_USERNAME = 'testjwtclientid';
+    const TOKEN_AUTH_PASSWORD = 'XY7kmzoNzl100';
+    const BASIC_AUTHEN = 'basic ' + btoa(TOKEN_AUTH_USERNAME + ':' + TOKEN_AUTH_PASSWORD);
+
 
     var login = $('#kt_login');
 
@@ -92,14 +97,37 @@ var KTLoginGeneral = function() {
 
             btn.addClass('kt-spinner kt-spinner--right kt-spinner--sm kt-spinner--light').attr('disabled', true);
 
-            form.ajaxSubmit({
-                url: '',
-                success: function(response, status, xhr, $form) {
-                	// similate 2s delay
-                	setTimeout(function() {
-	                    btn.removeClass('kt-spinner kt-spinner--right kt-spinner--sm kt-spinner--light').attr('disabled', false);
-	                    showErrorMsg(form, 'danger', 'Incorrect username or password. Please try again.');
-                    }, 2000);
+            // form.ajaxSubmit({
+            //     url: LOGIN_URL,
+            //     success: function(response, status, xhr, $form) {
+            //     	// similate 2s delay
+            //     	setTimeout(function() {
+	        //             btn.removeClass('kt-spinner kt-spinner--right kt-spinner--sm kt-spinner--light').attr('disabled', false);
+	        //             showErrorMsg(form, 'danger', 'Incorrect username or password. Please try again.');
+            //         }, 2000);
+            //     },
+            //
+            // });
+            let data = 'username=' + form[0][0].value + '&password=' + form[0][1].value + '&grant_type=password';
+            $.ajax({
+                url: LOGIN_URL,
+                dataType: 'json',
+                type: 'post',
+                headers: {
+                    'Authorization': BASIC_AUTHEN,
+                    'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token'
+                },
+                contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                data: data,
+                success: function( data, textStatus ){
+                    console.log(data);
+                   window.location = './index.html';
+                    localStorage.setItem(TOKEN_NAME, data.access_token);
+                    btn.removeClass('kt-spinner kt-spinner--right kt-spinner--sm kt-spinner--light').attr('disabled', false);
+                },
+                error: function( jqXhr, textStatus, errorThrown ){
+                    btn.removeClass('kt-spinner kt-spinner--right kt-spinner--sm kt-spinner--light').attr('disabled', false);
+                    showErrorMsg(form, 'danger', 'Incorrect username or password. Please try again.');
                 }
             });
         });
