@@ -32,11 +32,11 @@ public class AuthenticationFunctionUtils {
                     .findFirst();
 
     public static PentaFunction<List<Relation>, User, RelationType, RelationStatus, Optional<Relation>> getReleationByUser =
-            (relations, user, relationType,relationStatus) ->
+            (relations, user, relationType, relationStatus) ->
                     relations.stream()
                             .filter(relation -> relation.getUser().equals(user)
                                     && relation.getRelationType() == relationType
-                            && relation.getRelationStatus()==relationStatus)
+                                    && relation.getRelationStatus() == relationStatus)
                             .findFirst();
 
     public static Function<User, UserInfo> convertToUserInfo =

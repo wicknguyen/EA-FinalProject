@@ -19,8 +19,8 @@ public class RelationFunctionUtils {
     public interface TriFunction<S, T, U, R> {
         R apply(S s, T t, U u);
     }
-    public static <T> Predicate<T> distinctByKey(Function<? super T, Object> keyExtractor)
-    {
+
+    public static <T> Predicate<T> distinctByKey(Function<? super T, Object> keyExtractor) {
         Map<Object, Boolean> map = new ConcurrentHashMap<>();
         return t -> map.putIfAbsent(keyExtractor.apply(t), Boolean.TRUE) == null;
     }
@@ -58,16 +58,13 @@ public class RelationFunctionUtils {
                             .stream().map(r -> r.convertToInfo())
                             .distinct()
                             .collect(Collectors.toList());
+
     public static BiFunction<List<User>, User, List<RelationshipInfo>> getSuggestedUserList =
             (users, targetUser) ->
-
                     Stream.concat(
                             users.stream()
                                     .filter(user ->
-
                                             RelationFunctionUtils.getFriendsList.apply(targetUser).stream().filter(user1 -> user1.equals(user)).count() <= 0
-
-
                                             /*
                                             Stream.concat(
                                                     //RelationFunctionUtils.getFriendsList.apply(targetUser).stream(),
@@ -75,15 +72,14 @@ public class RelationFunctionUtils {
                                                     RelationFunctionUtils.getFriendsList.apply(targetUser).stream()).filter(user1 -> user1.equals(user)).count() <= 0
                                                     //RelationFunctionUtils.getFollowingsList.apply(targetUser).stream()).filter(user1 -> user1.equals(user)).count() <= 0
 
-*/
-                                    && !user.equals(targetUser)).map(user -> relationshipBiFunction.apply(user, targetUser))
-
-                            .distinct(),
+                                            */
+                                                    && !user.equals(targetUser)).map(user -> relationshipBiFunction.apply(user, targetUser))
+                                    .distinct(),
                             RelationFunctionUtils.getSuggestionsList.apply(users, targetUser).stream().distinct()
                     )
-                            .filter(e->RelationFunctionUtils.getRequestedFriends.apply(targetUser).stream()
-                            .filter(e2->e.equals(e2)).count()<=0)
-                            .filter(distinctByKey(r->r.getA().getEmail()))
+                            .filter(e -> RelationFunctionUtils.getRequestedFriends.apply(targetUser).stream()
+                                    .filter(e2 -> e.equals(e2)).count() <= 0)
+                            .filter(distinctByKey(r -> r.getA().getEmail()))
                             .distinct()
                             .sorted(Comparator.comparing(Relationship::getSize, Comparator.reverseOrder()).thenComparing(Relationship::getLastName))
                             .map(r -> r.convertToInfo())
