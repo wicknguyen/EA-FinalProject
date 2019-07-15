@@ -105,73 +105,83 @@ License: You must have a valid license purchased only from themeforest(the above
 		<div class="kt-grid kt-grid--hor kt-grid--root">
 			<div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--ver kt-page">
 
-				<div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor kt-wrapper" id="kt_wrapper">
+				<div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor kt-wrapper" id="kt_wrapper"
+					 style="background-image: url(./assets/media/bg/bg-3.jpg);">
 
-					<div class="kt-content  kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor" id="kt_content">
+					<div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor" id="kt_content">
 
 						<!-- begin:: Content -->
 						<div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
 							<div class="kt-wizard-v4" id="kt_apps_user_add_user">
+								<div class="kt-portlet__body kt-portlet__body--fit">
+									<div class="kt-grid">
+										<div class="kt-grid__item kt-grid__item--fluid kt-wizard-v4__wrapper">
+											<!--begin: Form Wizard Form-->
+											<form class="kt-form" id="kt_apps_user_add_user_form">
 
-								<div class="kt-portlet">
-									<div class="kt-portlet__body kt-portlet__body--fit">
-										<div class="kt-grid">
-											<div class="kt-grid__item kt-grid__item--fluid kt-wizard-v4__wrapper">
-												<!--begin: Form Wizard Form-->
-												<form class="kt-form" id="kt_apps_user_add_user_form">
-
-													<div class="kt-wizard-v4__content">
-														<div class="kt-heading kt-heading--md">Register New Account</div>
-														<div class="kt-section kt-section--first">
-															<div class="kt-wizard-v4__form">
-																<div class="row">
-																	<div class="col-xl-12">
-																		<div class="kt-section__body">
-																			<div class="form-group row">
-																				<label class="col-xl-3 col-lg-3 col-form-label">Avatar</label>
-																				<div class="col-lg-9 col-xl-6">
-																					<div class="kt-avatar kt-avatar--outline kt-avatar--circle" id="kt_apps_user_add_avatar">
-																						<div class="kt-avatar__holder" style="background-image: url(./assets/media/users/300_10.jpg)"></div>
-																						<label class="kt-avatar__upload" data-toggle="kt-tooltip" title="" data-original-title="Change avatar">
-																							<i class="fa fa-pen"></i>
-																							<input type="file" name="kt_apps_user_add_user_avatar">
-																						</label>
-																						<span class="kt-avatar__cancel" data-toggle="kt-tooltip" title="" data-original-title="Cancel avatar">
-																							<i class="fa fa-times"></i>
-																						</span>
-																					</div>
+												<div class="kt-wizard-v4__content">
+													<h3 class="kt-heading kt-heading--md">Register New Account</h3>
+													<div class="kt-section kt-section--first">
+														<div class="kt-wizard-v4__form">
+															<div class="row">
+																<div class="col-xl-12">
+																	<div class="kt-section__body">
+																		<div class="form-group row">
+																			<label class="col-xl-3 col-lg-3 col-form-label">Avatar</label>
+																			<div class="col-lg-9 col-xl-6">
+																				<div class="kt-avatar kt-avatar--outline kt-avatar--circle" id="kt_apps_user_add_avatar">
+																					<div class="kt-avatar__holder" style="background-image: url(./assets/media/users/300_10.jpg)"></div>
+																					<label class="kt-avatar__upload" data-toggle="kt-tooltip" title="" data-original-title="Change avatar">
+																						<i class="fa fa-pen"></i>
+																						<input type="file" name="kt_apps_user_add_user_avatar">
+																					</label>
+																					<span class="kt-avatar__cancel" data-toggle="kt-tooltip" title="" data-original-title="Cancel avatar">
+																						<i class="fa fa-times"></i>
+																					</span>
 																				</div>
 																			</div>
-																			<div class="form-group row">
-																				<label class="col-xl-3 col-lg-3 col-form-label">First Name</label>
-																				<div class="col-lg-9 col-xl-9">
-																					<input class="form-control" type="text" value="Anna">
+																		</div>
+																		<div class="form-group row">
+																			<label class="col-xl-3 col-lg-3 col-form-label">First Name</label>
+																			<div class="col-lg-9 col-xl-9">
+																				<input class="form-control" type="text" placeholder="First name">
+																			</div>
+																		</div>
+																		<div class="form-group row">
+																			<label class="col-xl-3 col-lg-3 col-form-label">Last Name</label>
+																			<div class="col-lg-9 col-xl-9">
+																				<input class="form-control" type="text" placeholder="Last name">
+																			</div>
+																		</div>
+																		<div class="form-group row">
+																			<label class="col-xl-3 col-lg-3 col-form-label">Contact Phone</label>
+																			<div class="col-lg-9 col-xl-9">
+																				<div class="input-group">
+																					<div class="input-group-prepend"><span class="input-group-text"><i class="la la-phone"></i></span></div>
+																					<input type="text" class="form-control" placeholder="Phone" aria-describedby="basic-addon1">
 																				</div>
 																			</div>
-																			<div class="form-group row">
-																				<label class="col-xl-3 col-lg-3 col-form-label">Last Name</label>
-																				<div class="col-lg-9 col-xl-9">
-																					<input class="form-control" type="text" value="Krox">
+																		</div>
+																		<div class="form-group row">
+																			<label class="col-xl-3 col-lg-3 col-form-label">Email Address</label>
+																			<div class="col-lg-9 col-xl-9">
+																				<div class="input-group">
+																					<div class="input-group-prepend"><span class="input-group-text"><i class="la la-at"></i></span></div>
+																					<input type="text" class="form-control" placeholder="Email" aria-describedby="basic-addon1">
 																				</div>
+																				<span class="form-text text-muted">We'll never share your phone number and email with anyone else.</span>
 																			</div>
-																			<div class="form-group row">
-																				<label class="col-xl-3 col-lg-3 col-form-label">Contact Phone</label>
-																				<div class="col-lg-9 col-xl-9">
-																					<div class="input-group">
-																						<div class="input-group-prepend"><span class="input-group-text"><i class="la la-phone"></i></span></div>
-																						<input type="text" class="form-control" value="+45678967456" placeholder="Phone" aria-describedby="basic-addon1">
-																					</div>
-																					<span class="form-text text-muted">We'll never share your email with anyone else.</span>
-																				</div>
+																		</div>
+																		<div class="form-group row">
+																			<label class="col-xl-3 col-lg-3 col-form-label">Password</label>
+																			<div class="col-lg-9 col-xl-9">
+																				<input class="form-control" type="password" placeholder="Password">
 																			</div>
-																			<div class="form-group row">
-																				<label class="col-xl-3 col-lg-3 col-form-label">Email Address</label>
-																				<div class="col-lg-9 col-xl-9">
-																					<div class="input-group">
-																						<div class="input-group-prepend"><span class="input-group-text"><i class="la la-at"></i></span></div>
-																						<input type="text" class="form-control" value="anna.krox@loop.com" placeholder="Email" aria-describedby="basic-addon1">
-																					</div>
-																				</div>
+																		</div>
+																		<div class="form-group row">
+																			<label class="col-xl-3 col-lg-3 col-form-label">Confirm Password</label>
+																			<div class="col-lg-9 col-xl-9">
+																				<input class="form-control" type="password" placeholder="Confirm password">
 																			</div>
 																		</div>
 																	</div>
@@ -179,20 +189,20 @@ License: You must have a valid license purchased only from themeforest(the above
 															</div>
 														</div>
 													</div>
+												</div>
 
-													<!--end: Form Wizard Step 1-->
+												<!--end: Form Wizard Step 1-->
 
-													<!--begin: Form Actions -->
-													<div class="kt-form__actions">
-														<button class="btn btn-success btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u">Submit</button>
-														<a href="./login-page.html" class="btn btn-label-brand btn-bold btn-elevated">Cancel</a>
-													</div>
+												<!--begin: Form Actions -->
+												<div class="kt-form__actions">
+													<button class="btn btn-success btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u" data-ktwizard-type="action-submit">Submit</button>
+													<a href="./login-page.html" class="btn btn-label-brand btn-bold btn-elevated">Cancel</a>
+												</div>
 
-													<!--end: Form Actions -->
-												</form>
+												<!--end: Form Actions -->
+											</form>
 
-												<!--end: Form Wizard Form-->
-											</div>
+											<!--end: Form Wizard Form-->
 										</div>
 									</div>
 								</div>
@@ -202,21 +212,6 @@ License: You must have a valid license purchased only from themeforest(the above
 						<!-- end:: Content -->
 					</div>
 
-					<!-- begin:: Footer -->
-					<div class="kt-footer  kt-grid__item kt-grid kt-grid--desktop kt-grid--ver-desktop" id="kt_footer">
-						<div class="kt-container  kt-container--fluid ">
-							<div class="kt-footer__copyright">
-								2019&nbsp;&copy;&nbsp;<a href="http://keenthemes.com/metronic" target="_blank" class="kt-link">Keenthemes</a>
-							</div>
-							<div class="kt-footer__menu">
-								<a href="http://keenthemes.com/metronic" target="_blank" class="kt-footer__menu-link kt-link">About</a>
-								<a href="http://keenthemes.com/metronic" target="_blank" class="kt-footer__menu-link kt-link">Team</a>
-								<a href="http://keenthemes.com/metronic" target="_blank" class="kt-footer__menu-link kt-link">Contact</a>
-							</div>
-						</div>
-					</div>
-
-					<!-- end:: Footer -->
 				</div>
 			</div>
 		</div>
