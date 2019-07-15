@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 public class Relation {
     @Id
     @GeneratedValue
-    private int id;
+    private int relationId;
     @ManyToOne
     private User user;
     @Enumerated(EnumType.STRING)
