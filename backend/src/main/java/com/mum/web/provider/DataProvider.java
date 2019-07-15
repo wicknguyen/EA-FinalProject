@@ -165,11 +165,13 @@ public class DataProvider {
             if (i % 2 == 0) {
                 reply.setContent(users.get((i + 3) % email.length) + " replied: " + replyContent[(i + 1) % 2]);
                 comment.addComment(reply);
+                reply.setParentComment(comment);
             }
 
             if (i % 2 == 0) {
                 reply.setContent(users.get((i + 3) % email.length) + " replied: " + commentContent[(i + 1) % 2]);
                 comment.addComment(reply);
+                reply.setParentComment(comment);
             }
 
             post.addComment(comment);

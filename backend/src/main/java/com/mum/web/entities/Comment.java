@@ -26,11 +26,20 @@ public class Comment implements Serializable {
     private User user;// user who posted this article
     @OneToMany(mappedBy = "comment")
     private List<Interaction> interactions;
-//    @OneToMany
-//    @JoinTable(name = "parent_comment", joinColumns = {@JoinColumn(name = "parentCommentId")}, inverseJoinColumns = {@JoinColumn(name = "commentId")})
-    // TODO [QUY]
-    @Transient
+    @OneToMany(mappedBy = "parentComment", cascade = CascadeType.ALL)
     private List<Comment> comments;
+
+    @ManyToOne
+    @JoinColumn(name = "parentCommentId")
+    private Comment parentComment;
+
+    public Comment getParentComment() {
+        return parentComment;
+    }
+
+    public void setParentComment(Comment parentComment) {
+        this.parentComment = parentComment;
+    }
 
     public List<Comment> getComments() {
         return comments;
