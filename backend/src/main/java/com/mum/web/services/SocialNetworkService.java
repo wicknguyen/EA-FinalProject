@@ -138,19 +138,21 @@ public class SocialNetworkService implements ISocialNetworkService {
 
     @Override
     public void updateCommentOfPost(PostInfo postInfo) {
-        CommentInfo commentInfo = postInfo.getCommentInfos().iterator().next();
-        Comment newComment = new Comment();
-        newComment.setContent(commentInfo.getContent());
-        newComment.setPostedDate(LocalDateTime.now());
-        List<User> allUsers = userRepository.findAll();
-        newComment.setPost(PostFunctionUtils.getCommentByPostId.apply(postInfo.getPostId(), allUsers).get());
-        String userLoginEmail = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        newComment.setUser(AuthenticationFunctionUtils.getUserByMail.apply(userLoginEmail, allUsers).get());
+        if (postInfo.getCommentInfos().size() > 0) {
+            CommentInfo commentInfo = postInfo.getCommentInfos().iterator().next();
+            Comment newComment = new Comment();
+            newComment.setContent(commentInfo.getContent());
+            newComment.setPostedDate(LocalDateTime.now());
+            List<User> allUsers = userRepository.findAll();
+            newComment.setPost(PostFunctionUtils.getCommentByPostId.apply(postInfo.getPostId(), allUsers).get());
+            String userLoginEmail = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            newComment.setUser(AuthenticationFunctionUtils.getUserByMail.apply(userLoginEmail, allUsers).get());
 
-        Optional<Post> optionalPost = PostFunctionUtils.getCommentByPostId.apply(postInfo.getPostId(), allUsers);
-        optionalPost.get().getComments().add(newComment);
+            Optional<Post> optionalPost = PostFunctionUtils.getCommentByPostId.apply(postInfo.getPostId(), allUsers);
+            optionalPost.get().getComments().add(newComment);
 
-        userRepository.saveAll(allUsers);
+            userRepository.saveAll(allUsers);
+        }
     }
 
     @Override
@@ -225,8 +227,11 @@ public class SocialNetworkService implements ISocialNetworkService {
     @Override
     public PostInfo loadPostById(Long postId) {
         Optional<Post> optionalPost = PostFunctionUtils.getCommentByPostId.apply(postId, userRepository.findAll());
-        Post post = optionalPost.get();
-        return post.getPostInfo();
+        PostInfo postInfo = null;
+        if (optionalPost.isPresent()) {
+            postInfo = optionalPost.get().getPostInfo();
+        }
+        return postInfo;
     }
 
     @Override
