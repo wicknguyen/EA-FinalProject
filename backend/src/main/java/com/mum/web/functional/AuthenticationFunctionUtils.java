@@ -31,6 +31,16 @@ public class AuthenticationFunctionUtils {
                     .filter(user -> user.getUserId().equals(userId))
                     .findFirst();
 
+    public static BiFunction<List<User>, String, Optional<User>> getUserByEmail = (users, userEmail) ->
+            users.stream()
+                    .filter(user -> user.getEmail().equals(userEmail))
+                    .findFirst();
+
+    public static BiFunction<List<User>, Long, Optional<User>> getUserByUserId = (users, userId) ->
+            users.stream()
+                    .filter(user -> user.getUserId().equals(userId))
+                    .findFirst();
+
     public static PentaFunction<List<Relation>, User, RelationType, RelationStatus, Optional<Relation>> getReleationByUser =
             (relations, user, relationType, relationStatus) ->
                     relations.stream()

@@ -171,12 +171,17 @@ public class SocialNetworkController {
 
 
     @GetMapping("/testFriend/{userId}")
-    public List<UserInfo> testFriend(@PathVariable String userId) {
-        Optional<User> user = AuthenticationFunctionUtils.getUserById.apply(dataProvider.getUsers(), userId);
+    public List<UserInfo> testFriend(@PathVariable String userId)
+    {
+        Optional<User> user = AuthenticationFunctionUtils.getUserByEmail.apply(dataProvider.getUsers(),userId);
+
+        System.out.println(user.get());
+
         if (!user.isPresent()) return null;
+
         List<User> users = user.get().getFriends();
-        List<UserInfo> userInfos = null;
-        return userInfos;
+
+        return AuthenticationFunctionUtils.converToListUserInfo.apply(users);
     }
 
 }

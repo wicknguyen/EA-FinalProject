@@ -51,9 +51,10 @@ public class PostFunctionUtils {
     public static Function<Comment, CommentInfo> convertToCommentInfo =
             (comment -> new CommentInfo(comment.getCommentId(), comment.getContent(),
                     comment.getPostedDate(), AuthenticationFunctionUtils.convertToUserInfo.apply(comment.getUser())
-                    , comment.getLikeCount(), comment.getLoveCount()
+                    , comment.getLikeCount()
+                    //, comment.getLoveCount()
                     , AuthenticationFunctionUtils.converToListUserInfo.apply(comment.getLikeUserList())
-                    , AuthenticationFunctionUtils.converToListUserInfo.apply(comment.getLoveUserList())
+                    //, AuthenticationFunctionUtils.converToListUserInfo.apply(null)
                     //));
                     , PostFunctionUtils.convertToListCommentInfo.apply(comment.getComments())));
 
