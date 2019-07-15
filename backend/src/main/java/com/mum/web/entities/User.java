@@ -23,7 +23,6 @@ public class User {
     private String password;
     @Enumerated(EnumType.STRING)
     private Gender gender;
-//    @Temporal(TemporalType.DATE)
     private LocalDate dob;
     private String avatar;
 
@@ -37,24 +36,24 @@ public class User {
     private List<Post> posts;
 
     public List<User> getFriends() {
-        return RelationFunctionUtils.getRelationUserList.apply(relations,RelationType.FRIEND,RelationStatus.ACCEPTED);
+        return RelationFunctionUtils.getRelationUserList.apply(relations, RelationType.FRIEND, RelationStatus.ACCEPTED);
     }
 
     public List<User> getFollowings() {
-        return RelationFunctionUtils.getRelationUserList.apply(relations,RelationType.FOLLOWING,RelationStatus.FOLLOWING);
+        return RelationFunctionUtils.getRelationUserList.apply(relations, RelationType.FOLLOWING, RelationStatus.FOLLOWING);
     }
 
     public List<User> getWatings() {
-        return RelationFunctionUtils.getRelationUserList.apply(relations,RelationType.FRIEND,RelationStatus.WAITING);
+        return RelationFunctionUtils.getRelationUserList.apply(relations, RelationType.FRIEND, RelationStatus.WAITING);
     }
 
     public List<User> getRequestedFriends() {
-        return RelationFunctionUtils.getRelationUserList.apply(relations,RelationType.FRIEND,RelationStatus.REQUESTED);
+        return RelationFunctionUtils.getRelationUserList.apply(relations, RelationType.FRIEND, RelationStatus.REQUESTED);
     }
 
     public void acceptFriend(User user) {
         //Find requested user
-        Optional<Relation> oldRelation = AuthenticationFunctionUtils.getReleationByUser.apply(this.relations,user,RelationType.FRIEND,RelationStatus.REQUESTED);
+        Optional<Relation> oldRelation = AuthenticationFunctionUtils.getReleationByUser.apply(this.relations, user, RelationType.FRIEND, RelationStatus.REQUESTED);
         Relation relation = new Relation();
         relation.setUser(user);
         relation.setRelationType(RelationType.FRIEND);
@@ -69,9 +68,9 @@ public class User {
 
     }
 
-    public void rejectFriend(User user,RelationStatus relationStatus) {
+    public void rejectFriend(User user, RelationStatus relationStatus) {
         //Find requested user
-        Optional<Relation> oldRelation = AuthenticationFunctionUtils.getReleationByUser.apply(this.relations,user,RelationType.FRIEND,relationStatus);
+        Optional<Relation> oldRelation = AuthenticationFunctionUtils.getReleationByUser.apply(this.relations, user, RelationType.FRIEND, relationStatus);
         if (oldRelation.isPresent()) {
             this.relations.remove(oldRelation.get());
         }
@@ -79,7 +78,7 @@ public class User {
 
     public void updateWatingFriend(User user) {
         //Find requested user
-        Optional<Relation> oldRelation = AuthenticationFunctionUtils.getReleationByUser.apply(this.relations,user,RelationType.FRIEND,RelationStatus.WAITING);
+        Optional<Relation> oldRelation = AuthenticationFunctionUtils.getReleationByUser.apply(this.relations, user, RelationType.FRIEND, RelationStatus.WAITING);
 
         Relation relation = new Relation();
         relation.setUser(user);
@@ -149,8 +148,7 @@ public class User {
         return Objects.hash(userId);
     }
 
-    public void addPost(Post post)
-    {
+    public void addPost(Post post) {
         this.posts.add(post);
     }
 

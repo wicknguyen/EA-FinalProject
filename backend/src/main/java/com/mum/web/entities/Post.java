@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Post  {
+public class Post {
     @Id
     @GeneratedValue
     private Long postId;
@@ -106,17 +106,12 @@ public class Post  {
         return this.getLoveUserList().size();
     }
 
-//    public void generatePostId() {
-//        this.postId = DigestUtils.md5Hex(user.getUserId() + postedDate);
-//    }
-
     public PostInfo getPostInfo() {
-        return new PostInfo(this.getPostId(),this.getContent(),
+        return new PostInfo(this.getPostId(), this.getContent(),
                 this.getPostedDate(), AuthenticationFunctionUtils.convertToUserInfo.apply(this.user)
-                ,this.getLikeCount(),this.getLoveCount(),
+                , this.getLikeCount(), this.getLoveCount(),
                 AuthenticationFunctionUtils.converToListUserInfo.apply(this.getLikeUserList())
-                ,AuthenticationFunctionUtils.converToListUserInfo.apply(this.getLoveUserList()),
-               //null
+                , AuthenticationFunctionUtils.converToListUserInfo.apply(this.getLoveUserList()),
                 PostFunctionUtils.convertToListCommentInfo.apply(this.getComments()));
     }
 

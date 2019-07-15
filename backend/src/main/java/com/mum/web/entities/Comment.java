@@ -113,10 +113,6 @@ public class Comment implements Serializable {
         this.commentId = commentId;
     }
 
-//    public void generateCommentId() {
-//        this.commentId = DigestUtils.md5Hex(user.getUserId() + postedDate);
-//    }
-
     public Post getPost() {
         return post;
     }

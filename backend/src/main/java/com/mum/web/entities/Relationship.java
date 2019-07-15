@@ -26,19 +26,16 @@ public class Relationship {
         this.users = users;
     }
 
-    public String getFirstName()
-    {
+    public String getFirstName() {
         return a.getFirstName();
     }
 
-    public String getLastName()
-    {
+    public String getLastName() {
         return a.getLastName();
     }
 
 
-    public int getSize()
-    {
+    public int getSize() {
         return this.users.size();
     }
 
@@ -68,8 +65,8 @@ public class Relationship {
 
     public RelationshipInfo convertToInfo() {
         return new RelationshipInfo(AuthenticationFunctionUtils.convertToUserInfo.apply(a)
-        ,AuthenticationFunctionUtils.convertToUserInfo.apply(b)
-        ,AuthenticationFunctionUtils.converToListUserInfo.apply(users),users.size()
-        ,relationStatus);
+                , AuthenticationFunctionUtils.convertToUserInfo.apply(b)
+                , AuthenticationFunctionUtils.converToListUserInfo.apply(users), users.size()
+                , relationStatus);
     }
 }

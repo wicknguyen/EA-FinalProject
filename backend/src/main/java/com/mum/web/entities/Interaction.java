@@ -81,7 +81,4 @@ public class Interaction {
         this.actionDate = actionDate;
     }
 
-//    public void generateInteractionId() {
-//        this.interactionId = DigestUtils.md5Hex(user.getUserId() + actionDate + post.getPostId());
-//    }
 }
