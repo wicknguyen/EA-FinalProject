@@ -12,10 +12,8 @@ public class PostInfo implements Serializable {
     UserInfo postedBy;
 
     int numOfLike;
-    int numOfLove;
 
     List<UserInfo> likeUsers;
-    List<UserInfo> loveUsers;
 
 
     public LocalDateTime getPostedDate() {
@@ -42,13 +40,6 @@ public class PostInfo implements Serializable {
         this.numOfLike = numOfLike;
     }
 
-    public int getNumOfLove() {
-        return numOfLove;
-    }
-
-    public void setNumOfLove(int numOfLove) {
-        this.numOfLove = numOfLove;
-    }
 
     public Long getPostId() {
         return postId;
@@ -75,31 +66,18 @@ public class PostInfo implements Serializable {
         this.likeUsers = likeUsers;
     }
 
-    public List<UserInfo> getLoveUsers() {
-        return loveUsers;
-    }
-
-    public void setLoveUsers(List<UserInfo> loveUsers) {
-        this.loveUsers = loveUsers;
-    }
-
-
-    //List<Comment> comments;
-
     public PostInfo(Long postId, String content
             , LocalDateTime postedDate
-            , UserInfo postedBy, int numOfLike, int numOfLove
+            , UserInfo postedBy, int numOfLike
 
-            , List<UserInfo> likeUsers, List<UserInfo> loveUsers
+            , List<UserInfo> likeUsers
             , List<CommentInfo> commentInfos) {
         this.postId = postId;
         this.content = content;
         this.postedDate = postedDate;
         this.postedBy = postedBy;
         this.numOfLike = numOfLike;
-        this.numOfLove = numOfLove;
         this.likeUsers = likeUsers;
-        this.loveUsers = loveUsers;
         this.commentInfos = commentInfos;
     }
 
@@ -121,9 +99,7 @@ public class PostInfo implements Serializable {
                 ", postedDate=" + postedDate +
                 ", postedBy=" + postedBy +
                 ", numOfLike=" + numOfLike +
-                ", numOfLove=" + numOfLove +
                 ", likeUsers=" + likeUsers +
-                ", loveUsers=" + loveUsers +
                 ", commentInfos=" + commentInfos +
                 '}';
     }

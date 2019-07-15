@@ -97,14 +97,6 @@ public class Comment implements Serializable {
         return this.getLikeUserList().size();
     }
 
-    public List<User> getLoveUserList() {
-        return PostFunctionUtils.getInteractionUserList.apply(this.interactions, InteractionType.LOVE);
-    }
-
-    public int getLoveCount() {
-        return this.getLoveUserList().size();
-    }
-
     public Long getCommentId() {
         return commentId;
     }

@@ -51,14 +51,6 @@ public class CommentInfo {
         this.numOfLike = numOfLike;
     }
 
-    public int getNumOfLove() {
-        return numOfLove;
-    }
-
-    public void setNumOfLove(int numOfLove) {
-        this.numOfLove = numOfLove;
-    }
-
     public List<UserInfo> getLikeUsers() {
         return likeUsers;
     }
@@ -67,20 +59,9 @@ public class CommentInfo {
         this.likeUsers = likeUsers;
     }
 
-    public List<UserInfo> getLoveUsers() {
-        return loveUsers;
-    }
-
-    public void setLoveUsers(List<UserInfo> loveUsers) {
-        this.loveUsers = loveUsers;
-    }
-
-
     int numOfLike;
-    int numOfLove;
 
     List<UserInfo> likeUsers;
-    List<UserInfo> loveUsers;
 
     public List<CommentInfo> getCommentInfos() {
         return commentInfos;
@@ -97,16 +78,13 @@ public class CommentInfo {
     }
 
     public CommentInfo(Long commentId, String content, LocalDateTime postedDate, UserInfo postedBy,
-                       int numOfLike, int numOfLove, List<UserInfo> likeUsers, List<UserInfo> loveUsers
-            , List<CommentInfo> commentInfos) {
+                       int numOfLike, List<UserInfo> likeUsers, List<CommentInfo> commentInfos) {
         this.commentId = commentId;
         this.postedDate = postedDate;
         this.postedBy = postedBy;
         this.content = content;
         this.numOfLike = numOfLike;
-        this.numOfLove = numOfLove;
         this.likeUsers = likeUsers;
-        this.loveUsers = loveUsers;
         this.commentInfos = commentInfos;
     }
 }

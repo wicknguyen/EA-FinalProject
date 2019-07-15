@@ -96,22 +96,11 @@ public class Post {
         return this.getLikeUserList().size();
     }
 
-
-    public List<User> getLoveUserList() {
-        return PostFunctionUtils.getInteractionUserList.apply(this.interactions, InteractionType.LOVE);
-    }
-
-
-    public int getLoveCount() {
-        return this.getLoveUserList().size();
-    }
-
     public PostInfo getPostInfo() {
         return new PostInfo(this.getPostId(), this.getContent(),
                 this.getPostedDate(), AuthenticationFunctionUtils.convertToUserInfo.apply(this.user)
-                , this.getLikeCount(), this.getLoveCount(),
-                AuthenticationFunctionUtils.converToListUserInfo.apply(this.getLikeUserList())
-                , AuthenticationFunctionUtils.converToListUserInfo.apply(this.getLoveUserList()),
+                , this.getLikeCount(),
+                AuthenticationFunctionUtils.converToListUserInfo.apply(this.getLikeUserList()),
                 PostFunctionUtils.convertToListCommentInfo.apply(this.getComments()));
     }
 

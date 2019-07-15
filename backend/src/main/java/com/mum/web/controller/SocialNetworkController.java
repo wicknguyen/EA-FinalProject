@@ -135,7 +135,7 @@ public class SocialNetworkController {
         List<Post> posts = PostFunctionUtils.getTimeline.apply(dataProvider.getUsers(), user.get());
         PostInfo postInfo = new PostInfo(123L, "456", LocalDateTime.now()
                 , AuthenticationFunctionUtils.convertToUserInfo.apply(user.get())
-                , 1, 1, null, null, null);
+                , 1, null , null);
         return postInfo;
     }
 
@@ -155,7 +155,7 @@ public class SocialNetworkController {
 
         CommentInfo postInfo = new CommentInfo(123L, "456", LocalDateTime.now()
                 , AuthenticationFunctionUtils.convertToUserInfo.apply(user.get())
-                , 1, 1, null, null, null);
+                , 1, null, null);
         return postInfo;
     }
 

@@ -103,8 +103,6 @@ public class DataProvider {
         String[] replyContent = {"this is reply 1",
                 "This is reply 2"};
 
-        DateTimeFormatter formatter
-                = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
         LocalDateTime dateTime = LocalDateTime.now();// LocalDateTime.parse("2018-12-30T19:34:50.63",formatter);
 
         for (int i = 0; i < email.length; i++) {
@@ -141,16 +139,6 @@ public class DataProvider {
             like.setUser(users.get((i + 2) % email.length));
             if (i % 2 == 0)
                 post.addInteraction(like);
-            Interaction love = new Interaction();
-            love.setInteractionType(InteractionType.LOVE);
-            love.setUser(users.get((i + 3) % email.length));
-            dateTime = LocalDateTime.now();
-            love.setActionDate(dateTime);
-
-            post.addInteraction(love);
-            love.setUser(users.get((i + 4) % email.length));
-            post.addInteraction(love);
-            //love.generateInteractionId();
 
             Comment comment = new Comment();
             comment.setUser(userInteraction);
@@ -168,11 +156,7 @@ public class DataProvider {
             comment.setPost(post);
 
             Comment reply = new Comment();
-            Interaction loveComment = new Interaction();
             reply.setContent(users.get((i + 2) % email.length) + " replied: " + replyContent[(i + 1) % 2]);
-            loveComment.setInteractionType(InteractionType.LOVE);
-            loveComment.setUser(users.get((i + 6) % email.length));
-            reply.addInteraction(loveComment);
             reply.setUser(users.get((i + 2) % email.length));
 
             dateTime = LocalDateTime.now();
