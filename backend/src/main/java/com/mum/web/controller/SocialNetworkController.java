@@ -22,13 +22,6 @@ public class SocialNetworkController {
     @Autowired
     private ISocialNetworkService socialNetworkService;
 
-
-//    @GetMapping("/test/{id}")
-//    public List<String> getSurveyById(@PathVariable String id) {
-//        dataProvider.addDatas(id);
-//        return dataProvider.getDatas();
-//    }
-
     @GetMapping("/testGetUsers")
     public List<User> getUsers() {
         return dataProvider.getUsers();
@@ -55,7 +48,7 @@ public class SocialNetworkController {
     public PostInfo likeCommentOfPost(@RequestBody CommentInfo commentInfo) {
         Comment comment = socialNetworkService.updateLikeCommentOfPost(commentInfo);
         if (comment == null) {
-            return  null;
+            return null;
         }
         return socialNetworkService.loadPostById(comment.getPost().getPostId());
     }
@@ -64,7 +57,7 @@ public class SocialNetworkController {
     public PostInfo likePost(@RequestBody PostInfo postInfo) {
         Post post = socialNetworkService.updateLikePost(postInfo);
         if (post == null) {
-            return  null;
+            return null;
         }
         return socialNetworkService.loadPostById(post.getPostId());
     }
@@ -86,8 +79,8 @@ public class SocialNetworkController {
     @PostMapping("/makeFriend")
     public List<UserInfo> makeFriend(@RequestBody RelationshipInfo relationshipInfo) {
         System.out.println(relationshipInfo);
-        User user = socialNetworkService.makeFriend (relationshipInfo);
-        List<UserInfo> userInfos= AuthenticationFunctionUtils.converToListUserInfo.apply(RelationFunctionUtils.getFriendsList.apply(user));
+        User user = socialNetworkService.makeFriend(relationshipInfo);
+        List<UserInfo> userInfos = AuthenticationFunctionUtils.converToListUserInfo.apply(RelationFunctionUtils.getFriendsList.apply(user));
         return userInfos;
         //return null;
         //socialNetworkService.updateLikeCommentOfPost(RelationshipInfo);
@@ -98,7 +91,7 @@ public class SocialNetworkController {
     public List<UserInfo> acceptFriend(@RequestBody RelationshipInfo relationshipInfo) {
         System.out.println(relationshipInfo);
         User user = socialNetworkService.acceptFriend(relationshipInfo);
-        List<UserInfo> userInfos= AuthenticationFunctionUtils.converToListUserInfo.apply(RelationFunctionUtils.getFriendsList.apply(user));
+        List<UserInfo> userInfos = AuthenticationFunctionUtils.converToListUserInfo.apply(RelationFunctionUtils.getFriendsList.apply(user));
         return userInfos;
         //socialNetworkService.updateLikeCommentOfPost(RelationshipInfo);
         //return socialNetworkService.loadPostByUserEmail(postInfo.getPostedBy().getEmail());
@@ -108,7 +101,7 @@ public class SocialNetworkController {
     public List<UserInfo> rejectFriend(@RequestBody RelationshipInfo relationshipInfo) {
         System.out.println(relationshipInfo);
         User user = socialNetworkService.rejectFriend(relationshipInfo);
-        List<UserInfo> userInfos= AuthenticationFunctionUtils.converToListUserInfo.apply(RelationFunctionUtils.getFriendsList.apply(user));
+        List<UserInfo> userInfos = AuthenticationFunctionUtils.converToListUserInfo.apply(RelationFunctionUtils.getFriendsList.apply(user));
         return userInfos;
         //socialNetworkService.updateLikeCommentOfPost(RelationshipInfo);
         //return socialNetworkService.loadPostByUserEmail(postInfo.getPostedBy().getEmail());
@@ -120,51 +113,9 @@ public class SocialNetworkController {
         System.out.println(postInfo);
     }
 
-
-    ////////These are for testing only
-
-//    @GetMapping("/userFriendsList/{email}")
-//    public List<UserInfo> geFriendsList(@PathVariable String email) {
-//
-//        List<UserInfo> userInfos = socialNetworkService.getFriendListByUserEmail(email);
-//
-//        return userInfos;
-//
-//    }
-
-//    @GetMapping("/userFollowingList/{email}")
-//    public List<UserInfo> geFollowingList(@PathVariable String email) {
-//
-//        List<UserInfo> userInfos = socialNetworkService.getFollowingListByUserEmail(email);
-//
-//        return userInfos;
-//
-//    }
-
-//    @GetMapping("/userRequestedFriendList/{email}")
-//    public List<UserInfo> geRequestedFriendList(@PathVariable String email) {
-//
-//        List<UserInfo> userInfos = socialNetworkService.getRequestedFriendListByUserEmail(email);
-//
-//        return userInfos;
-//
-//    }
-
-//    }
-
-//    @GetMapping("/userSuggestedFriendList/{email}")
-//    public List<RelationshipInfo> geSuggestedFriendList(@PathVariable String email) {
-//
-//        List<RelationshipInfo> relationshipInfos = socialNetworkService.getSuggestedFriendListByUserEmail(email);
-//
-//        return relationshipInfos;
-//
-//    }
-
     @GetMapping("/testGetPost/{userId}")
-    public List<Post> getPost(@PathVariable String userId)
-    {
-        Optional<User> user = AuthenticationFunctionUtils.getUserById.apply(dataProvider.getUsers(),userId);
+    public List<Post> getPost(@PathVariable String userId) {
+        Optional<User> user = AuthenticationFunctionUtils.getUserById.apply(dataProvider.getUsers(), userId);
         if (!user.isPresent()) return null;
         List<Post> posts = PostFunctionUtils.getTimeline.apply(dataProvider.getUsers(), user.get());
         return posts;
@@ -173,49 +124,44 @@ public class SocialNetworkController {
     }
 
     @GetMapping("/testGetPostInfo/{userId}")
-    public List<PostInfo> getPostInfo(@PathVariable String userId)
-    {
+    public List<PostInfo> getPostInfo(@PathVariable String userId) {
         return socialNetworkService.getTimelinePostInfoByUserId(userId);
     }
 
     @GetMapping("/testPostInfo/{userId}")
-    public PostInfo testPostInfo(@PathVariable String userId)
-    {
-        Optional<User> user = AuthenticationFunctionUtils.getUserById.apply(dataProvider.getUsers(),userId);
+    public PostInfo testPostInfo(@PathVariable String userId) {
+        Optional<User> user = AuthenticationFunctionUtils.getUserById.apply(dataProvider.getUsers(), userId);
         if (!user.isPresent()) return null;
         List<Post> posts = PostFunctionUtils.getTimeline.apply(dataProvider.getUsers(), user.get());
-        PostInfo postInfo = new PostInfo(123L,"456",LocalDateTime.now()
-                ,AuthenticationFunctionUtils.convertToUserInfo.apply(user.get())
-        ,1,1,null,null,null);
+        PostInfo postInfo = new PostInfo(123L, "456", LocalDateTime.now()
+                , AuthenticationFunctionUtils.convertToUserInfo.apply(user.get())
+                , 1, 1, null, null, null);
         return postInfo;
     }
 
     @GetMapping("/testGetUserInfo/{userId}")
-    public List<UserInfo> getInfo(@PathVariable String userId)
-    {
-        Optional<User> user = AuthenticationFunctionUtils.getUserById.apply(dataProvider.getUsers(),userId);
+    public List<UserInfo> getInfo(@PathVariable String userId) {
+        Optional<User> user = AuthenticationFunctionUtils.getUserById.apply(dataProvider.getUsers(), userId);
         if (!user.isPresent()) return null;
-       UserInfo userInfo = AuthenticationFunctionUtils.convertToUserInfo.apply(user.get());
-       return AuthenticationFunctionUtils.converToListUserInfo.apply(dataProvider.getUsers());
-
-        //return userInfo;
+        UserInfo userInfo = AuthenticationFunctionUtils.convertToUserInfo.apply(user.get());
+        return AuthenticationFunctionUtils.converToListUserInfo.apply(dataProvider.getUsers());
     }
+
     @GetMapping("/testCommentInfo/{userId}")
-    public CommentInfo testCommentInfo(@PathVariable String userId)
-    {
-        Optional<User> user = AuthenticationFunctionUtils.getUserById.apply(dataProvider.getUsers(),userId);
+    public CommentInfo testCommentInfo(@PathVariable String userId) {
+        Optional<User> user = AuthenticationFunctionUtils.getUserById.apply(dataProvider.getUsers(), userId);
         if (!user.isPresent()) return null;
         List<Post> posts = PostFunctionUtils.getTimeline.apply(dataProvider.getUsers(), user.get());
 
-        CommentInfo postInfo = new CommentInfo(123L,"456",LocalDateTime.now()
-                ,AuthenticationFunctionUtils.convertToUserInfo.apply(user.get())
-                ,1,1,null,null,null);
+        CommentInfo postInfo = new CommentInfo(123L, "456", LocalDateTime.now()
+                , AuthenticationFunctionUtils.convertToUserInfo.apply(user.get())
+                , 1, 1, null, null, null);
         return postInfo;
     }
+
     @GetMapping("/testCommentInfoList/{userId}")
-    public List<CommentInfo> testCommentInfoList(@PathVariable String userId)
-    {
-        Optional<User> user = AuthenticationFunctionUtils.getUserById.apply(dataProvider.getUsers(),userId);
+    public List<CommentInfo> testCommentInfoList(@PathVariable String userId) {
+        Optional<User> user = AuthenticationFunctionUtils.getUserById.apply(dataProvider.getUsers(), userId);
         if (!user.isPresent()) return null;
         List<Post> posts = PostFunctionUtils.getTimeline.apply(dataProvider.getUsers(), user.get());
         Post post = posts.get(0);
@@ -225,9 +171,8 @@ public class SocialNetworkController {
 
 
     @GetMapping("/testFriend/{userId}")
-    public List<UserInfo> testFriend(@PathVariable String userId)
-    {
-        Optional<User> user = AuthenticationFunctionUtils.getUserById.apply(dataProvider.getUsers(),userId);
+    public List<UserInfo> testFriend(@PathVariable String userId) {
+        Optional<User> user = AuthenticationFunctionUtils.getUserById.apply(dataProvider.getUsers(), userId);
         if (!user.isPresent()) return null;
         List<User> users = user.get().getFriends();
         List<UserInfo> userInfos = null;
