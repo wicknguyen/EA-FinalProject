@@ -1121,89 +1121,42 @@ License: You must have a valid license purchased only from themeforest(the above
 													</form>
 												</div>
 
-												<div class="kt-widget3__item">
-													<!-- loop post -->
 
-													<div class="kt-widget3__header">
-														<div class="kt-widget3__user-img">
-															<img class="kt-widget3__img" src="./assets/media/users/user1.jpg" alt="">
-														</div>
-														<div class="kt-widget3__info">
-															<a href="#" class="kt-widget3__username">
-																Melania Trump
-															</a><br>
-															<span class="kt-widget3__time">
-																2 day ago
+
+                                                <div id="posts">
+                                                <script id="handlebar" type="text/x-handlebars-template">
+                                                    {{#each posts}}
+
+                                                    <div class="kt-widget3__item">
+                                                    <div class="kt-widget3__header">
+                                                        <div class="kt-widget3__user-img">
+                                                            <img class="kt-widget3__img" src="./assets/media/users/{{postedBy.avatar}}" alt="">
+                                                        </div>
+                                                        <div class="kt-widget3__info">
+                                                            <a href="#" class="kt-widget3__username">
+                                                                {{postedBy.fullName}}
+                                                            </a><br>
+                                                            <span class="kt-widget3__time">
+																 {{fromNow postedDate}}
 															</span>
-														</div>
-														<span class="kt-widget3__status kt-font-info"></span>
-													</div>
-													<div class="kt-widget3__body">
-														<p class="kt-widget3__text">
-															Lorem ipsum dolor sit amet,consectetuer edipiscing elit,sed diam nonummy nibh euismod tinciduntut laoreet doloremagna aliquam erat volutpat.
-														</p>
-														<div class="kt-section__content kt-section__content--solid" style="padding: 10px 15px;margin-bottom: 10px;display: inline-table;">
-															<button type="button" class="btn btn-elevate-hover btn-circle btn-icon btn-outline-info btn-"><i class="fa flaticon-like"></i></button>
-															<span class="text-black-50" style="margin-left: 10px; margin-right: 30px;">1</span>
-															<button type="button" class="btn btn-elevate btn-circle btn-icon btn-outline-success"><i class="fa flaticon-comment"></i></button>
-															<span class="text-black-50" style="margin-left: 10px; margin-right: 30px;">1</span>
-														</div>
-													</div>
-												</div>
-												<div class="kt-widget3__item">
-													<div class="kt-widget3__header">
-														<div class="kt-widget3__user-img">
-															<img class="kt-widget3__img" src="./assets/media/users/user4.jpg" alt="">
-														</div>
-														<div class="kt-widget3__info">
-															<a href="#" class="kt-widget3__username">
-																Lebron King James
-															</a><br>
-															<span class="kt-widget3__time">
-																1 day ago
-															</span>
-														</div>
-														<span class="kt-widget3__status kt-font-info"></span>
-													</div>
-													<div class="kt-widget3__body">
-														<p class="kt-widget3__text">
-															Lorem ipsum dolor sit amet,consectetuer edipiscing elit,sed diam nonummy nibh euismod tinciduntut laoreet doloremagna aliquam erat volutpat.Ut wisi enim ad minim veniam,quis nostrud exerci tation ullamcorper.
-														</p>
-														<div class="kt-section__content kt-section__content--solid" style="padding: 10px 15px;margin-bottom: 10px;display: inline-table;">
-															<button type="button" class="btn btn-elevate-hover btn-circle btn-icon btn-outline-info btn-"><i class="fa flaticon-like"></i></button>
-															<span class="text-black-50" style="margin-left: 10px; margin-right: 30px;">1</span>
-															<button type="button" class="btn btn-elevate btn-circle btn-icon btn-outline-success"><i class="fa flaticon-comment"></i></button>
-															<span class="text-black-50" style="margin-left: 10px; margin-right: 30px;">1</span>
-														</div>
-													</div>
-												</div>
-												<div class="kt-widget3__item">
-													<div class="kt-widget3__header">
-														<div class="kt-widget3__user-img">
-															<img class="kt-widget3__img" src="./assets/media/users/user5.jpg" alt="">
-														</div>
-														<div class="kt-widget3__info">
-															<a href="#" class="kt-widget3__username">
-																Deb Gibson
-															</a><br>
-															<span class="kt-widget3__time">
-																3 weeks ago
-															</span>
-														</div>
-														<span class="kt-widget3__status kt-font-info"></span>
-													</div>
-													<div class="kt-widget3__body">
-														<p class="kt-widget3__text">
-															Lorem ipsum dolor sit amet,consectetuer edipiscing elit,sed diam nonummy nibh euismod tinciduntut laoreet doloremagna aliquam erat volutpat.
-														</p>
-														<div class="kt-section__content kt-section__content--solid" style="padding: 10px 15px;margin-bottom: 10px;display: inline-table;">
-															<button type="button" class="btn btn-elevate-hover btn-circle btn-icon btn-outline-info btn-"><i class="fa flaticon-like"></i></button>
-															<span class="text-black-50" style="margin-left: 10px; margin-right: 30px;">1</span>
-															<button type="button" class="btn btn-elevate btn-circle btn-icon btn-outline-success"><i class="fa flaticon-comment"></i></button>
-															<span class="text-black-50" style="margin-left: 10px; margin-right: 30px;">1</span>
-														</div>
-													</div>
-												</div>
+                                                        </div>
+                                                        <span class="kt-widget3__status kt-font-info"></span>
+                                                    </div>
+                                                    <div class="kt-widget3__body">
+                                                        <p class="kt-widget3__text">
+                                                            {{content}}
+                                                        </p>
+                                                        <div class="kt-section__content kt-section__content--solid" style="padding: 10px 15px;margin-bottom: 10px;display: inline-table;">
+                                                            <button type="button" class="btn btn-elevate-hover btn-circle btn-icon btn-outline-info btn-"><i class="fa flaticon-like"></i></button>
+                                                            <span class="text-black-50" style="margin-left: 10px; margin-right: 30px;">{{numOfLike}}</span>
+                                                            <button type="button" class="btn btn-elevate btn-circle btn-icon btn-outline-success"><i class="fa flaticon-comment"></i></button>
+                                                            <span class="text-black-50" style="margin-left: 10px; margin-right: 30px;">{{numComments commentInfos}}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                    {{/each}}
+                                                </script>
+                                                </div>
 											</div>
 										</div>
 									</div>
@@ -1911,7 +1864,7 @@ License: You must have a valid license purchased only from themeforest(the above
 <!--begin::Page Scripts(used by this page) -->
 <script src="./assets/js/demo1/pages/dashboard.js" type="text/javascript"></script>
 <script src="./assets/js/demo1/pages/custom/user/profile.js" type="text/javascript"></script>
-
+<script src="./assets/js/initservice.js"></script>
 <!--end::Page Scripts -->
 </body>
 
