@@ -41,7 +41,7 @@ public interface ISocialNetworkService {
 
     void updateCommentOfPost(PostInfo postInfo);
 
-    PostInfo loadPostById(String postId);
+    PostInfo loadPostById(Long postId);
 
     Comment updateLikeCommentOfPost(CommentInfo commentInfo);
 

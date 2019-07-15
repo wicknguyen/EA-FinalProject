@@ -6,7 +6,7 @@ import java.util.List;
 
 public class PostInfo implements Serializable {
 
-    String postId;
+    Long postId;
     String content;
     LocalDateTime postedDate;
     UserInfo postedBy;
@@ -54,11 +54,11 @@ public class PostInfo implements Serializable {
     //List<UserInfo> loveUsers;
     //List<Comment> comments;
 
-    public String getPostId() {
+    public Long getPostId() {
         return postId;
     }
 
-    public void setPostId(String postId) {
+    public void setPostId(Long postId) {
         this.postId = postId;
     }
 
@@ -91,7 +91,7 @@ public class PostInfo implements Serializable {
 
     //List<Comment> comments;
 
-    public PostInfo(String postId, String content
+    public PostInfo(Long postId, String content
             , LocalDateTime postedDate
             , UserInfo postedBy, int numOfLike, int numOfLove
 

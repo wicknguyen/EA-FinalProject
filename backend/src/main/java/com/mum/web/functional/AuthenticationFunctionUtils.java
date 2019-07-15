@@ -39,10 +39,10 @@ public class AuthenticationFunctionUtils {
                             && relation.getRelationStatus()==relationStatus)
                             .findFirst();
 
-    public static Function<User, UserInfo> convertToUserInfo =
-            (user) -> new UserInfo(user.getUserId(), user.getFullName(), user.getAvatar(), user.getEmail(), user.getDob());
-
-    public static Function<List<User>, List<UserInfo>> converToListUserInfo =
-            (users -> users.stream().map(convertToUserInfo).collect(Collectors.toList()));
+//    public static Function<User, UserInfo> convertToUserInfo =
+//            (user) -> new UserInfo(user.getUserId(), user.getFullName(), user.getAvatar(), user.getEmail(), user.getDob());
+//TODO[QUY
+//    public static Function<List<User>, List<UserInfo>> converToListUserInfo =
+//            (users -> users.stream().map(convertToUserInfo).collect(Collectors.toList()));
 
 }

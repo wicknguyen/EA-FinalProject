@@ -65,12 +65,12 @@ public class Relationship {
     public void setUsers(List<User> users) {
         this.users = users;
     }
-
-    public RelationshipInfo convertToInfo()
-    {
-        return new RelationshipInfo(AuthenticationFunctionUtils.convertToUserInfo.apply(a)
-        ,AuthenticationFunctionUtils.convertToUserInfo.apply(b)
-        ,AuthenticationFunctionUtils.converToListUserInfo.apply(users),users.size()
-        ,relationStatus);
-    }
+// TODO[QUY]
+//    public RelationshipInfo convertToInfo()
+//    {
+//        return new RelationshipInfo(AuthenticationFunctionUtils.convertToUserInfo.apply(a)
+//        ,AuthenticationFunctionUtils.convertToUserInfo.apply(b)
+//        ,AuthenticationFunctionUtils.converToListUserInfo.apply(users),users.size()
+//        ,relationStatus);
+//    }
 }

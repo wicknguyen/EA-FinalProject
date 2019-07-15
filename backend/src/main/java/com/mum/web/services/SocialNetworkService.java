@@ -44,7 +44,7 @@ public class SocialNetworkService implements ISocialNetworkService {
             //post.setPostedDate(postInfo.getPostedDate());
 
             post.setUser(currentUser);
-            post.generatePostId();
+//            post.generatePostId();
             currentUser.addPost(post);
 
         }
@@ -236,7 +236,7 @@ public class SocialNetworkService implements ISocialNetworkService {
         newComment.setPost(PostFunctionUtils.getCommentByPostId.apply(postInfo.getPostId(), allUsers).get());
         String userLoginEmail = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         newComment.setUser(AuthenticationFunctionUtils.getUserByMail.apply(userLoginEmail, allUsers).get());
-        newComment.generateCommentId();
+//        newComment.generateCommentId();
 
         Optional<Post> optionalPost = PostFunctionUtils.getCommentByPostId.apply(postInfo.getPostId(), allUsers);
         optionalPost.get().getComments().add(newComment);
@@ -276,7 +276,7 @@ public class SocialNetworkService implements ISocialNetworkService {
         interaction.setInteractionType(InteractionType.LIKE);
         interaction.setActionDate(LocalDateTime.now());
         interaction.setPost(post);
-        interaction.generateInteractionId();
+//        interaction.generateInteractionId();
         return interaction;
     }
 
@@ -305,12 +305,13 @@ public class SocialNetworkService implements ISocialNetworkService {
         }
         return null;
     }
-
+// TODO [QUY]
     @Override
-    public PostInfo loadPostById(String postId) {
-        Optional<Post> optionalPost = PostFunctionUtils.getCommentByPostId.apply(postId, dataProvider.getUsers());
-        Post post = optionalPost.get();
-        return post.getPostInfo();
+    public PostInfo loadPostById(Long postId) {
+//        Optional<Post> optionalPost = PostFunctionUtils.getCommentByPostId.apply(postId, dataProvider.getUsers());
+//        Post post = optionalPost.get();
+//        return post.getPostInfo();
+        return null;
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -338,18 +339,18 @@ public class SocialNetworkService implements ISocialNetworkService {
 
 
     ///////////
-
+// TODO [QUY]
     @Override
     public List<UserInfo> getFriendListByUserEmail(String email) {
 
-        Optional<User> user = AuthenticationFunctionUtils.getUserByMail.apply(email, dataProvider.getUsers());
-
-        if (!user.isPresent()) return null;
-
-        List<User> users = RelationFunctionUtils.getFriendsList.apply(user.get());
-
-        return AuthenticationFunctionUtils.converToListUserInfo.apply(users);
-
+//        Optional<User> user = AuthenticationFunctionUtils.getUserByMail.apply(email, dataProvider.getUsers());
+//
+//        if (!user.isPresent()) return null;
+//
+//        List<User> users = RelationFunctionUtils.getFriendsList.apply(user.get());
+//
+//        return AuthenticationFunctionUtils.converToListUserInfo.apply(users);
+        return null;
 
     }
 
@@ -357,36 +358,39 @@ public class SocialNetworkService implements ISocialNetworkService {
 
     public List<UserInfo> getFollowingListByUserEmail(String email) {
 
-        Optional<User> user = AuthenticationFunctionUtils.getUserByMail.apply(email, dataProvider.getUsers());
-
-        if (!user.isPresent()) return null;
-
-        List<User> users = RelationFunctionUtils.getFollowingsList.apply(user.get());
-
-        return AuthenticationFunctionUtils.converToListUserInfo.apply(users);
+//        Optional<User> user = AuthenticationFunctionUtils.getUserByMail.apply(email, dataProvider.getUsers());
+//
+//        if (!user.isPresent()) return null;
+//
+//        List<User> users = RelationFunctionUtils.getFollowingsList.apply(user.get());
+//
+//        return AuthenticationFunctionUtils.converToListUserInfo.apply(users);
+        return null;
     }
 
     @Override
 
     public List<RelationshipInfo> getRequestedFriendListByUserEmail(String email) {
 
-        Optional<User> user = AuthenticationFunctionUtils.getUserByMail.apply(email, dataProvider.getUsers());
-
-        if (!user.isPresent()) return null;
-
-        List<RelationshipInfo> users = RelationFunctionUtils.getRequestedFriends.apply(user.get());
-
-        return users;//AuthenticationFunctionUtils.converToListUserInfo.apply(users);
+//        Optional<User> user = AuthenticationFunctionUtils.getUserByMail.apply(email, dataProvider.getUsers());
+//
+//        if (!user.isPresent()) return null;
+//
+//        List<RelationshipInfo> users = RelationFunctionUtils.getRequestedFriends.apply(user.get());
+//
+//        return users;//AuthenticationFunctionUtils.converToListUserInfo.apply(users);
+        return null;
     }
 
     public List<RelationshipInfo> getSuggestedFriendListByUserEmail(String email) {
-        Optional<User> user = AuthenticationFunctionUtils.getUserByMail.apply(email, dataProvider.getUsers());
-
-        if (!user.isPresent()) return null;
-
-        List<RelationshipInfo> users = RelationFunctionUtils.getSuggestedUserList.apply(dataProvider.getUsers(), user.get());
-
-        return users;
+//        Optional<User> user = AuthenticationFunctionUtils.getUserByMail.apply(email, dataProvider.getUsers());
+//
+//        if (!user.isPresent()) return null;
+//
+//        List<RelationshipInfo> users = RelationFunctionUtils.getSuggestedUserList.apply(dataProvider.getUsers(), user.get());
+//
+//        return users;
+        return null;
 
     }
 
@@ -427,7 +431,8 @@ public class SocialNetworkService implements ISocialNetworkService {
 
     @Override
     public List<RelationshipInfo> getRequestedFriends(User targetUser) {
-        return RelationFunctionUtils.getRequestedFriends.apply(targetUser);
+//        return RelationFunctionUtils.getRequestedFriends.apply(targetUser);
+        return null;
     }
 
     @Override
@@ -455,15 +460,16 @@ public class SocialNetworkService implements ISocialNetworkService {
 
     @Override
     public List<PostInfo> getTimelinePostInfoByUserId(String userId) {
-        Optional<User> user = AuthenticationFunctionUtils.getUserById.apply(dataProvider.getUsers(), userId);
-
-        if (!user.isPresent()) return null;
-
-        List<Post> posts = PostFunctionUtils.getTimeline.apply(dataProvider.getUsers(), user.get());
-
-        return PostFunctionUtils.convertToListPostInfo.apply(posts);
+//        Optional<User> user = AuthenticationFunctionUtils.getUserById.apply(dataProvider.getUsers(), userId);
+//
+//        if (!user.isPresent()) return null;
+//
+//        List<Post> posts = PostFunctionUtils.getTimeline.apply(dataProvider.getUsers(), user.get());
+//
+//        return PostFunctionUtils.convertToListPostInfo.apply(posts);
 
         //return PostFunctionUtils.convertToListPostInfo.apply(PostFunctionUtils.getTimeline.apply(users, targetUser));
+        return null;
     }
 
 
@@ -477,38 +483,38 @@ public class SocialNetworkService implements ISocialNetworkService {
     @Override
     public TimelineInfo getTimelineInfoByUserEmail(String email) {
         TimelineInfo timelineInfo = new TimelineInfo();
-        Optional<User> user = AuthenticationFunctionUtils.getUserByMail.apply(email, dataProvider.getUsers());
-
-        if (!user.isPresent()) return null;
-
-
-        UserInfo myProfile = AuthenticationFunctionUtils.convertToUserInfo.apply(user.get());
-
-
-        List<Post> posts = PostFunctionUtils.getTimeline.apply(dataProvider.getUsers(), user.get());
-
-        List<PostInfo> postInfos = PostFunctionUtils.convertToListPostInfo.apply(posts);
-
-        List<UserInfo> friends = AuthenticationFunctionUtils.converToListUserInfo.apply(RelationFunctionUtils.getFriendsList.apply(user.get()));
-
-        List<UserInfo> followings = AuthenticationFunctionUtils.converToListUserInfo.apply(RelationFunctionUtils.getFollowingsList.apply(user.get()));
-
-        List<RelationshipInfo> requestedFriends =RelationFunctionUtils.getRequestedFriends.apply(user.get());
-
-        List<RelationshipInfo> suggestedFriends = RelationFunctionUtils.getSuggestedUserList.apply(dataProvider.getUsers(), user.get());
-
-        List<UserInfo> waitingriends = AuthenticationFunctionUtils.converToListUserInfo.apply(RelationFunctionUtils.getWaitngsList.apply(user.get()));
-
-
-        timelineInfo.setMyProfile(myProfile);
-        timelineInfo.setFriends(friends);
-        timelineInfo.setFollowings(followings);
-        timelineInfo.setRequestedFriends(requestedFriends);
-        timelineInfo.setWaitingriends(waitingriends);
-        timelineInfo.setSuggestedFriends(suggestedFriends);
-        timelineInfo.setPosts(postInfos);
-
-
+//        Optional<User> user = AuthenticationFunctionUtils.getUserByMail.apply(email, dataProvider.getUsers());
+//
+//        if (!user.isPresent()) return null;
+//
+//
+//        UserInfo myProfile = AuthenticationFunctionUtils.convertToUserInfo.apply(user.get());
+//
+//
+//        List<Post> posts = PostFunctionUtils.getTimeline.apply(dataProvider.getUsers(), user.get());
+//
+//        List<PostInfo> postInfos = PostFunctionUtils.convertToListPostInfo.apply(posts);
+//
+//        List<UserInfo> friends = AuthenticationFunctionUtils.converToListUserInfo.apply(RelationFunctionUtils.getFriendsList.apply(user.get()));
+//
+//        List<UserInfo> followings = AuthenticationFunctionUtils.converToListUserInfo.apply(RelationFunctionUtils.getFollowingsList.apply(user.get()));
+//
+//        List<RelationshipInfo> requestedFriends =RelationFunctionUtils.getRequestedFriends.apply(user.get());
+//
+//        List<RelationshipInfo> suggestedFriends = RelationFunctionUtils.getSuggestedUserList.apply(dataProvider.getUsers(), user.get());
+//
+//        List<UserInfo> waitingriends = AuthenticationFunctionUtils.converToListUserInfo.apply(RelationFunctionUtils.getWaitngsList.apply(user.get()));
+//
+//
+//        timelineInfo.setMyProfile(myProfile);
+//        timelineInfo.setFriends(friends);
+//        timelineInfo.setFollowings(followings);
+//        timelineInfo.setRequestedFriends(requestedFriends);
+//        timelineInfo.setWaitingriends(waitingriends);
+//        timelineInfo.setSuggestedFriends(suggestedFriends);
+//        timelineInfo.setPosts(postInfos);
+//
+//
         return timelineInfo;
 
     }

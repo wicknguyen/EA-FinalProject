@@ -118,7 +118,7 @@ public class DataProvider {
 
             User user = new User();
             //
-            user.setUserId(email[i]);
+//            user.setUserId(email[i]);
 
             user.setEmail(email[i]);
             user.setFirstName(firstName[i]);
@@ -136,7 +136,7 @@ public class DataProvider {
             post.setContent(users.get(i).getFirstName() + " posted: " + postContent[i % 2]);
             post.setUser(users.get(i));
             post.setPostedDate(dateTime);
-            post.generatePostId();
+//            post.generatePostId();
 
             Interaction like = new Interaction();
 
@@ -146,7 +146,7 @@ public class DataProvider {
             like.setInteractionType(InteractionType.LIKE);
             dateTime = LocalDateTime.now();
             like.setActionDate(dateTime);
-            like.generateInteractionId();
+//            like.generateInteractionId();
 
             post.addInteraction(like);
             like.setUser(users.get((i + 2) % email.length));
@@ -179,7 +179,7 @@ public class DataProvider {
             comment.addInteraction(like);
 
             comment.setPost(post);
-            comment.generateCommentId();
+//            comment.generateCommentId();
 
 
             Comment reply = new Comment();

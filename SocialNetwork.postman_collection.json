@@ -1,0 +1,469 @@
+{
+	"info": {
+		"_postman_id": "99946805-1a77-4727-accb-c8ffbc540951",
+		"name": "SocialNetwork",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "getUser",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsidGVzdGp3dHJlc291cmNlaWQiXSwidXNlcl9uYW1lIjoiYWRtaW5AZGVtby5jb20iLCJzY29wZSI6WyJyZWFkIiwid3JpdGUiXSwiZXhwIjoxNTUyODIxMDAyLCJhdXRob3JpdGllcyI6WyJVU0VSIl0sImp0aSI6ImUyZTkwZWY5LTM3MGMtNGNkMy1iNDVmLWQyODQ1ODRkYzBiYyIsImNsaWVudF9pZCI6InRlc3Rqd3RjbGllbnRpZCJ9.Hl0vMKQtUuZENEav0_nrJ9kOAECdoqXaumRYA8Gz0P4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/testGetUsers",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"testGetUsers"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "getUser",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/testGetUsers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"testGetUsers"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "POST, GET, OPTIONS, DELETE"
+						},
+						{
+							"key": "Access-Control-Max-Age",
+							"value": "3600"
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "access-control-allow-headers,access-control-allow-methods,access-control-allow-origin,authorization"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "vary",
+							"value": "accept-encoding"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=UTF-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 16 Mar 2019 23:16:38 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"timestamp\": \"2019-03-16T23:16:38.093+0000\",\n    \"status\": 404,\n    \"error\": \"Not Found\",\n    \"message\": \"No message available\",\n    \"path\": \"/api/testGetUsers\"\n}"
+				}
+			]
+		},
+		{
+			"name": "getPost",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/api1/testGetPost/bao@mum.edu",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api1",
+						"testGetPost",
+						"bao@mum.edu"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getPostInfo",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsidGVzdGp3dHJlc291cmNlaWQiXSwidXNlcl9uYW1lIjoiYmFvQG11bS5lZHUiLCJzY29wZSI6WyJyZWFkIiwid3JpdGUiXSwiZXhwIjoxNTUyOTIyMjgzLCJhdXRob3JpdGllcyI6WyJVU0VSIl0sImp0aSI6IjYwNzY2NjM2LTM2MWItNGZkNy1iMDhlLWEyNDFhMzlhY2ZkZiIsImNsaWVudF9pZCI6InRlc3Rqd3RjbGllbnRpZCJ9.iUWeiVyZuFD-sPKsNApnx2oI9Jw13GcZwK4vG6OfHvU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/testGetPostInfo/bao@mum.edu",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"testGetPostInfo",
+						"bao@mum.edu"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getUserInfo",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/testGetUserInfo/bao@mum.edu",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"testGetUserInfo",
+						"bao@mum.edu"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getCommentInfo",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsidGVzdGp3dHJlc291cmNlaWQiXSwidXNlcl9uYW1lIjoiYmFvQG11bS5lZHUiLCJzY29wZSI6WyJyZWFkIiwid3JpdGUiXSwiZXhwIjoxNTUyOTIyMjgzLCJhdXRob3JpdGllcyI6WyJVU0VSIl0sImp0aSI6IjYwNzY2NjM2LTM2MWItNGZkNy1iMDhlLWEyNDFhMzlhY2ZkZiIsImNsaWVudF9pZCI6InRlc3Rqd3RjbGllbnRpZCJ9.iUWeiVyZuFD-sPKsNApnx2oI9Jw13GcZwK4vG6OfHvU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/testCommentInfo/bao@mum.edu",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"testCommentInfo",
+						"bao@mum.edu"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getCommentInfoList",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsidGVzdGp3dHJlc291cmNlaWQiXSwidXNlcl9uYW1lIjoiYmFvQG11bS5lZHUiLCJzY29wZSI6WyJyZWFkIiwid3JpdGUiXSwiZXhwIjoxNTUyOTIyMjgzLCJhdXRob3JpdGllcyI6WyJVU0VSIl0sImp0aSI6IjYwNzY2NjM2LTM2MWItNGZkNy1iMDhlLWEyNDFhMzlhY2ZkZiIsImNsaWVudF9pZCI6InRlc3Rqd3RjbGllbnRpZCJ9.iUWeiVyZuFD-sPKsNApnx2oI9Jw13GcZwK4vG6OfHvU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/testCommentInfoList/bao@mum.edu",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"testCommentInfoList",
+						"bao@mum.edu"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getFriend",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/testFriend/bao@mum.edu",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"testFriend",
+						"bao@mum.edu"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getFriendsList",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/userFriendsList/bao@mum.edu",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"userFriendsList",
+						"bao@mum.edu"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getFollowingList",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/userFollowingList/bao@mum.edu",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"userFollowingList",
+						"bao@mum.edu"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getSugesstedFriendList",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/userSuggestedFriendList/bao@mum.edu",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"userSuggestedFriendList",
+						"bao@mum.edu"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getTimeline",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/timeline/bao@mum.edu",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"timeline",
+						"bao@mum.edu"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "makefollow",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsidGVzdGp3dHJlc291cmNlaWQiXSwidXNlcl9uYW1lIjoiYWRtaW5AZGVtby5jb20iLCJzY29wZSI6WyJyZWFkIiwid3JpdGUiXSwiZXhwIjoxNTUyODIxMDAyLCJhdXRob3JpdGllcyI6WyJVU0VSIl0sImp0aSI6ImUyZTkwZWY5LTM3MGMtNGNkMy1iNDVmLWQyODQ1ODRkYzBiYyIsImNsaWVudF9pZCI6InRlc3Rqd3RjbGllbnRpZCJ9.Hl0vMKQtUuZENEav0_nrJ9kOAECdoqXaumRYA8Gz0P4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "\"{\"a\":{\"userId\":\"sang@mum.edu\",\"fullName\":\"Sang Truong\",\"avatar\":\"100_6.jpg\",\"email\":\"sang@mum.edu\",\"dob\":null},\"b\":{\"userId\":\"bao@mum.edu\",\"fullName\":\"Bao Tran\",\"avatar\":\"100_1.jpg\",\"email\":\"bao@mum.edu\",\"dob\":null},\"users\":[{\"userId\":\"bang@mum.edu\",\"fullName\":\"Bang Le\",\"avatar\":\"100_5.jpg\",\"email\":\"bang@mum.edu\",\"dob\":null},{\"userId\":\"quy@mum.edu\",\"fullName\":\"Quy Nguyen\",\"avatar\":\"100_3.jpg\",\"email\":\"quy@mum.edu\",\"dob\":null}],\"mutualFriends\":2}\""
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/followUser",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"followUser"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

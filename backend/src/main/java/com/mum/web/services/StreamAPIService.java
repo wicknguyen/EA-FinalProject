@@ -50,7 +50,8 @@ public class StreamAPIService implements IStreamAPIService {
 
     @Override
     public List<RelationshipInfo> getRequestedFriends(User targetUser) {
-        return RelationFunctionUtils.getRequestedFriends.apply(targetUser);
+//        return RelationFunctionUtils.getRequestedFriends.apply(targetUser);
+        return null;
     }
 
     @Override
@@ -79,7 +80,8 @@ public class StreamAPIService implements IStreamAPIService {
     @Override
     public List<PostInfo> getTimelinePostInfo(List<User> users, User targetUser)
     {
-        return PostFunctionUtils.convertToListPostInfo.apply(PostFunctionUtils.getTimeline.apply(users, targetUser));
+//        return PostFunctionUtils.convertToListPostInfo.apply(PostFunctionUtils.getTimeline.apply(users, targetUser));
+        return null;
     }
 
 

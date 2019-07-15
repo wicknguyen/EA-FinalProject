@@ -5,7 +5,7 @@ import java.util.List;
 
 public class CommentInfo {
 
-    String commentId;
+    Long commentId;
     LocalDateTime postedDate;
     UserInfo postedBy;
 
@@ -19,11 +19,11 @@ public class CommentInfo {
 
     String content;
 
-    public String getCommentId() {
+    public Long getCommentId() {
         return commentId;
     }
 
-    public void setCommentId(String commentId) {
+    public void setCommentId(Long commentId) {
         this.commentId = commentId;
     }
 
@@ -98,7 +98,7 @@ public class CommentInfo {
 
     }
 
-    public CommentInfo(String commentId,String content, LocalDateTime postedDate, UserInfo postedBy,
+    public CommentInfo(Long commentId, String content, LocalDateTime postedDate, UserInfo postedBy,
                        int numOfLike, int numOfLove, List<UserInfo> likeUsers, List<UserInfo> loveUsers
                        , List<CommentInfo> commentInfos) {
         //)
