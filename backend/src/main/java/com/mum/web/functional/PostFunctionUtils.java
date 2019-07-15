@@ -45,12 +45,8 @@ public class PostFunctionUtils {
                             .sorted(Comparator.comparing(Post::getPostedDate, Comparator.reverseOrder()))
                             .collect(Collectors.toList());
 
-
-
-
     public static PentaFunction<List<User>, User,Integer,Integer,List<Post>> getTimelineForPaging =
             (users, targetUser,m,n) ->getTimeline.apply(users,targetUser).stream().skip(m).limit(n - m + 1).collect(Collectors.toList());
-
 
     public static Function<Comment, CommentInfo> convertToCommentInfo =
             (comment -> new CommentInfo(comment.getCommentId(),comment.getContent(),
@@ -60,21 +56,16 @@ public class PostFunctionUtils {
                     ,AuthenticationFunctionUtils.converToListUserInfo.apply(comment.getLoveUserList())
             //));
                     ,PostFunctionUtils.convertToListCommentInfo.apply(comment.getComments())));
-
-
     public static Function<List<Comment>,List<CommentInfo>> convertToListCommentInfo=
             (comments -> comments.stream()
                     .map(comment -> convertToCommentInfo.apply(comment)).collect(Collectors.toList()));
-
     public static Function<Post, PostInfo> convertToPostInfo =
             (post -> post.getPostInfo());
-
-
     public static Function<List<Post>,List<PostInfo>> convertToListPostInfo=
             (posts -> posts.stream()
             .map(post -> convertToPostInfo.apply(post)).collect(Collectors.toList()));
 
-    public static BiFunction<String, List<User>, Optional<Post>> getCommentByPostId = (postId, users) -> users.stream()
+    public static BiFunction<Long, List<User>, Optional<Post>> getCommentByPostId = (postId, users) -> users.stream()
             .flatMap(u -> u.getPosts().stream())
             .filter(p -> p.getPostId().equals(postId)).findFirst();
 

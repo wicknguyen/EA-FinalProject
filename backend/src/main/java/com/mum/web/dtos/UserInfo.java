@@ -5,7 +5,7 @@ import java.time.LocalDate;
 
 public class UserInfo implements Serializable {
 
-    private String userId;
+    private Long userId;
     private String fullName;
     private String avatar;
     private String email;
@@ -29,7 +29,7 @@ public class UserInfo implements Serializable {
     }
 
 
-    public UserInfo(String userId, String fullName, String avatar, String email, LocalDate dob) {
+    public UserInfo(Long userId, String fullName, String avatar, String email, LocalDate dob) {
         this.userId = userId;
         this.fullName = fullName;
         this.avatar = avatar;
@@ -38,11 +38,11 @@ public class UserInfo implements Serializable {
     }
 
 
-    public String getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 

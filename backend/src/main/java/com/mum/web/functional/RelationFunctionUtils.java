@@ -58,7 +58,6 @@ public class RelationFunctionUtils {
                             .stream().map(r -> r.convertToInfo())
                             .distinct()
                             .collect(Collectors.toList());
-
     public static BiFunction<List<User>, User, List<RelationshipInfo>> getSuggestedUserList =
             (users, targetUser) ->
 
@@ -89,8 +88,6 @@ public class RelationFunctionUtils {
                             .sorted(Comparator.comparing(Relationship::getSize, Comparator.reverseOrder()).thenComparing(Relationship::getLastName))
                             .map(r -> r.convertToInfo())
                             .distinct()
-
-
                             .collect(Collectors.toList());
 
     //A has a followings list contains the targetUser

@@ -6,6 +6,7 @@ import com.mum.web.functional.AuthenticationFunctionUtils;
 import com.mum.web.functional.PostFunctionUtils;
 import com.mum.web.functional.RelationFunctionUtils;
 import com.mum.web.provider.DataProvider;
+import com.mum.web.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -17,16 +18,12 @@ import java.util.stream.Collectors;
 
 @Service
 public class SocialNetworkService implements ISocialNetworkService {
-
-
     @Autowired
-    private DataProvider dataProvider;
+    private UserRepository userRepository;
 
     @Override
     public void createPost(PostInfo postInfo) {
-
-        List<User> users = dataProvider.getUsers();
-
+        List<User> users = userRepository.findAll();
         User currentUser = new User();
         boolean bfind = false;
         for (User user : users) {
@@ -35,19 +32,16 @@ public class SocialNetworkService implements ISocialNetworkService {
                 bfind = true;
                 break;
             }
-
         }
         if (bfind) {
             Post post = new Post();
             post.setContent(postInfo.getContent());
             post.setPostedDate(LocalDateTime.now());
             //post.setPostedDate(postInfo.getPostedDate());
-
             post.setUser(currentUser);
-            post.generatePostId();
             currentUser.addPost(post);
-
         }
+        userRepository.saveAll(users);
     }
 
     @Override
@@ -55,85 +49,65 @@ public class SocialNetworkService implements ISocialNetworkService {
         targetUser.addFriend(friend);
         friend.addFriend(targetUser); //?
 
-        //TODO[quy] add to data provider
+        userRepository.save(targetUser);
+        userRepository.save(friend);
+
     }
 
     public User acceptFriend(RelationshipInfo relationshipInfo) {
-        List<User> users = dataProvider.getUsers();
-
+        List<User> users = userRepository.findAll();
         User currentUser = new User(), followUser = new User();
-
-
         int count = 0;
-
         for (User user : users) {
             if (user.getEmail().equals(relationshipInfo.getB().getEmail())) {
                 currentUser = user;
                 count++;
-
             }
             if (user.getEmail().equals(relationshipInfo.getA().getEmail())) {
                 followUser = user;
                 count++;
-
             }
             if (count == 2) break;
-
-
         }
         if (count == 2) {
-
             currentUser.acceptFriend(followUser);
             followUser.updateWatingFriend(currentUser);
-
             //currentUser.addFriend(followUser);
             //followUser.addFriend(currentUser);
             //currentUser.addWaitingFriend(followUser);
             //followUser.addRequestedFriend(currentUser);
 
-
-            dataProvider.setUsers(users);
+            userRepository.saveAll(users);
         }
-
         return currentUser;
-
-
     }
 
     public User rejectFriend(RelationshipInfo relationshipInfo) {
-        List<User> users = dataProvider.getUsers();
+        List<User> users = userRepository.findAll();
 
         //User currentUser = new User(), followUser = new User();
-/*
-
-        int count = 0;
+/*      int count = 0;
 
         for (User user : users) {
             if (user.getEmail().equals(relationshipInfo.getB().getEmail())) {
                 currentUser = user;
                 count++;
-
             }
             if (user.getEmail().equals(relationshipInfo.getA().getEmail())) {
                 followUser = user;
                 count++;
-
             }
             if (count == 2) break;
-
-
         }
         */
 
         User currentUser = AuthenticationFunctionUtils.getUserByMail.apply(relationshipInfo.getB().getEmail(),users).get();
         User followUser = AuthenticationFunctionUtils.getUserByMail.apply(relationshipInfo.getA().getEmail(),users).get();
 
-
 //        if (count == 2) {
 
-
-            currentUser.rejectFriend(followUser,RelationStatus.REQUESTED);
-            followUser.rejectFriend(currentUser,RelationStatus.WAITING);
+        currentUser.rejectFriend(followUser,RelationStatus.REQUESTED);
+        followUser.rejectFriend(currentUser,RelationStatus.WAITING);
 
             //currentUser.acceptFriend(followUser);
             //followUser.updateWatingFriend(currentUser);
@@ -145,18 +119,17 @@ public class SocialNetworkService implements ISocialNetworkService {
 
 
             //dataProvider.setUsers(users);
+        userRepository.saveAll(users);
   //      }
 
         return currentUser;
 
-
     }
 
     public User makeFriend(RelationshipInfo relationshipInfo) {
-        List<User> users = dataProvider.getUsers();
+        List<User> users = userRepository.findAll();
 
         User currentUser = new User(), followUser = new User();
-
 
         int count = 0;
 
@@ -164,35 +137,29 @@ public class SocialNetworkService implements ISocialNetworkService {
             if (user.getEmail().equals(relationshipInfo.getB().getEmail())) {
                 currentUser = user;
                 count++;
-
             }
             if (user.getEmail().equals(relationshipInfo.getA().getEmail())) {
                 followUser = user;
                 count++;
-
             }
             if (count == 2) break;
-
-
         }
         if (count == 2) {
             //currentUser.addFriend(followUser);
             //followUser.addFriend(currentUser);
             currentUser.addWaitingFriend(followUser);
             followUser.addRequestedFriend(currentUser);
-            dataProvider.setUsers(users);
+            userRepository.saveAll(users);
         }
 
         return currentUser;
 
-
     }
 
     public void followUser(RelationshipInfo relationshipInfo) {
-        List<User> users = dataProvider.getUsers();
+        List<User> users = userRepository.findAll();
 
         User currentUser = new User(), followUser = new User();
-
 
         int count = 0;
 
@@ -200,29 +167,24 @@ public class SocialNetworkService implements ISocialNetworkService {
             if (user.getEmail().equals(relationshipInfo.getB().getEmail())) {
                 currentUser = user;
                 count++;
-
             }
             if (user.getEmail().equals(relationshipInfo.getA().getEmail())) {
                 followUser = user;
                 count++;
-
             }
             if (count == 2) break;
-
-
         }
         if (count == 2) {
             currentUser.addFollowing(followUser);
-            dataProvider.setUsers(users);
+            userRepository.saveAll(users);
         }
-
-
     }
 
     @Override
     public void addFollowing(User targetUser, User following) {
         targetUser.addFollowing(following);
-        //TODO[quy] add to data provider
+
+        userRepository.save(targetUser);
 
     }
 
@@ -232,19 +194,20 @@ public class SocialNetworkService implements ISocialNetworkService {
         Comment newComment = new Comment();
         newComment.setContent(commentInfo.getContent());
         newComment.setPostedDate(LocalDateTime.now());
-        List<User> allUsers = dataProvider.getUsers();
+        List<User> allUsers = userRepository.findAll();
         newComment.setPost(PostFunctionUtils.getCommentByPostId.apply(postInfo.getPostId(), allUsers).get());
         String userLoginEmail = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         newComment.setUser(AuthenticationFunctionUtils.getUserByMail.apply(userLoginEmail, allUsers).get());
-        newComment.generateCommentId();
 
         Optional<Post> optionalPost = PostFunctionUtils.getCommentByPostId.apply(postInfo.getPostId(), allUsers);
         optionalPost.get().getComments().add(newComment);
+
+        userRepository.saveAll(allUsers);
     }
 
     @Override
     public Comment updateLikeCommentOfPost(CommentInfo commentInfo) {
-        List<User> allUsers = dataProvider.getUsers();
+        List<User> allUsers = userRepository.findAll();
         Optional<Comment> optionalComment = allUsers.stream()
                 .flatMap(u -> u.getPosts().stream())
                 .flatMap(p -> p.getComments().stream())
@@ -265,8 +228,10 @@ public class SocialNetworkService implements ISocialNetworkService {
                 interaction.setComment(comment);
                 comment.getInteractions().add(interaction);
             }
+            userRepository.saveAll(allUsers);
             return comment;
         }
+        userRepository.saveAll(allUsers);
         return null;
     }
 
@@ -276,13 +241,14 @@ public class SocialNetworkService implements ISocialNetworkService {
         interaction.setInteractionType(InteractionType.LIKE);
         interaction.setActionDate(LocalDateTime.now());
         interaction.setPost(post);
-        interaction.generateInteractionId();
+
+        userRepository.saveAll(allUsers);
         return interaction;
     }
 
     @Override
     public Post updateLikePost(PostInfo postInfo) {
-        List<User> allUsers = dataProvider.getUsers();
+        List<User> allUsers = userRepository.findAll();
         Optional<Post> optionalPost = allUsers.stream()
                 .flatMap(u -> u.getPosts().stream())
                 .filter(p -> p.getPostId().equals(postInfo.getPostId())).findFirst();
@@ -301,14 +267,16 @@ public class SocialNetworkService implements ISocialNetworkService {
                 Interaction interaction = createInteraction(allUsers, email, post);
                 post.getInteractions().add(interaction);
             }
+            userRepository.saveAll(allUsers);
             return post;
         }
+        userRepository.saveAll(allUsers);
         return null;
     }
 
     @Override
-    public PostInfo loadPostById(String postId) {
-        Optional<Post> optionalPost = PostFunctionUtils.getCommentByPostId.apply(postId, dataProvider.getUsers());
+    public PostInfo loadPostById(Long postId) {
+        Optional<Post> optionalPost = PostFunctionUtils.getCommentByPostId.apply(postId, userRepository.findAll());
         Post post = optionalPost.get();
         return post.getPostInfo();
     }
@@ -316,80 +284,54 @@ public class SocialNetworkService implements ISocialNetworkService {
     ////////////////////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
     @Override
     public List<Post> getMyPost(User targetUser) {
         return targetUser.getPosts();
     }
 
-
     ///////////////////////////////////////////////////////////////
     //Update Data
-
 
     @Override
     public List<Post> addPost(User targetUser, Post post) {
         targetUser.addPost(post);
 
-        //TODO[quy] add a post to current user to data provider
-
+        userRepository.save(targetUser);
         return targetUser.getPosts();
     }
-
 
     ///////////
 
     @Override
     public List<UserInfo> getFriendListByUserEmail(String email) {
-
-        Optional<User> user = AuthenticationFunctionUtils.getUserByMail.apply(email, dataProvider.getUsers());
-
+        Optional<User> user = AuthenticationFunctionUtils.getUserByMail.apply(email, userRepository.findAll());
         if (!user.isPresent()) return null;
-
         List<User> users = RelationFunctionUtils.getFriendsList.apply(user.get());
-
         return AuthenticationFunctionUtils.converToListUserInfo.apply(users);
-
-
     }
 
     @Override
-
     public List<UserInfo> getFollowingListByUserEmail(String email) {
-
-        Optional<User> user = AuthenticationFunctionUtils.getUserByMail.apply(email, dataProvider.getUsers());
-
+        Optional<User> user = AuthenticationFunctionUtils.getUserByMail.apply(email, userRepository.findAll());
         if (!user.isPresent()) return null;
-
         List<User> users = RelationFunctionUtils.getFollowingsList.apply(user.get());
-
         return AuthenticationFunctionUtils.converToListUserInfo.apply(users);
     }
 
     @Override
-
     public List<RelationshipInfo> getRequestedFriendListByUserEmail(String email) {
-
-        Optional<User> user = AuthenticationFunctionUtils.getUserByMail.apply(email, dataProvider.getUsers());
-
+        Optional<User> user = AuthenticationFunctionUtils.getUserByMail.apply(email, userRepository.findAll());
         if (!user.isPresent()) return null;
-
         List<RelationshipInfo> users = RelationFunctionUtils.getRequestedFriends.apply(user.get());
-
         return users;//AuthenticationFunctionUtils.converToListUserInfo.apply(users);
     }
 
     public List<RelationshipInfo> getSuggestedFriendListByUserEmail(String email) {
-        Optional<User> user = AuthenticationFunctionUtils.getUserByMail.apply(email, dataProvider.getUsers());
-
+        Optional<User> user = AuthenticationFunctionUtils.getUserByMail.apply(email, userRepository.findAll());
         if (!user.isPresent()) return null;
-
-        List<RelationshipInfo> users = RelationFunctionUtils.getSuggestedUserList.apply(dataProvider.getUsers(), user.get());
-
+        List<RelationshipInfo> users = RelationFunctionUtils.getSuggestedUserList.apply(userRepository.findAll(), user.get());
         return users;
-
     }
-
 
     @Override
     public List<Relationship> getSuggestionsList(List<User> users, User targetUser) {
@@ -403,12 +345,9 @@ public class SocialNetworkService implements ISocialNetworkService {
         return RelationFunctionUtils.getSuggestionsList.apply(users, targetUser);
     }
 
-
     @Override
     public Optional<User> getUserById(List<User> users, String userId) {
-
         return AuthenticationFunctionUtils.getUserById.apply(users, userId);
-
     }
 
     @Override
@@ -439,7 +378,6 @@ public class SocialNetworkService implements ISocialNetworkService {
     ////////////////////////////////////////////////////////////////////////////////////////////////////
     ////For Post
 
-
     @Override
     public List<Post> getTimeline(List<User> users, User targetUser) {
         //return all posts of all followings of the targetUser
@@ -449,18 +387,14 @@ public class SocialNetworkService implements ISocialNetworkService {
         //A following B, C, D
         //A has list of friends D, E, F
         //Result: list of posts of A, [B, C, D], [D,E, F]
-        return
-                PostFunctionUtils.getTimeline.apply(users, targetUser);
+        return PostFunctionUtils.getTimeline.apply(users, targetUser);
     }
 
     @Override
     public List<PostInfo> getTimelinePostInfoByUserId(String userId) {
-        Optional<User> user = AuthenticationFunctionUtils.getUserById.apply(dataProvider.getUsers(), userId);
-
+        Optional<User> user = AuthenticationFunctionUtils.getUserById.apply(userRepository.findAll(), userId);
         if (!user.isPresent()) return null;
-
-        List<Post> posts = PostFunctionUtils.getTimeline.apply(dataProvider.getUsers(), user.get());
-
+        List<Post> posts = PostFunctionUtils.getTimeline.apply(userRepository.findAll(), user.get());
         return PostFunctionUtils.convertToListPostInfo.apply(posts);
 
         //return PostFunctionUtils.convertToListPostInfo.apply(PostFunctionUtils.getTimeline.apply(users, targetUser));
@@ -469,7 +403,6 @@ public class SocialNetworkService implements ISocialNetworkService {
 
     @Override
     public List<Post> getTimelineForPaging(List<User> users, User targetUser, int m, int n) {
-
         return PostFunctionUtils.getTimelineForPaging.apply(users, targetUser, m, n);
     }
 
@@ -477,28 +410,16 @@ public class SocialNetworkService implements ISocialNetworkService {
     @Override
     public TimelineInfo getTimelineInfoByUserEmail(String email) {
         TimelineInfo timelineInfo = new TimelineInfo();
-        Optional<User> user = AuthenticationFunctionUtils.getUserByMail.apply(email, dataProvider.getUsers());
-
+        Optional<User> user = AuthenticationFunctionUtils.getUserByMail.apply(email, userRepository.findAll());
         if (!user.isPresent()) return null;
-
-
         UserInfo myProfile = AuthenticationFunctionUtils.convertToUserInfo.apply(user.get());
-
-
-        List<Post> posts = PostFunctionUtils.getTimeline.apply(dataProvider.getUsers(), user.get());
-
+        List<Post> posts = PostFunctionUtils.getTimeline.apply(userRepository.findAll(), user.get());
         List<PostInfo> postInfos = PostFunctionUtils.convertToListPostInfo.apply(posts);
-
         List<UserInfo> friends = AuthenticationFunctionUtils.converToListUserInfo.apply(RelationFunctionUtils.getFriendsList.apply(user.get()));
-
         List<UserInfo> followings = AuthenticationFunctionUtils.converToListUserInfo.apply(RelationFunctionUtils.getFollowingsList.apply(user.get()));
-
         List<RelationshipInfo> requestedFriends =RelationFunctionUtils.getRequestedFriends.apply(user.get());
-
-        List<RelationshipInfo> suggestedFriends = RelationFunctionUtils.getSuggestedUserList.apply(dataProvider.getUsers(), user.get());
-
+        List<RelationshipInfo> suggestedFriends = RelationFunctionUtils.getSuggestedUserList.apply(userRepository.findAll(), user.get());
         List<UserInfo> waitingriends = AuthenticationFunctionUtils.converToListUserInfo.apply(RelationFunctionUtils.getWaitngsList.apply(user.get()));
-
 
         timelineInfo.setMyProfile(myProfile);
         timelineInfo.setFriends(friends);
@@ -507,7 +428,6 @@ public class SocialNetworkService implements ISocialNetworkService {
         timelineInfo.setWaitingriends(waitingriends);
         timelineInfo.setSuggestedFriends(suggestedFriends);
         timelineInfo.setPosts(postInfos);
-
 
         return timelineInfo;
 

@@ -66,8 +66,7 @@ public class Relationship {
         this.users = users;
     }
 
-    public RelationshipInfo convertToInfo()
-    {
+    public RelationshipInfo convertToInfo() {
         return new RelationshipInfo(AuthenticationFunctionUtils.convertToUserInfo.apply(a)
         ,AuthenticationFunctionUtils.convertToUserInfo.apply(b)
         ,AuthenticationFunctionUtils.converToListUserInfo.apply(users),users.size()

@@ -3,22 +3,24 @@ package com.mum.web.entities;
 import com.mum.web.functional.AuthenticationFunctionUtils;
 import com.mum.web.functional.PostFunctionUtils;
 import com.mum.web.dtos.PostInfo;
-import org.apache.commons.codec.digest.DigestUtils;
 
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
 public class Post  {
-
-    private String postId;
+    @Id
+    @GeneratedValue
+    private Long postId;
     private String content;
     private LocalDateTime postedDate;
-
+    @ManyToOne
     private User user;// user who posted this article
-
+    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
     private List<Interaction> interactions;
-
+    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
     private List<Comment> comments;
 
     public List<Comment> getComments() {
@@ -29,14 +31,10 @@ public class Post  {
         this.comments = comments;
     }
 
-
-
     public Post() {
         this.interactions = new ArrayList<Interaction>();
         this.comments = new ArrayList<Comment>();
-
     }
-
 
     public void addComment(Comment comment) {
         this.comments.add(comment);
@@ -46,12 +44,11 @@ public class Post  {
         this.interactions.add(interaction);
     }
 
-
-    public String getPostId() {
+    public Long getPostId() {
         return postId;
     }
 
-    public void setPostId(String postId) {
+    public void setPostId(Long postId) {
         this.postId = postId;
     }
 
@@ -71,8 +68,6 @@ public class Post  {
         this.postedDate = postedDate;
     }
 
-
-
     public User getUser() {
         return user;
     }
@@ -89,17 +84,12 @@ public class Post  {
         this.interactions = interactions;
     }
 
-
     public List<User> getInteractionUserList(InteractionType interactionType) {
         return PostFunctionUtils.getInteractionUserList.apply(this.interactions, interactionType);
-
     }
 
-
     public List<User> getLikeUserList() {
-
         return PostFunctionUtils.getInteractionUserList.apply(this.interactions, InteractionType.LIKE);
-
     }
 
     public int getLikeCount() {
@@ -116,20 +106,18 @@ public class Post  {
         return this.getLoveUserList().size();
     }
 
-    public void generatePostId() {
-        this.postId = DigestUtils.md5Hex(user.getUserId() + postedDate);
-    }
+//    public void generatePostId() {
+//        this.postId = DigestUtils.md5Hex(user.getUserId() + postedDate);
+//    }
 
-    public PostInfo getPostInfo()
-    {
+    public PostInfo getPostInfo() {
         return new PostInfo(this.getPostId(),this.getContent(),
                 this.getPostedDate(), AuthenticationFunctionUtils.convertToUserInfo.apply(this.user)
                 ,this.getLikeCount(),this.getLoveCount(),
                 AuthenticationFunctionUtils.converToListUserInfo.apply(this.getLikeUserList())
                 ,AuthenticationFunctionUtils.converToListUserInfo.apply(this.getLoveUserList()),
                //null
-                PostFunctionUtils.convertToListCommentInfo.apply(this.getComments())
-        );
+                PostFunctionUtils.convertToListCommentInfo.apply(this.getComments()));
     }
 
 }

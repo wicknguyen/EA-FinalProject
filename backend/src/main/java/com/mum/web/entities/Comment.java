@@ -3,6 +3,7 @@ package com.mum.web.entities;
 import com.mum.web.functional.PostFunctionUtils;
 import org.apache.commons.codec.digest.DigestUtils;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -10,19 +11,25 @@ import java.util.List;
 import java.time.LocalDateTime;
 import java.util.stream.Collectors;
 
-
+@Entity
 public class Comment implements Serializable {
-
-
-    private String commentId;
+    @Id
+    @GeneratedValue
+    private Long commentId;
     private String content;
     private LocalDateTime postedDate;
+    @ManyToOne
+    @JoinColumn(name = "postId")
     private Post post;
-
+    @ManyToOne
+    @JoinColumn(name = "userId")
     private User user;// user who posted this article
-
+    @OneToMany(mappedBy = "comment")
     private List<Interaction> interactions;
-
+//    @OneToMany
+//    @JoinTable(name = "parent_comment", joinColumns = {@JoinColumn(name = "parentCommentId")}, inverseJoinColumns = {@JoinColumn(name = "commentId")})
+    // TODO [QUY]
+    @Transient
     private List<Comment> comments;
 
     public List<Comment> getComments() {
@@ -33,14 +40,10 @@ public class Comment implements Serializable {
         this.comments = comments;
     }
 
-
-
     public Comment() {
         this.interactions = new ArrayList<Interaction>();
         this.comments = new ArrayList<Comment>();
-
     }
-
 
     public void addComment(Comment comment) {
         this.comments.add(comment);
@@ -49,8 +52,6 @@ public class Comment implements Serializable {
     public void addInteraction(Interaction interaction) {
         this.interactions.add(interaction);
     }
-
-
 
     public String getContent() {
         return content;
@@ -68,8 +69,6 @@ public class Comment implements Serializable {
         this.postedDate = postedDate;
     }
 
-
-
     public User getUser() {
         return user;
     }
@@ -86,44 +85,37 @@ public class Comment implements Serializable {
         this.interactions = interactions;
     }
 
-
     public List<User> getInteractionUserList(InteractionType interactionType) {
         return PostFunctionUtils.getInteractionUserList.apply(this.interactions, interactionType);
-
     }
 
-
     public List<User> getLikeUserList() {
-
         return PostFunctionUtils.getInteractionUserList.apply(this.interactions, InteractionType.LIKE);
-
     }
 
     public int getLikeCount() {
         return this.getLikeUserList().size();
     }
 
-
     public List<User> getLoveUserList() {
         return PostFunctionUtils.getInteractionUserList.apply(this.interactions, InteractionType.LOVE);
     }
-
 
     public int getLoveCount() {
         return this.getLoveUserList().size();
     }
 
-    public String getCommentId() {
+    public Long getCommentId() {
         return commentId;
     }
 
-    public void setCommentId(String commentId) {
+    public void setCommentId(Long commentId) {
         this.commentId = commentId;
     }
 
-    public void generateCommentId() {
-        this.commentId = DigestUtils.md5Hex(user.getUserId() + postedDate);
-    }
+//    public void generateCommentId() {
+//        this.commentId = DigestUtils.md5Hex(user.getUserId() + postedDate);
+//    }
 
     public Post getPost() {
         return post;

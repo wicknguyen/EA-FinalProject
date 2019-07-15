@@ -1,15 +1,21 @@
 package com.mum.web.entities;
 
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
+@Entity
 public class Relation {
-
+    @Id
+    @GeneratedValue
+    private int id;
+    @ManyToOne
     private User user;
+    @Enumerated(EnumType.STRING)
     private RelationType relationType;
+    @Enumerated(EnumType.STRING)
     private RelationStatus relationStatus;
     private LocalDateTime requestedDate;
     private LocalDateTime acceptedDate;
-
 
     public User getUser() {
         return user;

@@ -2,20 +2,27 @@ package com.mum.web.entities;
 
 import org.apache.commons.codec.digest.DigestUtils;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+@Entity
 public class Interaction {
-
-    protected String interactionId;
+    @Id
+    @GeneratedValue
+    protected Long interactionId;
     protected String icon;
     protected LocalDateTime actionDate;
-
-
+    @ManyToOne
+    @JoinColumn(name = "postId")
     protected Post post;
+    @ManyToOne
+    @JoinColumn(name = "commentId")
     protected Comment comment;
-
+    @ManyToOne
+    @JoinColumn(name = "userId")
     protected User user;
+    @Enumerated(EnumType.STRING)
     protected InteractionType interactionType;
 
     public Post getPost() {
@@ -34,8 +41,6 @@ public class Interaction {
         this.comment = comment;
     }
 
-
-
     public InteractionType getInteractionType() {
         return interactionType;
     }
@@ -43,9 +48,6 @@ public class Interaction {
     public void setInteractionType(InteractionType interactionType) {
         this.interactionType = interactionType;
     }
-
-
-
 
     public User getUser() {
         return user;
@@ -55,11 +57,11 @@ public class Interaction {
         this.user = user;
     }
 
-    public String getInteractionId() {
+    public Long getInteractionId() {
         return interactionId;
     }
 
-    public void setInteractionId(String interactionId) {
+    public void setInteractionId(Long interactionId) {
         this.interactionId = interactionId;
     }
 
@@ -79,7 +81,7 @@ public class Interaction {
         this.actionDate = actionDate;
     }
 
-    public void generateInteractionId() {
-        this.interactionId = DigestUtils.md5Hex(user.getUserId() + actionDate + post.getPostId());
-    }
+//    public void generateInteractionId() {
+//        this.interactionId = DigestUtils.md5Hex(user.getUserId() + actionDate + post.getPostId());
+//    }
 }
