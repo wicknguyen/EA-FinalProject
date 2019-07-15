@@ -13,10 +13,10 @@ public class Interaction {
     protected Long interactionId;
     protected String icon;
     protected LocalDateTime actionDate;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "postId")
     protected Post post;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "commentId")
     protected Comment comment;
     @ManyToOne

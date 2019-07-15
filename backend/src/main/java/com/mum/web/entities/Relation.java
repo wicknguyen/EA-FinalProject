@@ -8,7 +8,7 @@ public class Relation {
     @Id
     @GeneratedValue
     private int id;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     private User user;
     @Enumerated(EnumType.STRING)
     private RelationType relationType;

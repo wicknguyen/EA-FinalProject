@@ -16,7 +16,7 @@ public class Post  {
     private Long postId;
     private String content;
     private LocalDateTime postedDate;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     private User user;// user who posted this article
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
     private List<Interaction> interactions;

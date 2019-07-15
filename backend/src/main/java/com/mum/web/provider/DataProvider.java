@@ -1,7 +1,9 @@
 package com.mum.web.provider;
 
 import com.mum.web.entities.*;
+import com.mum.web.repositories.UserRepository;
 import org.apache.commons.codec.digest.DigestUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.Lifecycle;
 import org.springframework.stereotype.Component;
 
@@ -14,8 +16,11 @@ import java.util.List;
 
 @Component
 public class DataProvider {
+    @Autowired
+    private UserRepository userRepository;
 
     private List<String> datas = new ArrayList<>();
+
     private List<User> users = new ArrayList<>();
 
     public List<String> getDatas() {
@@ -41,7 +46,6 @@ public class DataProvider {
     public void addUsers(User user) {
         this.users.add(user);
     }
-
 
     @PostConstruct
     public void initData() {
@@ -87,13 +91,12 @@ public class DataProvider {
         bang.addFriend(sang);
         bang.addFriend(tung);
 
-
         sang.addFriend(bang);
         sang.addFriend(quy);
 
         tung.addFriend(bang);
 
-
+        userRepository.saveAll(users);
     }
 
     public void initTestData() {
@@ -108,7 +111,6 @@ public class DataProvider {
 
         String[] replyContent = {"this is reply 1",
                 "This is reply 2"};
-
 
         DateTimeFormatter formatter
                 = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
@@ -129,6 +131,7 @@ public class DataProvider {
 
         }
 
+        List<Post> posts = new ArrayList<>();
         for (int i = 0; i < email.length; i++) {
 
             Post post = new Post();
@@ -163,7 +166,6 @@ public class DataProvider {
             post.addInteraction(love);
             //love.generateInteractionId();
 
-
             Comment comment = new Comment();
             comment.setUser(userInteraction);
             comment.setContent(userInteraction + " commented: " + commentContent[i % 2]);
@@ -181,7 +183,6 @@ public class DataProvider {
             comment.setPost(post);
 //            comment.generateCommentId();
 
-
             Comment reply = new Comment();
             Interaction loveComment = new Interaction();
             reply.setContent(users.get((i + 2) % email.length) + " replied: " + replyContent[(i + 1) % 2]);
@@ -192,7 +193,6 @@ public class DataProvider {
 
             dateTime = LocalDateTime.now();
             reply.setPostedDate(dateTime);
-
 
             if (i % 2 == 0) {
                 reply.setContent(users.get((i + 3) % email.length) + " replied: " + replyContent[(i + 1) % 2]);
@@ -216,6 +216,9 @@ public class DataProvider {
                 post.addComment(comment);
             }
             users.get(i).addPost(post);
+            posts.add(post);
+
         }
+        userRepository.saveAll(users);
     }
 }

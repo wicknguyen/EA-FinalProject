@@ -18,16 +18,18 @@ public class Comment implements Serializable {
     private Long commentId;
     private String content;
     private LocalDateTime postedDate;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "postId")
     private Post post;
     @ManyToOne
     @JoinColumn(name = "userId")
     private User user;// user who posted this article
-    @OneToMany(mappedBy = "comment", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "comment")
     private List<Interaction> interactions;
-    @OneToMany
-    @JoinColumn(name = "parentCommentId")
+//    @OneToMany
+//    @JoinTable(name = "parent_comment", joinColumns = {@JoinColumn(name = "parentCommentId")}, inverseJoinColumns = {@JoinColumn(name = "commentId")})
+    // TODO [QUY]
+    @Transient
     private List<Comment> comments;
 
     public List<Comment> getComments() {
