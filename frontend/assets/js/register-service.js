@@ -2,25 +2,26 @@ $(document).ready(function () {
     $('#registerAccount').click(function () {
         const form = $('#kt_apps_user_add_user_form');
         console.log(form);
-        if (form[0][4].value !== form[0][5].value) {
+        if (form[0]['password'].value !== form[0]['re-password'].value) {
             console.log("Password not match!!!!");
             return;
         }
         let data = {
-            firstName: form[0][0].value,
-            lastName: form[0][1].value,
-            phone: form[0][2].value,
-            email: form[0][3].value,
-            password: form[0][4].value,
+            firstName: form[0]['first-name'].value,
+            lastName: form[0]['last-name'].value,
+            gender: form[0]['gender'].value,
+            email: form[0]['email'].value,
+            dob: form[0]['date-of-birth'].value,
+            password: form[0]['password'].value,
         }
 
         $.ajax({
             url: 'http://localhost:8080/register',
-            dataType: 'json',
+            // dataType: 'json',
             type: 'post',
-            headers: {
-                'Authorization': 'Bearer ' + localStorage.getItem(TOKEN_NAME)
-            },
+            // headers: {
+            //     'Authorization': 'Bearer ' + localStorage.getItem(TOKEN_NAME)
+            // },
             contentType: 'application/json',
             data: JSON.stringify(data),
             success: function( data, textStatus ){
