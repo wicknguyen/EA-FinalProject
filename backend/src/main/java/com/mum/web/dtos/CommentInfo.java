@@ -76,7 +76,6 @@ public class CommentInfo {
     }
 
 
-
     int numOfLike;
     int numOfLove;
 
@@ -93,16 +92,13 @@ public class CommentInfo {
 
     List<CommentInfo> commentInfos;
 
-    public CommentInfo()
-    {
+    public CommentInfo() {
 
     }
 
     public CommentInfo(Long commentId, String content, LocalDateTime postedDate, UserInfo postedBy,
                        int numOfLike, int numOfLove, List<UserInfo> likeUsers, List<UserInfo> loveUsers
-                       , List<CommentInfo> commentInfos) {
-        //)
-        // {
+            , List<CommentInfo> commentInfos) {
         this.commentId = commentId;
         this.postedDate = postedDate;
         this.postedBy = postedBy;

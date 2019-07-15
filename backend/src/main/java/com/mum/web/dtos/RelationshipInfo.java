@@ -31,7 +31,7 @@ public class RelationshipInfo {
 
     private Integer mutualFriends;
 
-    public RelationshipInfo(UserInfo a, UserInfo b, List<UserInfo> users, Integer mutualFriends,RelationStatus relationStatus) {
+    public RelationshipInfo(UserInfo a, UserInfo b, List<UserInfo> users, Integer mutualFriends, RelationStatus relationStatus) {
         this.a = a;
         this.b = b;
         this.users = users;

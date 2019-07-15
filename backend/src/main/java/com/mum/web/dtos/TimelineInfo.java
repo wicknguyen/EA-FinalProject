@@ -27,8 +27,6 @@ public class TimelineInfo {
     }
 
 
-
-
     public List<RelationshipInfo> getRequestedFriends() {
         return requestedFriends;
     }
