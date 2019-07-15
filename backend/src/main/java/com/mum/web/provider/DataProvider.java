@@ -36,7 +36,7 @@ public class DataProvider {
     }
 
     public List<User> getUsers() {
-        return users;
+        return userRepository.findAll();
     }
 
     public void setUsers(List<User> users) {
@@ -44,7 +44,7 @@ public class DataProvider {
     }
 
     public void addUsers(User user) {
-        this.users.add(user);
+        userRepository.save(user);
     }
 
     @PostConstruct

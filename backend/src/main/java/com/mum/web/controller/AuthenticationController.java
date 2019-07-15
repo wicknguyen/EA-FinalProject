@@ -3,6 +3,7 @@ package com.mum.web.controller;
 import com.mum.web.entities.User;
 import com.mum.web.functional.AuthenticationFunctionUtils;
 import com.mum.web.provider.DataProvider;
+import com.mum.web.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,7 +19,6 @@ public class AuthenticationController {
 
     @PostMapping("/")
     public void registerUser(@RequestBody User user) {
-
         if (AuthenticationFunctionUtils.isUserExisted.apply(user.getEmail(), dataProvider.getUsers())) {
             throw new RuntimeException("User already existed");
         }

@@ -51,46 +51,44 @@ public class RelationFunctionUtils {
                             .map(user -> relationshipBiFunction.apply(user, targetUser))
                             .sorted(Comparator.comparing(Relationship::getSize, Comparator.reverseOrder()).thenComparing(Relationship::getLastName))
                             .collect(Collectors.toList());
-// TODO [QUY]
-//    public static BiFunction<List<User>, User, List<RelationshipInfo>> getAllSuggestedUserList =
-//            (users, targetUser) ->
-//                    getSuggestionsList.apply(users, targetUser)
-//                            .stream().map(r -> r.convertToInfo())
-//                            .distinct()
-//                            .collect(Collectors.toList());
-//    public static BiFunction<List<User>, User, List<RelationshipInfo>> getSuggestedUserList =
-//            (users, targetUser) ->
-//
-//                    Stream.concat(
-//                            users.stream()
-//                                    .filter(user ->
-//
-//                                            RelationFunctionUtils.getFriendsList.apply(targetUser).stream().filter(user1 -> user1.equals(user)).count() <= 0
-//
-//
-//                                            /*
-//                                            Stream.concat(
-//                                                    //RelationFunctionUtils.getFriendsList.apply(targetUser).stream(),
-//                                                    RelationFunctionUtils.getRequestedFriends.apply(targetUser).stream(),
-//                                                    RelationFunctionUtils.getFriendsList.apply(targetUser).stream()).filter(user1 -> user1.equals(user)).count() <= 0
-//                                                    //RelationFunctionUtils.getFollowingsList.apply(targetUser).stream()).filter(user1 -> user1.equals(user)).count() <= 0
-//
-//*/
-//                                    && !user.equals(targetUser)).map(user -> relationshipBiFunction.apply(user, targetUser))
-//
-//                            .distinct(),
-//                            RelationFunctionUtils.getSuggestionsList.apply(users, targetUser).stream().distinct()
-//                    )
-//                            .filter(e->RelationFunctionUtils.getRequestedFriends.apply(targetUser).stream()
-//                            .filter(e2->e.equals(e2)).count()<=0)
-//                            .filter(distinctByKey(r->r.getA().getEmail()))
-//                            .distinct()
-//                            .sorted(Comparator.comparing(Relationship::getSize, Comparator.reverseOrder()).thenComparing(Relationship::getLastName))
-//                            .map(r -> r.convertToInfo())
-//                            .distinct()
-//
-//
-//                            .collect(Collectors.toList());
+
+    public static BiFunction<List<User>, User, List<RelationshipInfo>> getAllSuggestedUserList =
+            (users, targetUser) ->
+                    getSuggestionsList.apply(users, targetUser)
+                            .stream().map(r -> r.convertToInfo())
+                            .distinct()
+                            .collect(Collectors.toList());
+    public static BiFunction<List<User>, User, List<RelationshipInfo>> getSuggestedUserList =
+            (users, targetUser) ->
+
+                    Stream.concat(
+                            users.stream()
+                                    .filter(user ->
+
+                                            RelationFunctionUtils.getFriendsList.apply(targetUser).stream().filter(user1 -> user1.equals(user)).count() <= 0
+
+
+                                            /*
+                                            Stream.concat(
+                                                    //RelationFunctionUtils.getFriendsList.apply(targetUser).stream(),
+                                                    RelationFunctionUtils.getRequestedFriends.apply(targetUser).stream(),
+                                                    RelationFunctionUtils.getFriendsList.apply(targetUser).stream()).filter(user1 -> user1.equals(user)).count() <= 0
+                                                    //RelationFunctionUtils.getFollowingsList.apply(targetUser).stream()).filter(user1 -> user1.equals(user)).count() <= 0
+
+*/
+                                    && !user.equals(targetUser)).map(user -> relationshipBiFunction.apply(user, targetUser))
+
+                            .distinct(),
+                            RelationFunctionUtils.getSuggestionsList.apply(users, targetUser).stream().distinct()
+                    )
+                            .filter(e->RelationFunctionUtils.getRequestedFriends.apply(targetUser).stream()
+                            .filter(e2->e.equals(e2)).count()<=0)
+                            .filter(distinctByKey(r->r.getA().getEmail()))
+                            .distinct()
+                            .sorted(Comparator.comparing(Relationship::getSize, Comparator.reverseOrder()).thenComparing(Relationship::getLastName))
+                            .map(r -> r.convertToInfo())
+                            .distinct()
+                            .collect(Collectors.toList());
 
     //A has a followings list contains the targetUser
     //B has a followings list contains the targetUser
@@ -107,13 +105,13 @@ public class RelationFunctionUtils {
             .stream()
             .sorted(Comparator.comparing(User::getLastName).thenComparing(User::getFirstName))
             .collect(Collectors.toList());
-// TODO [QUY]
-//    public static Function<User, List<RelationshipInfo>> getRequestedFriends = (targetUser)
-//            -> targetUser.getRequestedFriends()
-//            .stream().map(user -> RelationFunctionUtils.relationshipBiFunction.apply(user, targetUser))
-//            .sorted(Comparator.comparing(Relationship::getSize, Comparator.reverseOrder()).thenComparing(Relationship::getLastName))
-//            .map(r -> r.convertToInfo())
-//            .collect(Collectors.toList());
+
+    public static Function<User, List<RelationshipInfo>> getRequestedFriends = (targetUser)
+            -> targetUser.getRequestedFriends()
+            .stream().map(user -> RelationFunctionUtils.relationshipBiFunction.apply(user, targetUser))
+            .sorted(Comparator.comparing(Relationship::getSize, Comparator.reverseOrder()).thenComparing(Relationship::getLastName))
+            .map(r -> r.convertToInfo())
+            .collect(Collectors.toList());
 
 
     public static Function<User, List<User>> getFollowingsList = (targetUser)

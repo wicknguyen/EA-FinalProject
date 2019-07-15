@@ -109,15 +109,15 @@ public class Post  {
 //    public void generatePostId() {
 //        this.postId = DigestUtils.md5Hex(user.getUserId() + postedDate);
 //    }
-    // TODO [QUY]
-//    public PostInfo getPostInfo() {
-//        return new PostInfo(this.getPostId(),this.getContent(),
-//                this.getPostedDate(), AuthenticationFunctionUtils.convertToUserInfo.apply(this.user)
-//                ,this.getLikeCount(),this.getLoveCount(),
-//                AuthenticationFunctionUtils.converToListUserInfo.apply(this.getLikeUserList())
-//                ,AuthenticationFunctionUtils.converToListUserInfo.apply(this.getLoveUserList()),
-//               //null
-//                PostFunctionUtils.convertToListCommentInfo.apply(this.getComments()));
-//    }
+
+    public PostInfo getPostInfo() {
+        return new PostInfo(this.getPostId(),this.getContent(),
+                this.getPostedDate(), AuthenticationFunctionUtils.convertToUserInfo.apply(this.user)
+                ,this.getLikeCount(),this.getLoveCount(),
+                AuthenticationFunctionUtils.converToListUserInfo.apply(this.getLikeUserList())
+                ,AuthenticationFunctionUtils.converToListUserInfo.apply(this.getLoveUserList()),
+               //null
+                PostFunctionUtils.convertToListCommentInfo.apply(this.getComments()));
+    }
 
 }
