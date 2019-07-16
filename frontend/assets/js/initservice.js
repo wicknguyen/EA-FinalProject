@@ -254,7 +254,19 @@ $(window).ready(function () {
             "postedDate": moment( new Date()).format("YYYY-MM-DDTHH:mm:ss.SSS"),
             "postedBy": {
                 "email": userName,
-            }
+                "userId": 1,
+                "fullName": "Bao Tran",
+                "avatar": "10",
+                "dob":"1977-07-07"
+            },
+            "numOfLike": 0,
+            "numOfLove": 0,
+            "likeUsers": [
+            ],
+            "loveUsers": [
+            ],
+            "commentInfos": [
+            ]
         };
 
         $.ajax({
@@ -271,8 +283,8 @@ $(window).ready(function () {
             }
         });
 
-        // sentNoti(data);
-        // location.reload();
+        sentNoti(data);
+        location.reload();
 
     });
 

@@ -87,6 +87,9 @@ public class DataProvider {
 
         tung.addFriend(bang);
 
+        viet.addFriend(bao);
+
+
         userRepository.saveAll(users);
     }
 
