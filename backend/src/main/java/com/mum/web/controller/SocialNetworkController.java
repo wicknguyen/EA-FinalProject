@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -155,7 +156,7 @@ public class SocialNetworkController {
 
         CommentInfo postInfo = new CommentInfo(123L, "456", LocalDateTime.now()
                 , AuthenticationFunctionUtils.convertToUserInfo.apply(user.get())
-                , 1, null, null);
+                , 1, new ArrayList<>(), new ArrayList<>());
         return postInfo;
     }
 

@@ -936,12 +936,15 @@ License: You must have a valid license purchased only from themeforest(the above
 										{{content}}
 									</p>
 									<div class="kt-section__content kt-section__content--solid" style="padding: 10px 15px;margin-bottom: 10px;display: inline-table;">
-										<button type="button" class="btn btn-elevate-hover btn-circle btn-icon btn-outline-info btn-" id="like-comment-btn"><i class="fa flaticon-like"></i></button>
+										<button type="button" class="btn btn-elevate-hover btn-circle btn-icon btn-outline-info btn-" id="like-comment-btn" commentId="{{commentId}}">
+											<i class="fa flaticon-like"></i>
+										</button>
 										<span class="text-black-50" style="margin-left: 10px; margin-right: 30px;">{{numOfLike}}</span>
 									</div>
 								</div>
 							</div>
 						</div>
+						{{/each}}
 					</div>
 					</script>
 				</div>
@@ -1150,7 +1153,6 @@ License: You must have a valid license purchased only from themeforest(the above
 								</div>
 							</div>
 						</div>
-						{{/each}}
 					</div>
 					<div class="kt-portlet__foot">
 						<div class="kt-chat__input">

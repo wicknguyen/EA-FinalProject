@@ -1,6 +1,7 @@
 package com.mum.web.dtos;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 public class CommentInfo {
@@ -8,6 +9,10 @@ public class CommentInfo {
     Long commentId;
     LocalDateTime postedDate;
     UserInfo postedBy;
+    List<CommentInfo> commentInfos = new ArrayList<>();
+    String content;
+    int numOfLike;
+    List<UserInfo> likeUsers = new ArrayList<>();
 
     public String getContent() {
         return content;
@@ -16,8 +21,6 @@ public class CommentInfo {
     public void setContent(String content) {
         this.content = content;
     }
-
-    String content;
 
     public Long getCommentId() {
         return commentId;
@@ -59,10 +62,6 @@ public class CommentInfo {
         this.likeUsers = likeUsers;
     }
 
-    int numOfLike;
-
-    List<UserInfo> likeUsers;
-
     public List<CommentInfo> getCommentInfos() {
         return commentInfos;
     }
@@ -70,8 +69,6 @@ public class CommentInfo {
     public void setCommentInfos(List<CommentInfo> commentInfos) {
         this.commentInfos = commentInfos;
     }
-
-    List<CommentInfo> commentInfos;
 
     public CommentInfo() {
 

@@ -9,6 +9,8 @@ $(window).ready(function () {
     var current_user;
     let LOAD_COMMENT_POST_URL = "http://localhost:8080/api/comment/";
     let LIKE_POST_URL = "http://localhost:8080/api/like-post";
+    let LIKE_COMMENT_URL = "http://localhost:8080/api/like-comment";
+    let COMMENT_URL = "http://localhost:8080/api/comment";
 
     // get user info
     $.ajax({
@@ -80,9 +82,10 @@ $(window).ready(function () {
                 console.log("value = " + $(this).val());
             });
 
+            var responseData = null;
             // click open comment modal
             $("button[data-target='#kt_modal_3']").click(function () {
-                postId = $(this).attr('postId');
+                let postId = $(this).attr('postId');
                 // fetch post
                 $.ajax({
                     url: LOAD_COMMENT_POST_URL + postId,
@@ -92,7 +95,7 @@ $(window).ready(function () {
                         'Authorization': 'Bearer ' + localStorage.getItem(TOKEN_NAME)
                     },
                     success: function (dataPostComment) {
-                        console.log(dataPostComment);
+                        responseData = dataPostComment;
                         // get friends
                         let template = $('#post-modal-content').html();
                         let templateScript = Handlebars.compile(template);
@@ -100,6 +103,75 @@ $(window).ready(function () {
                         $('#modal-post-comment-content').append(html);
 
                         // add event handle
+                        $('#like-comment-btn').click(function () {
+                            let commentInfo = getCommentInfo(responseData.commentInfos, $(this).attr('commentId'));
+
+                            if (isLikedByCurrentUser(commentInfo)) {
+                                commentInfo.likeUsers.forEach(
+                                    u => {
+                                    if (u.email == current_user.email) {
+                                    commentInfo.likeUsers.splice(commentInfo.likeUsers.indexOf(u), 1);
+                                    commentInfo.numOfLike--;
+                                    $(this).removeClass('like-post');
+                                    $(this).next().text(commentInfo.numOfLike);
+                                }
+                            });
+                            } else {
+                                commentInfo.likeUsers.push(current_user);
+                                commentInfo.numOfLike++;
+                                $(this).addClass('like-post');
+                                $(this).next().text(commentInfo.numOfLike);
+                            }
+                            $.ajax({
+                                url: LIKE_COMMENT_URL,
+                                type: "POST",
+                                dataType: "json",
+                                contentType: 'application/json',
+                                headers: {
+                                    'Authorization': 'Bearer ' + localStorage.getItem(TOKEN_NAME)
+                                },
+                                data: JSON.stringify(commentInfo),
+                                success: function (data) {
+                                    console.log(data);
+                                }
+                            });
+
+                        });
+
+                        // $('#shareCommentPost').click(function (e) {
+                        //     console.log('Share Comment', $('#commentContent').val());
+                        //     console.log(postId);
+                        // });
+                    }
+                });
+            });
+
+            $('#shareCommentPost').click(function (e) {
+                console.log('Share Comment', $('#commentContent').val());
+
+                let comment = {
+                    commentId: '',
+                    postedDate: new Date(),
+                    postedBy: current_user,
+                    content: $('#commentContent').val(),
+                    numOfLike: 0,
+                    numOfLove: 0,
+                    likeUsers: [],
+                    loveUsers: [],
+                    commentInfos: []
+                };
+                responseData.commentInfos = [comment];
+                $.ajax({
+                    url: COMMENT_URL,
+                    type: "POST",
+                    dataType: "json",
+                    contentType: 'application/json',
+                    headers: {
+                        'Authorization': 'Bearer ' + localStorage.getItem(TOKEN_NAME)
+                    },
+                    data: JSON.stringify(responseData),
+                    success: function (updatedCommentRes) {
+                        console.log(updatedCommentRes);
                     }
                 });
             });
@@ -194,6 +266,17 @@ $(window).ready(function () {
         return post;
     }
 
+    function getCommentInfo(commentInfos, commentId) {
+        comment = null;
+        commentInfos.forEach(c => {
+            if (c.commentId == commentId) {
+            comment = c;
+            return;
+        }
+    });
+        return comment;
+    }
+
     function isLikedByCurrentUser(post) {
         if (post && post.likeUsers) {
             return post.likeUsers.some((u) => {
@@ -211,7 +294,7 @@ $(window).ready(function () {
         }).join(''));
         return JSON.parse(jsonPayload);
     }
-    
+
 
     function sentNoti(data) {
         $.ajax({
@@ -230,23 +313,9 @@ $(window).ready(function () {
         });
     }
 
-    $("button[postId='4']").click(function () {
-        console.log("SHOW MODAL");
-    });
-
-    $('button[like]').click(function () {
-       console.log("Like", $(this));
-    });
-
     $('#btnSignout').click(function () {
         localStorage.clear();
         window.location = './login-page.html';
-    });
-
-    $('#shareCommentPost').click(function (e) {
-        e.preventDefault();
-        console.log('Share Comment', $('#commentContent').val());
-        console.log(postId);
     });
 
 });
