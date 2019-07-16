@@ -18,8 +18,11 @@ $(window).ready(function () {
             url: GET_USER_URL + userName,
             type: "GET",
             dataType: "json",
-            success: function (data) {
-                console.log("Load current user successfully", data);
+            headers: {
+                'Authorization': 'Bearer ' + localStorage.getItem(TOKEN_NAME)
+            },
+        success: function (data) {
+            console.log("Load current user successfully", data);
                 current_user = data;
                 localStorage.setItem('current_user', data);
                 let template = $('#user-profile-template').html();
@@ -50,6 +53,9 @@ $(window).ready(function () {
         url: GET_TIMELINE_URL + userName,
         type: "GET",
         dataType: "json",
+        headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem(TOKEN_NAME)
+        },
         success: function (data) {
             timeline = data;
             Handlebars.registerHelper('fromNow', function(date) {
@@ -71,6 +77,24 @@ $(window).ready(function () {
 
             Handlebars.registerHelper('numComments', function(comments) {
                 return comments.length;
+            });
+
+            Handlebars.registerHelper('add', function(email) {
+
+                if (data.waitingriends.some( x => x.email === email)) {
+                    return "Requested";
+                } else {
+                    return "Add Friend";
+                }
+            });
+
+            Handlebars.registerHelper('following', function(email) {
+
+                if (data.followings.some( x => x.email === email)) {
+                    return "Following";
+                } else {
+                    return "Follow";
+                }
             });
 
             //get posts
@@ -97,18 +121,41 @@ $(window).ready(function () {
             var html = templateScript(timeline);
             $('#requested').append(html);
 
+            // get suggested
+            var template = $('#handlebar-suggested').html();
+            var templateScript = Handlebars.compile(template);
+            var html = templateScript(timeline);
+            $('#suggested').append(html);
+
             //accept friend
             $("button[id^=accept]").click(function () {
-                acceptFriend($(this).val(), userName, "acceptFriend");
+                actionFriend(userName, $(this).val(), "acceptFriend");
                 location.reload();
             });
 
             //deny friend
             $("button[id^=deny]").click(function () {
                 console.log("value = " + $(this).val());
-                acceptFriend($(this).val(), userName, "rejectFriend");
+                actionFriend(userName, $(this).val(), "rejectFriend");
                 location.reload();
             });
+
+            //make friend
+            $("button[id^=add]").click(function () {
+                $(this).text("Requested");
+                $(this).attr("disabled",true);
+                actionFriend(userName, $(this).val(), "makeFriend");
+                // location.reload();
+            });
+
+            //follow friend
+            $("button[id^=follow]").click(function () {
+                $(this).text("Following");
+                $(this).attr("disabled",true);
+                actionFriend(userName,$(this).val() , "followUser");
+                // location.reload();
+            });
+
 
 
             var responseData = null;
@@ -271,14 +318,14 @@ $(window).ready(function () {
         }
     });
 
-    // accept or deny
-    function acceptFriend(from, to, action) {
-        data = {
+    //make or follow - accept or deny
+    function actionFriend(from, to, action) {
+        let dataAccept = {
             "a": {
-                "email": from
+                "email": to
             },
             "b": {
-                "email": to
+                "email": from
             }
         };
 
@@ -286,8 +333,11 @@ $(window).ready(function () {
             url: BASE_URL + action,
             dataType: 'json',
             type: 'post',
+            headers: {
+                'Authorization': 'Bearer ' + localStorage.getItem(TOKEN_NAME)
+            },
             contentType: 'application/json',
-            data: JSON.stringify(data),
+            data: JSON.stringify(dataAccept),
             success: function( response ){
                 console.log("post sent");
             },
@@ -326,6 +376,9 @@ $(window).ready(function () {
             url: CREATE_POST_URL,
             dataType: 'json',
             type: 'post',
+            headers: {
+                'Authorization': 'Bearer ' + localStorage.getItem(TOKEN_NAME)
+            },
             contentType: 'application/json',
             data: JSON.stringify(data),
             success: function( response ){
@@ -391,6 +444,9 @@ $(window).ready(function () {
             url: "http://localhost:8899/posts/add",
             dataType: 'json',
             type: 'post',
+            headers: {
+                'Authorization': 'Bearer ' + localStorage.getItem(TOKEN_NAME)
+            },
             contentType: 'application/json',
             data: JSON.stringify(data),
             success: function( res, textStatus ){
