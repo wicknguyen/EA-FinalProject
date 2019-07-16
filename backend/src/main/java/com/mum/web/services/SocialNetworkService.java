@@ -179,6 +179,7 @@ public class SocialNetworkService implements ISocialNetworkService {
             } else if (!userInfoList.isEmpty() && interactionList.isEmpty()) {
                 Interaction interaction = createInteraction(allUsers, email, comment.getPost());
                 interaction.setComment(comment);
+                interaction.setPost(null);
                 comment.getInteractions().add(interaction);
             }
             userRepository.saveAll(allUsers);
