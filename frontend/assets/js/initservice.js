@@ -35,6 +35,11 @@ $(window).ready(function () {
                 let templateScript1 = Handlebars.compile(template1);
                 let html1 = templateScript1(data);
                 $('#user-bar').append(html1);
+
+                $('#btnSignout').click(function () {
+                    localStorage.clear();
+                    window.location = './login-page.html';
+                });
             }
     });
 
@@ -397,10 +402,5 @@ $(window).ready(function () {
             }
         });
     }
-
-    $('#btnSignout').click(function () {
-        localStorage.clear();
-        window.location = './login-page.html';
-    });
 
 });
