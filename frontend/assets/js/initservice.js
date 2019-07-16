@@ -1,4 +1,5 @@
 $(window).ready(function () {
+    let BASE_URL = "http://localhost:8080/api/";
     let CREATE_POST_URL = "http://localhost:8080/api/post";
     let GET_TIMELINE_URL = "http://localhost:8080/api/timeline/";
     let GET_USER_URL = "http://localhost:8080/api/user/";
@@ -74,13 +75,17 @@ $(window).ready(function () {
 
             //accept friend
             $("button[id^=accept]").click(function () {
-                console.log("value = " + $(this).val());
+                acceptFriend($(this).val(), userName, "acceptFriend");
+                location.reload();
             });
 
             //deny friend
             $("button[id^=deny]").click(function () {
                 console.log("value = " + $(this).val());
+                acceptFriend($(this).val(), userName, "rejectFriend");
+                location.reload();
             });
+
 
             var responseData = null;
             // click open comment modal
@@ -215,6 +220,31 @@ $(window).ready(function () {
         }
     });
 
+    // accept or deny
+    function acceptFriend(from, to, action) {
+        data = {
+            "a": {
+                "email": from
+            },
+            "b": {
+                "email": to
+            }
+        };
+
+        $.ajax({
+            url: BASE_URL + action,
+            dataType: 'json',
+            type: 'post',
+            contentType: 'application/json',
+            data: JSON.stringify(data),
+            success: function( response ){
+                console.log("post sent");
+            },
+            error: function( error ){
+                console.log( error );
+            }
+        });
+    }
 
     // Create post
     $('#post').click(function () {
@@ -224,15 +254,7 @@ $(window).ready(function () {
             "postedDate": moment( new Date()).format("YYYY-MM-DDTHH:mm:ss.SSS"),
             "postedBy": {
                 "email": userName,
-            },
-            "numOfLike": 0,
-            "numOfLove": 0,
-            "likeUsers": [
-            ],
-            "loveUsers": [
-            ],
-            "commentInfos": [
-            ]
+            }
         };
 
         $.ajax({
@@ -241,7 +263,7 @@ $(window).ready(function () {
             type: 'post',
             contentType: 'application/json',
             data: JSON.stringify(data),
-            success: function( data, textStatus ){
+            success: function( response ){
                 console.log("post sent");
             },
             error: function( error ){
@@ -250,7 +272,7 @@ $(window).ready(function () {
         });
 
         // sentNoti(data);
-        location.reload();
+        // location.reload();
 
     });
 
