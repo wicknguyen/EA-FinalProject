@@ -49,6 +49,7 @@ License: You must have a valid license purchased only from themeforest(the above
 
 	<!--begin:: Global Mandatory Vendors -->
 	<link href="./assets/vendors/general/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet" type="text/css" />
+	<link href="./assets/css/custom.css" rel="stylesheet" type="text/css" />
 
 	<!--end:: Global Mandatory Vendors -->
 
@@ -743,9 +744,9 @@ License: You must have a valid license purchased only from themeforest(the above
                                                             {{content}}
                                                         </p>
                                                         <div class="kt-section__content kt-section__content--solid" style="padding: 10px 15px;margin-bottom: 10px;display: inline-table;">
-                                                            <button type="button" class="btn btn-elevate-hover btn-circle btn-icon btn-outline-info btn-"><i class="fa flaticon-like"></i></button>
+                                                            <button type="button" class="btn btn-elevate-hover btn-circle btn-icon btn-outline-info btn-" onclick="likePost(event, {{postId}})"><i class="fa flaticon-like"></i></button>
                                                             <span class="text-black-50" style="margin-left: 10px; margin-right: 30px;">{{numOfLike}}</span>
-                                                            <button type="button" class="btn btn-elevate btn-circle btn-icon btn-outline-success" data-toggle="modal" data-target="#kt_modal_3"><i class="fa flaticon-comment"></i></button>
+                                                            <button type="button" class="btn btn-elevate btn-circle btn-icon btn-outline-success" data-toggle="modal" data-target="#kt_modal_3" onclick="loadPostComment({{postId}})"><i class="fa flaticon-comment"></i></button>
                                                             <span class="text-black-50" style="margin-left: 10px; margin-right: 30px;">{{numComments commentInfos}}</span>
                                                         </div>
                                                     </div>
@@ -1103,33 +1104,31 @@ License: You must have a valid license purchased only from themeforest(the above
 				</button>
 			</div>
 			<div class="modal-body kt-widget3">
-				<div class="kt-widget3__item">
+				<div class="kt-widget3__item" id="modal-post-comment-content">
+					<script id="post-modal-content" type="text/x-handlebars-template">
 					<div class="kt-widget3__header">
 						<div class="kt-widget3__user-img">
-							<img class="kt-widget3__img" src="./assets/media/users/100_8.jpg" alt="">
+							<img class="kt-widget3__img" src="./assets/media/users/{{postedBy.avatar}}" alt="">
 						</div>
 						<div class="kt-widget3__info">
-							<a href="#" class="kt-widget3__username">
-								Viet Phan
-							</a><br>
+							<a href="#" class="kt-widget3__username">{{postedBy.fullName}}</a><br>
 							<span class="kt-widget3__time">in 5 hours</span>
 						</div>
 						<span class="kt-widget3__status kt-font-info"></span>
 					</div>
+
 					<div class="kt-widget3__body">
-						<p class="kt-widget3__text">
-							Viet posted: MUM, a unique university in the Midwest for the
-							unique students of the world.
-						</p>
+						<p class="kt-widget3__text">{{content}}</p>
+						{{#each commentInfos}}
 						<div class="kt-widget3 kt-margin-l-35">
 							<div class="kt-widget3__item">
 								<div class="kt-widget3__header">
 									<div class="kt-widget3__user-img">
-										<img class="kt-widget3__img" src="./assets/media/users/100_7.jpg" alt="">
+										<img class="kt-widget3__img" src="./assets/media/users/{{postedBy.avatar}}" alt="">
 									</div>
 									<div class="kt-widget3__info">
 										<a href="#" class="kt-widget3__username">
-											Quy Nguyen
+											{{postedBy.fullName}}
 										</a><br>
 										<span class="kt-widget3__time">in 3 hours</span>
 									</div>
@@ -1137,16 +1136,17 @@ License: You must have a valid license purchased only from themeforest(the above
 								</div>
 								<div class="kt-widget3__body">
 									<p class="kt-widget3__text">
-										Quy posted: Hihi hehe
+										{{content}}
 									</p>
 									<div class="kt-section__content kt-section__content--solid" style="padding: 10px 15px;margin-bottom: 10px;display: inline-table;">
-										<button type="button" class="btn btn-elevate-hover btn-circle btn-icon btn-outline-info btn-"><i class="fa flaticon-like"></i></button>
-										<span class="text-black-50" style="margin-left: 10px; margin-right: 30px;">3</span>
+										<button type="button" class="btn btn-elevate-hover btn-circle btn-icon btn-outline-info btn-" onclick="likePost(event, {{commentId}})"><i class="fa flaticon-like"></i></button>
+										<span class="text-black-50" style="margin-left: 10px; margin-right: 30px;">{{numOfLike}}</span>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
+					</script>
 				</div>
 			</div>
 			<div class="modal-footer">
@@ -1164,7 +1164,7 @@ License: You must have a valid license purchased only from themeforest(the above
 					<button class="btn btn-default" type="button" aria-label="Close dialog"
 							data-dismiss="modal">Close
 					</button>
-					<button class="btn btn-primary" type="button"> Share</button>
+					<button class="btn btn-primary" type="button" id="shareCommentPost"> Share</button>
 				</div>
 			</div>
 		</div>
@@ -1353,6 +1353,7 @@ License: You must have a valid license purchased only from themeforest(the above
 								</div>
 							</div>
 						</div>
+						{{/each}}
 					</div>
 					<div class="kt-portlet__foot">
 						<div class="kt-chat__input">

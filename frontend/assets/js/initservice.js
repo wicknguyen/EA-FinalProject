@@ -1,9 +1,20 @@
-$(function () {
+$(window).ready(function () {
     let CREATE_POST_URL = "http://localhost:8080/api/post";
     let GET_TIMELINE_URL = "http://localhost:8080/api/timeline/";
+    let GET_USER_URL = "http://localhost:8080/api/user/";
     let token = localStorage.getItem('access_token');
     let userName = parseJwt(token).user_name;
-    var timeline;
+
+    // get user info
+    $.ajax({
+            url: GET_USER_URL + userName,
+            type: "GET",
+            dataType: "json",
+            success: function (data) {
+                console.log("Load current user successfully", data);
+                current_user = data;
+            }
+    });
 
 
 
@@ -132,4 +143,117 @@ $(function () {
         });
     }
 
+    $("button[postId='4']").click(function () {
+        console.log("SHOW MODAL");
+    });
+
+    $('button[like]').click(function () {
+       console.log("Like", $(this));
+    });
+
+    $('#btnSignout').click(function () {
+        localStorage.clear();
+        window.location = './login-page.html';
+    });
+
+    $('#shareCommentPost').click(function (e) {
+        e.preventDefault();
+        console.log('Share Comment', $('#commentContent').val());
+        console.log(postId);
+    });
+
 });
+var postId;
+var timeline;
+var current_user;
+let LOAD_COMMENT_POST_URL = "http://localhost:8080/api/comment/";
+let LIKE_POST_URL = "http://localhost:8080/api/like-post";
+
+function getPostInfo(postId) {
+    post = null;
+    timeline.posts.forEach(p => {
+        if (p.postId == postId) {
+            post = p;
+            return;
+        }
+    });
+    return post;
+}
+
+
+function loadPostComment(postId) {
+    this.postId = postId;
+    // fetch post
+    $.ajax({
+        url: LOAD_COMMENT_POST_URL + postId,
+        type: "GET",
+        dataType: "json",
+        headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem(TOKEN_NAME)
+        },
+        success: function (data) {
+           console.log(data);
+            // get friends
+            var template = $('#post-modal-content').html();
+            var templateScript = Handlebars.compile(template);
+            var html = templateScript(data);
+            $('#modal-post-comment-content').append(html);
+        }
+    });
+
+}
+
+// Implement like post
+function likePost(e, postId) {
+    console.log(e);
+    let postInfo = getPostInfo(postId);
+    if (isLikedByCurrentUser(postInfo)) {
+        postInfo.likeUsers.forEach(u => {
+            if (u.email == current_user.email) {
+                postInfo.likeUsers.splice(postInfo.likeUsers.indexOf(u), 1);
+                postInfo.numOfLike--;
+                if(e.target.nodeName == 'i') {
+                    e.target.parentNode.classList.remove('like-post');
+                    e.target.parentNode.nextElementSibling.textContent = postInfo.numOfLike;
+                } else {
+                    e.target.classList.remove('like-post');
+                    e.target.nextElementSibling.textContent = postInfo.numOfLike;
+                }
+
+            }
+        });
+    } else {
+        postInfo.likeUsers.push(current_user);
+        postInfo.numOfLike++;
+        if(e.target.nodeName == 'i') {
+            e.target.parentNode.classList.add('like-post');
+            e.target.parentNode.nextElementSibling.textContent = postInfo.numOfLike;
+        } else {
+            e.target.classList.add('like-post');
+            e.target.nextElementSibling.textContent = postInfo.numOfLike;
+        }
+    }
+    $.ajax({
+        url: LIKE_POST_URL,
+        type: "POST",
+        dataType: "json",
+        contentType: 'application/json',
+        headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem(TOKEN_NAME)
+        },
+        data: JSON.stringify(postInfo),
+        success: function (data) {
+            console.log(data);
+        }
+    });
+}
+
+function isLikedByCurrentUser(post) {
+    if (post && post.likeUsers) {
+        return post.likeUsers.some((u) => {
+            return u.email === current_user.email;
+        });
+    }
+    return false;
+}
+// End like post
