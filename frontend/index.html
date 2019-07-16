@@ -635,8 +635,8 @@ License: You must have a valid license purchased only from themeforest(the above
 															<div class="kt-widget4__info">
 <!--                                                                <a href="#" class="btn btn-sm btn-label-success btn-bold">Add friend</a>-->
 <!--                                                                <a href="#" class="btn btn-sm btn-label-info btn-bold">Follow</a>-->
-                                                                <button id="add{{a.userId}}" class="btn btn-sm btn-label-success btn-bold" value="{{a.email}}">{{add a.email}}</button>
-                                                                <button id="follow{{a.userId}}" class="btn btn-sm btn-label-info btn-bold"  value="{{a.email}}">{{following a.email}}</button>
+                                                                <button {{isAdded a.email}} id="add{{a.email}}" class="btn btn-sm btn-label-success btn-bold" value="{{a.email}}">{{add a.email}}</button>
+                                                                <button {{isFollow a.email}} id="follow{{a.email}}" class="btn btn-sm btn-label-info btn-bold"  value="{{a.email}}">{{following a.email}}</button>
 															</div>
 														</div>
                                                             <br>

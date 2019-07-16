@@ -79,21 +79,41 @@ $(window).ready(function () {
                 return comments.length;
             });
 
+            // for button name
             Handlebars.registerHelper('add', function(email) {
-
                 if (data.waitingriends.some( x => x.email === email)) {
-                    return "Requested";
+                    return "Friend Requested";
                 } else {
                     return "Add Friend";
                 }
             });
-
+            // for button name
             Handlebars.registerHelper('following', function(email) {
-
                 if (data.followings.some( x => x.email === email)) {
+                    isFollow = "disabled";
                     return "Following";
                 } else {
+                    isFollow = "";
                     return "Follow";
+                }
+            });
+
+
+            // for disabled button
+            Handlebars.registerHelper('isAdded', function(email) {
+                if (data.waitingriends.some( x => x.email === email)) {
+                    return "disabled";
+                } else {
+                    return "";
+                }
+            });
+
+            // for disabled button
+            Handlebars.registerHelper('isFollow', function(email) {
+                if (data.followings.some( x => x.email === email)) {
+                    return "disabled";
+                } else {
+                    return "";
                 }
             });
 
@@ -142,7 +162,7 @@ $(window).ready(function () {
 
             //make friend
             $("button[id^=add]").click(function () {
-                $(this).text("Requested");
+                $(this).text("Friend Requested");
                 $(this).attr("disabled",true);
                 actionFriend(userName, $(this).val(), "makeFriend");
                 // location.reload();
@@ -153,10 +173,8 @@ $(window).ready(function () {
                 $(this).text("Following");
                 $(this).attr("disabled",true);
                 actionFriend(userName,$(this).val() , "followUser");
-                // location.reload();
+                location.reload();
             });
-
-
 
             var responseData = null;
             // click open comment modal
