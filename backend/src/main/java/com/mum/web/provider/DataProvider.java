@@ -113,6 +113,7 @@ public class DataProvider {
             user.setLastName(lastName[i]);
             user.setPassword("123456");
             user.setAvatar("100_" + (i + 1) + ".jpg");
+            user.setDob(LocalDate.of(1977, 7,7));
             users.add(user);
 
         }
