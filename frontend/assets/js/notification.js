@@ -13,6 +13,7 @@ $(function () {
     console.log("564555454545545");
     let token = localStorage.getItem('access_token');
     let userName = parseJwt(token).user_name;
+    let current_user = localStorage.getItem('current_user');
 
 
 
@@ -23,11 +24,11 @@ $(function () {
         "email": "email@com.com",
         "postedDate":"2019-07-14T17:27:26.575",
         "postedBy":{
-            "userId": "bao@mum.edu",
-            "fullName": "Bao",
-            "avatar": "10",
-            "email": "email@com.com",
-            "dob":"1977-07-07"
+            "userId": current_user.email,
+            "fullName": current_user.fullName,
+            "avatar": current_user.avatar,
+            "email": current_user.email,
+            "dob":current_user.dob
         },
         "numOfLike":0,
         "numOfLove":0,
@@ -37,7 +38,7 @@ $(function () {
     //noti(data2);
     getPostNotification();
 
-    setInterval(getPostNotification, 3000);
+    setInterval(getPostNotification, 1000);
 
 
     function noti(data2) {
