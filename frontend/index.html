@@ -117,7 +117,7 @@ License: You must have a valid license purchased only from themeforest(the above
 					<div id="kt_header_menu" class="kt-header-menu  kt-header-menu--layout-default ">
 						<ul class="kt-menu__nav ">
 							<li class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel kt-menu__item--active" >
-								<a href="./index.html" class="kt-menu__link kt-menu__toggle">
+								<a href="./index.html" class="kt-menu__link">
 									<span class="kt-menu__link-text">My Home Page</span>
 									<i class="kt-menu__ver-arrow la la-angle-right"></i></a>
 							</li>
@@ -390,10 +390,6 @@ License: You must have a valid license purchased only from themeforest(the above
 													<a href="#" class="kt-widget__data">{{email}}</a>
 												</div>
 												<div class="kt-widget__info">
-													<span class="kt-widget__label">Phone:</span>
-													<a href="#" class="kt-widget__data">44(76)34254578</a>
-												</div>
-												<div class="kt-widget__info">
 													<span class="kt-widget__label">Date of birth:</span>
 													<span class="kt-widget__data">{{dob}}</span>
 												</div>
@@ -461,7 +457,7 @@ License: You must have a valid license purchased only from themeforest(the above
 									<!--begin::Widget -->
 									<div id="followings" class="kt-widget3">
                                         <script id="handlebar-followings" type="text/x-handlebars-template">
-                                            {{#each friends}}
+                                            {{#each followings}}
 										<div class="kt-widget3__item">
 											<div class="kt-widget3__header">
 												<div class="kt-widget3__user-img">
@@ -593,7 +589,7 @@ License: You must have a valid license purchased only from themeforest(the above
 																</p>
 															</div>
 															<div class="kt-widget4__info">
-                                                                <button id="accept{{a.userId}}" name="accept-{{a.userId}}" class="btn btn-sm btn-label-success btn-bold" value="{{a.email}}">Accept</button>
+                                                                <button id="accept{{a.userId}}" class="btn btn-sm btn-label-success btn-bold" value="{{a.email}}">Accept</button>
                                                                 <button id="deny{{a.userId}}" class="btn btn-sm btn-label-info btn-bold"  value="{{a.email}}">Deny</button>
 															</div>
 														</div>
@@ -620,93 +616,33 @@ License: You must have a valid license purchased only from themeforest(the above
 										</div>
 										<div class="kt-portlet__body">
 											<div class="tab-content">
-												<div class="tab-pane active" id="kt_widget4_tab2_content">
+												<div id="suggested" class="tab-pane active" id="kt_widget4_tab2_content">
 													<div class="kt-widget4">
+                                                        <script id="handlebar-suggested" type="text/x-handlebars-template">
+                                                            {{#each suggestedFriends}}
 														<div class="kt-widget4__item">
 															<div class="kt-widget4__pic kt-widget4__pic--pic">
-																<img src="./assets/media/users/100_4.jpg" alt="">
+																<img src="./assets/media/users/{{a.avatar}}" alt="">
 															</div>
 															<div class="kt-widget4__info">
 																<a href="#" class="kt-widget4__username">
-																	Anna Strong
+                                                                    {{a.fullName}}
 																</a>
 																<p class="kt-widget4__text">
-																	Visual Designer,Google Inc
+                                                                    Mutual friends: {{mutualFriends}}
 																</p>
 															</div>
 															<div class="kt-widget4__info">
-																<a href="#" class="btn btn-sm btn-label-success btn-bold">Add friend</a>
-																<a href="#" class="btn btn-sm btn-label-info btn-bold">Follow</a>
+<!--                                                                <a href="#" class="btn btn-sm btn-label-success btn-bold">Add friend</a>-->
+<!--                                                                <a href="#" class="btn btn-sm btn-label-info btn-bold">Follow</a>-->
+                                                                <button {{isAdded a.email}} id="add{{a.email}}" class="btn btn-sm btn-label-success btn-bold" value="{{a.email}}">{{add a.email}}</button>
+                                                                <button {{isFollow a.email}} id="follow{{a.email}}" class="btn btn-sm btn-label-info btn-bold"  value="{{a.email}}">{{following a.email}}</button>
 															</div>
 														</div>
-														<div class="kt-widget4__item">
-															<div class="kt-widget4__pic kt-widget4__pic--pic">
-																<img src="./assets/media/users/100_14.jpg" alt="">
-															</div>
-															<div class="kt-widget4__info">
-																<a href="#" class="kt-widget4__username">
-																	Milano Esco
-																</a>
-																<p class="kt-widget4__text">
-																	Product Designer, Apple Inc
-																</p>
-															</div>
-															<div class="kt-widget4__info">
-																<a href="#" class="btn btn-sm btn-label-success btn-bold">Add friend</a>
-																<a href="#" class="btn btn-sm btn-label-info btn-bold">Follow</a>
-															</div>
-														</div>
-														<div class="kt-widget4__item">
-															<div class="kt-widget4__pic kt-widget4__pic--pic">
-																<img src="./assets/media/users/100_11.jpg" alt="">
-															</div>
-															<div class="kt-widget4__info">
-																<a href="#" class="kt-widget4__username">
-																	Nick Bold
-																</a>
-																<p class="kt-widget4__text">
-																	Web Developer, Facebook Inc
-																</p>
-															</div>
-															<div class="kt-widget4__info">
-																<a href="#" class="btn btn-sm btn-label-success btn-bold">Add friend</a>
-																<a href="#" class="btn btn-sm btn-label-info btn-bold">Follow</a>
-															</div>
-														</div>
-														<div class="kt-widget4__item">
-															<div class="kt-widget4__pic kt-widget4__pic--pic">
-																<img src="./assets/media/users/100_1.jpg" alt="">
-															</div>
-															<div class="kt-widget4__info">
-																<a href="#" class="kt-widget4__username">
-																	Wiltor Delton
-																</a>
-																<p class="kt-widget4__text">
-																	Project Manager, Amazon Inc
-																</p>
-															</div>
-															<div class="kt-widget4__info">
-																<a href="#" class="btn btn-sm btn-label-success btn-bold">Add friend</a>
-																<a href="#" class="btn btn-sm btn-label-info btn-bold">Follow</a>
-															</div>
-														</div>
-														<div class="kt-widget4__item">
-															<div class="kt-widget4__pic kt-widget4__pic--pic">
-																<img src="./assets/media/users/100_5.jpg" alt="">
-															</div>
-															<div class="kt-widget4__info">
-																<a href="#" class="kt-widget4__username">
-																	Nick Stone
-																</a>
-																<p class="kt-widget4__text">
-																	Visual Designer, Github Inc
-																</p>
-															</div>
-															<div class="kt-widget4__info">
-																<a href="#" class="btn btn-sm btn-label-success btn-bold">Add friend</a>
-																<a href="#" class="btn btn-sm btn-label-info btn-bold">Follow</a>
-															</div>
-														</div>
+                                                            <br>
+                                                            <hr>
+                                                            {{/each}}
+                                                        </script>
 													</div>
 												</div>
 											</div>
