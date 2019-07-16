@@ -143,10 +143,12 @@ $(window).ready(function () {
                         let template = $('#post-modal-content').html();
                         let templateScript = Handlebars.compile(template);
                         let html = templateScript(dataPostComment);
-                        $('#modal-post-comment-content').append(html);
+
+                        $('#model-post-comment-content-child').html('');
+                        $('#model-post-comment-content-child').append(html);
 
                         // add event handle
-                        $('#like-comment-btn').click(function () {
+                        $('button[idLike="like-comment-btn"]').click(function () {
                             let commentInfo = getCommentInfo(responseData.commentInfos, $(this).attr('commentId'));
 
                             if (isLikedByCurrentUser(commentInfo)) {
@@ -180,53 +182,53 @@ $(window).ready(function () {
                             });
 
                         });
-                    }
-                });
-            });
 
-            $('#commentContent').keyup(function () {
-               if($(this).val()) {
-                   $('#shareCommentPost').removeAttr("disabled");
-               } else {
-                   $('#shareCommentPost').attr("disabled", true);
-               }
-            });
+                        $('#commentContent').keyup(function () {
+                            if($(this).val()) {
+                                $('#shareCommentPost').removeAttr("disabled");
+                            } else {
+                                $('#shareCommentPost').attr("disabled", true);
+                            }
+                        });
 
-            $('#shareCommentPost').click(function (e) {
-                console.log('Share Comment', $('#commentContent').val());
+                        $('#shareCommentPost').click(function (e) {
+                            console.log('Share Comment', $('#commentContent').val());
 
-                let comment = {
-                    commentId: '',
-                    postedDate: new Date(),
-                    postedBy: current_user,
-                    content: $('#commentContent').val(),
-                    numOfLike: 0,
-                    numOfLove: 0,
-                    likeUsers: [],
-                    loveUsers: [],
-                    commentInfos: []
-                };
-                responseData.commentInfos = [comment];
-                $.ajax({
-                    url: COMMENT_URL,
-                    type: "POST",
-                    dataType: "json",
-                    contentType: 'application/json',
-                    headers: {
-                        'Authorization': 'Bearer ' + localStorage.getItem(TOKEN_NAME)
-                    },
-                    data: JSON.stringify(responseData),
-                    success: function (updatedCommentRes) {
-                        console.log(updatedCommentRes);
-                        let numCommentPostId = 'numCommentPostId="' + postId + '"';
-                        $('span['+numCommentPostId+']').text(updatedCommentRes.commentInfos.length);
-                        $('#kt_modal_3').hide();
+                            let comment = {
+                                commentId: '',
+                                postedDate: new Date(),
+                                postedBy: current_user,
+                                content: $('#commentContent').val(),
+                                numOfLike: 0,
+                                numOfLove: 0,
+                                likeUsers: [],
+                                loveUsers: [],
+                                commentInfos: []
+                            };
+                            responseData.commentInfos = [comment];
+                            $.ajax({
+                                url: COMMENT_URL,
+                                type: "POST",
+                                dataType: "json",
+                                contentType: 'application/json',
+                                headers: {
+                                    'Authorization': 'Bearer ' + localStorage.getItem(TOKEN_NAME)
+                                },
+                                data: JSON.stringify(responseData),
+                                success: function (updatedCommentRes) {
+                                    console.log(updatedCommentRes);
+                                    let numCommentPostId = 'numCommentPostId="' + postId + '"';
+                                    $('span['+numCommentPostId+']').text(updatedCommentRes.commentInfos.length);
+                                    $('#commentContent').val('');
+                                }
+                            });
+                        });
                     }
                 });
             });
 
             // like post
-            $('#like-post-btn').click(function () {
+            $('button[idLikePost="like-post-btn"]').click(function () {
                 let postId = $(this).attr('postId');
                 let postInfo = getPostInfo(postId);
                 if (isLikedByCurrentUser(postInfo)) {

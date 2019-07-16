@@ -545,7 +545,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                                             {{content}}
                                                         </p>
                                                         <div class="kt-section__content kt-section__content--solid" style="padding: 10px 15px;margin-bottom: 10px;display: inline-table;">
-                                                            <button type="button" class="btn btn-elevate-hover btn-circle btn-icon btn-outline-info {{addLikeClass likeUsers}}" postId="{{postId}}" id="like-post-btn">
+                                                            <button type="button" class="btn btn-elevate-hover btn-circle btn-icon btn-outline-info {{addLikeClass likeUsers}}" postId="{{postId}}" idLikePost="like-post-btn">
 																<i class="fa flaticon-like"></i>
 															</button>
                                                             <span class="text-black-50" style="margin-left: 10px; margin-right: 30px;">{{numOfLike}}</span>
@@ -759,15 +759,16 @@ License: You must have a valid license purchased only from themeforest(the above
 <!--begin::Modal-->
 <div class="modal fade" id="kt_modal_3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog modal-lg" role="document">
-		<div class="modal-content kt-portlet">
+		<div class="modal-content kt-portlet" id="modal-post-comment-content">
+			<script id="post-modal-content" type="text/x-handlebars-template">
 			<div class="modal-header kt-portlet--head">
 				<h5 class="modal-title" id="exampleModalLabel">Comment post</h5>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 				</button>
 			</div>
 			<div class="modal-body kt-widget3">
-				<div class="kt-widget3__item" id="modal-post-comment-content">
-					<script id="post-modal-content" type="text/x-handlebars-template">
+				<div class="kt-widget3__item" >
+
 					<div class="kt-widget3__header">
 						<div class="kt-widget3__user-img">
 							<img class="kt-widget3__img" src="./assets/media/users/{{postedBy.avatar}}" alt="">
@@ -801,7 +802,7 @@ License: You must have a valid license purchased only from themeforest(the above
 										{{content}}
 									</p>
 									<div class="kt-section__content kt-section__content--solid" style="padding: 10px 15px;margin-bottom: 10px;display: inline-table;">
-										<button type="button" class="btn btn-elevate-hover btn-circle btn-icon btn-outline-info {{addLikeClass likeUsers}}" id="like-comment-btn" commentId="{{commentId}}">
+										<button type="button" class="btn btn-elevate-hover btn-circle btn-icon btn-outline-info {{addLikeClass likeUsers}}" idLike="like-comment-btn" commentId="{{commentId}}">
 											<i class="fa flaticon-like"></i>
 										</button>
 										<span class="text-black-50" style="margin-left: 10px; margin-right: 30px;">{{numOfLike}}</span>
@@ -811,7 +812,6 @@ License: You must have a valid license purchased only from themeforest(the above
 						</div>
 						{{/each}}
 					</div>
-					</script>
 				</div>
 			</div>
 			<div class="modal-footer">
@@ -829,9 +829,11 @@ License: You must have a valid license purchased only from themeforest(the above
 					<button class="btn btn-default" type="button" aria-label="Close dialog"
 							data-dismiss="modal">Close
 					</button>
-					<button class="btn btn-primary" type="button" id="shareCommentPost" disabled> Share</button>
+					<button class="btn btn-primary" type="button" id="shareCommentPost" disabled data-dismiss="modal"> Share</button>
 				</div>
 			</div>
+			</script>
+			<span id="model-post-comment-content-child"></span>
 		</div>
 	</div>
 </div>
