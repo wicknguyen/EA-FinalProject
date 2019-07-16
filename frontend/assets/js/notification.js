@@ -13,7 +13,7 @@ $(function () {
     console.log("564555454545545");
     let token = localStorage.getItem('access_token');
     let userName = parseJwt(token).user_name;
-    let current_user = localStorage.getItem('friend_user');
+    let current_user = localStorage.getItem('current_user');
 
 
 
@@ -24,11 +24,11 @@ $(function () {
         "email": "email@com.com",
         "postedDate":"2019-07-14T17:27:26.575",
         "postedBy":{
-            "userId": friend_user.email,
-            "fullName": friend_user.fullName,
-            "avatar": friend_user.avatar,
-            "email": friend_user.email,
-            "dob":friend_user.dob
+            "userId": current_user.email,
+            "fullName": current_user.fullName,
+            "avatar": current_user.avatar,
+            "email": current_user.email,
+            "dob":current_user.dob
         },
         "numOfLike":0,
         "numOfLove":0,
