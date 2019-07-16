@@ -21,6 +21,7 @@ $(window).ready(function () {
             success: function (data) {
                 console.log("Load current user successfully", data);
                 current_user = data;
+                localStorage.setItem('current_user', data);
                 let template = $('#user-profile-template').html();
                 let templateScript = Handlebars.compile(template);
                 let html = templateScript(data);
@@ -279,11 +280,11 @@ $(window).ready(function () {
             "content": content,
             "postedDate": moment( new Date()).format("YYYY-MM-DDTHH:mm:ss.SSS"),
             "postedBy": {
-                "email": userName,
-                "userId": 1,
-                "fullName": "Bao Tran",
-                "avatar": "10",
-                "dob":"1977-07-07"
+                "userId": current_user.userId,
+                "fullName": current_user.fullName,
+                "avatar": current_user.avatar,
+                "email": current_user.email,
+                "dob":current_user.dob
             },
             "numOfLike": 0,
             "numOfLove": 0,
@@ -294,6 +295,8 @@ $(window).ready(function () {
             "commentInfos": [
             ]
         };
+
+        sentNoti(data);
 
         $.ajax({
             url: CREATE_POST_URL,
@@ -309,7 +312,7 @@ $(window).ready(function () {
             }
         });
 
-        sentNoti(data);
+
         location.reload();
 
     });
@@ -355,6 +358,11 @@ $(window).ready(function () {
 
 
     function sentNoti(data) {
+        setTimeout(function () {
+            console.log("send nottttttt");
+        }, 4000);
+        console.log("send nottttttt");
+
         $.ajax({
             url: "http://localhost:8899/posts/add",
             dataType: 'json',
