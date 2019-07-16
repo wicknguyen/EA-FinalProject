@@ -5,6 +5,8 @@ $(function () {
     let userName = parseJwt(token).user_name;
     var timeline;
 
+
+
     // fetch timeline
     $.ajax({
         url: GET_TIMELINE_URL + userName,
@@ -47,10 +49,21 @@ $(function () {
             var templateScript = Handlebars.compile(template);
             var html = templateScript(timeline);
             $('#requested').append(html);
+
+            //accept friend
+            $("button[id^=accept]").click(function () {
+                console.log("value = " + $(this).val());
+            });
+
+            //deny friend
+            $("button[id^=deny]").click(function () {
+                console.log("value = " + $(this).val());
+            });
+
         }
     });
-    // Create post
 
+    // Create post
     $('#post').click(function () {
         let content = $('#exampleTextarea').val();
         let data = {
@@ -87,6 +100,8 @@ $(function () {
         location.reload();
 
     });
+
+
 
 
 
