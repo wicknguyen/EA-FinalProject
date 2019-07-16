@@ -3,13 +3,17 @@ $(function () {
     let GET_TIMELINE_URL = "http://localhost:8080/api/timeline/";
     let token = localStorage.getItem('access_token');
     let userName = parseJwt(token).user_name;
+    var timeline;
 
-    // fetch post
+
+
+    // fetch timeline
     $.ajax({
         url: GET_TIMELINE_URL + userName,
         type: "GET",
         dataType: "json",
         success: function (data) {
+            timeline = data;
             Handlebars.registerHelper('fromNow', function(date) {
                 if (moment) {
                     return moment(date).fromNow();
@@ -22,15 +26,44 @@ $(function () {
                 return comments.length;
             });
 
+            //get posts
             var template = $('#handlebar').html();
             var templateScript = Handlebars.compile(template);
-            var html = templateScript(data);
+            var html = templateScript(timeline);
             $('#posts').append(html);
+
+            // get friends
+            var template = $('#handlebar-friends').html();
+            var templateScript = Handlebars.compile(template);
+            var html = templateScript(timeline);
+            $('#friends').append(html);
+
+            // get following
+            var template = $('#handlebar-followings').html();
+            var templateScript = Handlebars.compile(template);
+            var html = templateScript(timeline);
+            $('#followings').append(html);
+
+            // get requested
+            var template = $('#handlebar-requested').html();
+            var templateScript = Handlebars.compile(template);
+            var html = templateScript(timeline);
+            $('#requested').append(html);
+
+            //accept friend
+            $("button[id^=accept]").click(function () {
+                console.log("value = " + $(this).val());
+            });
+
+            //deny friend
+            $("button[id^=deny]").click(function () {
+                console.log("value = " + $(this).val());
+            });
+
         }
     });
 
     // Create post
-
     $('#post').click(function () {
         let content = $('#exampleTextarea').val();
         let data = {
@@ -67,6 +100,10 @@ $(function () {
         location.reload();
 
     });
+
+
+
+
 
     function parseJwt (token) {
         var base64Url = token.split('.')[1];
