@@ -32,7 +32,7 @@ public class User {
 
     @OneToMany(cascade = CascadeType.ALL)
     private List<Relation> relations;
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Post> posts;
 
     public List<User> getFriends() {

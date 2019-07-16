@@ -24,7 +24,7 @@ public class Comment implements Serializable {
     @ManyToOne
     @JoinColumn(name = "userId")
     private User user;// user who posted this article
-    @OneToMany(mappedBy = "comment")
+    @OneToMany(mappedBy = "comment", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Interaction> interactions;
     @OneToMany(mappedBy = "parentComment", cascade = CascadeType.ALL)
     private List<Comment> comments;

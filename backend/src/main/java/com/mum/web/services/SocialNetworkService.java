@@ -6,6 +6,7 @@ import com.mum.web.functional.AuthenticationFunctionUtils;
 import com.mum.web.functional.PostFunctionUtils;
 import com.mum.web.functional.RelationFunctionUtils;
 import com.mum.web.provider.DataProvider;
+import com.mum.web.repositories.PostRepository;
 import com.mum.web.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -20,6 +21,8 @@ import java.util.stream.Collectors;
 public class SocialNetworkService implements ISocialNetworkService {
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private PostRepository postRepository;
 
     @Override
     public void createPost(PostInfo postInfo) {
@@ -199,9 +202,7 @@ public class SocialNetworkService implements ISocialNetworkService {
     @Override
     public Post updateLikePost(PostInfo postInfo) {
         List<User> allUsers = userRepository.findAll();
-        Optional<Post> optionalPost = allUsers.stream()
-                .flatMap(u -> u.getPosts().stream())
-                .filter(p -> p.getPostId().equals(postInfo.getPostId())).findFirst();
+        Optional<Post> optionalPost = postRepository.findById(postInfo.getPostId());
         if (optionalPost.isPresent()) {
             Post post = optionalPost.get();
             String email = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
