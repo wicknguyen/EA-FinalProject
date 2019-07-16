@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9984e415-5b66-4c55-bb15-21d7d64a66b1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+    <list default="true" id="9984e415-5b66-4c55-bb15-21d7d64a66b1" name="Default Changelist" comment="Rabbit Consumer">
       <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__antlr_antlr_2_7_7.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__ch_qos_logback_logback_classic_1_2_3.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__ch_qos_logback_logback_core_1_2_3.xml" afterDir="false" />
@@ -81,35 +78,6 @@
       <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_web_5_1_7_RELEASE.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_webmvc_5_1_7_RELEASE.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_yaml_snakeyaml_1_23.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/EA/Project/RabbitMQ/App.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/EA/Project/RabbitMQ/BookService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/EA/Project/RabbitMQ/IBookDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/EA/Project/RabbitMQ/domain/Book.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/EA/Project/RabbitMQ/domain/CommentInfo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/EA/Project/RabbitMQ/domain/PostInfo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/EA/Project/RabbitMQ/domain/RelationStatus.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/EA/Project/RabbitMQ/domain/RelationshipInfo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/EA/Project/RabbitMQ/domain/UserInfo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/EA/Project/RabbitMQ/dto/PostMessageInfo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/EA/Project/RabbitMQ/listener/BookListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/EA/Project/RabbitMQ/listener/UserListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/EA/Project/RabbitMQ/repository/PostInfoRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/EA/Project/RabbitMQ/repository/PostMessageInfoRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/EA/Project/RabbitMQ/restcontroller/PostInfoController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/EA/Project/RabbitMQ/service/PostMessageInfoService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/import.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/log4j2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../RabbitMQ-Producer/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../RabbitMQ-Producer/.idea/.name" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../RabbitMQ-Producer/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../RabbitMQ-Producer/.idea/encodings.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../RabbitMQ-Producer/.idea/libraries/Maven__antlr_antlr_2_7_7.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../RabbitMQ-Producer/.idea/libraries/Maven__ch_qos_logback_logback_classic_1_2_3.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../RabbitMQ-Producer/.idea/libraries/Maven__ch_qos_logback_logback_core_1_2_3.xml" afterDir="false" />
@@ -206,37 +174,9 @@
       <change afterPath="$PROJECT_DIR$/../RabbitMQ-Producer/.idea/libraries/Maven__org_springframework_ws_spring_xml_3_0_7_RELEASE.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../RabbitMQ-Producer/.idea/libraries/Maven__org_xmlunit_xmlunit_core_2_6_2.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../RabbitMQ-Producer/.idea/libraries/Maven__org_yaml_snakeyaml_1_23.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../RabbitMQ-Producer/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../RabbitMQ-Producer/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../RabbitMQ-Producer/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../RabbitMQ-Producer/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../RabbitMQ-Producer/.mvn/wrapper/MavenWrapperDownloader.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../RabbitMQ-Producer/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../RabbitMQ-Producer/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../RabbitMQ-Producer/HELP.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../RabbitMQ-Producer/mvnw" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../RabbitMQ-Producer/mvnw.cmd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../RabbitMQ-Producer/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../RabbitMQ-Producer/src/main/java/EA/Project/RabbitMQ/DemoApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../RabbitMQ-Producer/src/main/java/EA/Project/RabbitMQ/controller/BookController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../RabbitMQ-Producer/src/main/java/EA/Project/RabbitMQ/controller/PersonController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../RabbitMQ-Producer/src/main/java/EA/Project/RabbitMQ/controller/UserController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../RabbitMQ-Producer/src/main/java/EA/Project/RabbitMQ/domain/Book.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../RabbitMQ-Producer/src/main/java/EA/Project/RabbitMQ/domain/CommentInfo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../RabbitMQ-Producer/src/main/java/EA/Project/RabbitMQ/domain/Person.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../RabbitMQ-Producer/src/main/java/EA/Project/RabbitMQ/domain/PostInfo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../RabbitMQ-Producer/src/main/java/EA/Project/RabbitMQ/domain/RelationStatus.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../RabbitMQ-Producer/src/main/java/EA/Project/RabbitMQ/domain/RelationshipInfo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../RabbitMQ-Producer/src/main/java/EA/Project/RabbitMQ/domain/UserInfo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../RabbitMQ-Producer/src/main/java/EA/Project/RabbitMQ/producer/Sender.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../RabbitMQ-Producer/src/main/java/EA/Project/RabbitMQ/repository/BookRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../RabbitMQ-Producer/src/main/java/EA/Project/RabbitMQ/repository/PersonRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../RabbitMQ-Producer/src/main/java/EA/Project/RabbitMQ/service/BookServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../RabbitMQ-Producer/src/main/java/EA/Project/RabbitMQ/service/IBookService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../RabbitMQ-Producer/src/main/java/EA/Project/RabbitMQ/service/IPersonService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../RabbitMQ-Producer/src/main/java/EA/Project/RabbitMQ/service/PersonServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../RabbitMQ-Producer/src/main/resources/application.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../RabbitMQ-Producer/src/test/java/EA/Project/RabbitMQ/DemoApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RabbitMQ-Producer/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../RabbitMQ-Producer/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/index.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/classes/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -322,15 +262,6 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.gitignore">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="3" selection-start-line="3" selection-end-line="3" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/EA/Project/RabbitMQ/service/PostMessageInfoService.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="405">
@@ -411,13 +342,6 @@
         <option value="$PROJECT_DIR$/src/main/java/EA/Project/RabbitMQ/repository/PostMessageInfoRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/EA/Project/RabbitMQ/listener/UserListener.java" />
         <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
-      </list>
-    </option>
-  </component>
-  <component name="ProjectConfigurationFiles">
-    <option name="files">
-      <list>
-        <option value="$PROJECT_DIR$/.idea/uiDesigner.xml" />
       </list>
     </option>
   </component>
@@ -577,7 +501,7 @@
       <workItem from="1563155648715" duration="5415000" />
       <workItem from="1563163307053" duration="8384000" />
       <workItem from="1563213083018" duration="18966000" />
-      <workItem from="1563292724959" duration="1118000" />
+      <workItem from="1563292724959" duration="1655000" />
     </task>
     <task id="LOCAL-00001" summary="Rabbit Consumer">
       <created>1563231782017</created>
@@ -590,7 +514,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="33883000" />
+    <option name="totallyTimeSpent" value="34420000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="6" />
