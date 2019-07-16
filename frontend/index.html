@@ -252,15 +252,16 @@ License: You must have a valid license purchased only from themeforest(the above
 					<!--end: Chat toggler -->
 
 					<!--begin: User Bar -->
-					<div class="kt-header__topbar-item kt-header__topbar-item--user">
+					<div class="kt-header__topbar-item kt-header__topbar-item--user" id="user-bar">
+						<script id="user-bar-template" type="text/x-handlebars-template">
 						<div class="kt-header__topbar-wrapper" data-toggle="dropdown" data-offset="0px,0px">
 							<div class="kt-header__topbar-user">
 								<span class="kt-header__topbar-welcome kt-hidden-mobile">Hi,</span>
-								<span class="kt-header__topbar-username kt-hidden-mobile">Sean</span>
-								<img class="kt-hidden" alt="Pic" src="./assets/media/users/300_25.jpg" />
+								<span class="kt-header__topbar-username kt-hidden-mobile">{{fullName}}</span>
+								<img class="kt-hidden" alt="Pic" src="./assets/media/users/{{avatar}}" />
 
 								<!--use below badge element instead the user avatar to display username's first letter(remove kt-hidden class to display it) -->
-								<span class="kt-badge kt-badge--username kt-badge--unified-success kt-badge--lg kt-badge--rounded kt-badge--bold">S</span>
+								<span class="kt-badge kt-badge--username kt-badge--unified-success kt-badge--lg kt-badge--rounded kt-badge--bold">{{firstLetter fullName}}</span>
 							</div>
 						</div>
 						<div class="dropdown-menu dropdown-menu-fit dropdown-menu-right dropdown-menu-anim dropdown-menu-top-unround dropdown-menu-xl">
@@ -268,16 +269,15 @@ License: You must have a valid license purchased only from themeforest(the above
 							<!--begin: Head -->
 							<div class="kt-user-card kt-user-card--skin-dark kt-notification-item-padding-x" style="background-image: url(./assets/media/misc/bg-1.jpg)">
 								<div class="kt-user-card__avatar">
-									<img class="kt-hidden" alt="Pic" src="./assets/media/users/300_25.jpg" />
+									<img class="kt-hidden" alt="Pic" src="./assets/media/users/{{avatar}}" />
 
 									<!--use below badge element instead the user avatar to display username's first letter(remove kt-hidden class to display it) -->
-									<span class="kt-badge kt-badge--lg kt-badge--rounded kt-badge--bold kt-font-success">S</span>
+									<span class="kt-badge kt-badge--lg kt-badge--rounded kt-badge--bold kt-font-success">{{firstLetter fullName}}</span>
 								</div>
 								<div class="kt-user-card__name">
-									Sean Stone
+									{{fullName}}
 								</div>
 								<div class="kt-user-card__badge">
-									<span class="btn btn-success btn-sm btn-bold btn-font-md">23 messages</span>
 								</div>
 							</div>
 
@@ -331,6 +331,7 @@ License: You must have a valid license purchased only from themeforest(the above
 
 							<!--end: Navigation -->
 						</div>
+						</script>
 					</div>
 
 					<!--end: User Bar -->
@@ -828,7 +829,7 @@ License: You must have a valid license purchased only from themeforest(the above
 					<button class="btn btn-default" type="button" aria-label="Close dialog"
 							data-dismiss="modal">Close
 					</button>
-					<button class="btn btn-primary" type="button" id="shareCommentPost"> Share</button>
+					<button class="btn btn-primary" type="button" id="shareCommentPost" disabled> Share</button>
 				</div>
 			</div>
 		</div>

@@ -26,6 +26,15 @@ $(window).ready(function () {
                 let templateScript = Handlebars.compile(template);
                 let html = templateScript(data);
                 $('#user-profile').append(html);
+
+                Handlebars.registerHelper('firstLetter', function(name) {
+                    return name.charAt(0).toUpperCase();
+                });
+
+                let template1 = $('#user-bar-template').html();
+                let templateScript1 = Handlebars.compile(template1);
+                let html1 = templateScript1(data);
+                $('#user-bar').append(html1);
             }
     });
 
@@ -173,6 +182,14 @@ $(window).ready(function () {
                         });
                     }
                 });
+            });
+
+            $('#commentContent').keyup(function () {
+               if($(this).val()) {
+                   $('#shareCommentPost').removeAttr("disabled");
+               } else {
+                   $('#shareCommentPost').attr("disabled", true);
+               }
             });
 
             $('#shareCommentPost').click(function (e) {
