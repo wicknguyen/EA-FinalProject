@@ -26,6 +26,20 @@ $(window).ready(function () {
                 let templateScript = Handlebars.compile(template);
                 let html = templateScript(data);
                 $('#user-profile').append(html);
+
+                Handlebars.registerHelper('firstLetter', function(name) {
+                    return name.charAt(0).toUpperCase();
+                });
+
+                let template1 = $('#user-bar-template').html();
+                let templateScript1 = Handlebars.compile(template1);
+                let html1 = templateScript1(data);
+                $('#user-bar').append(html1);
+
+                $('#btnSignout').click(function () {
+                    localStorage.clear();
+                    window.location = './login-page.html';
+                });
             }
     });
 
@@ -44,6 +58,15 @@ $(window).ready(function () {
                 } else {
                     return date;
                 }
+            });
+
+            Handlebars.registerHelper('addLikeClass', function(likeUsers) {
+                for (var i=0; i< likeUsers.length; i++) {
+                    if (likeUsers[i].email === current_user.email) {
+                        return 'like-post';
+                    }
+                }
+                return '';
             });
 
             Handlebars.registerHelper('numComments', function(comments) {
@@ -91,7 +114,7 @@ $(window).ready(function () {
             var responseData = null;
             // click open comment modal
             $("button[data-target='#kt_modal_3']").click(function () {
-                let postId = $(this).attr('postId');
+                postId = $(this).attr('postId');
                 // fetch post
                 $.ajax({
                     url: LOAD_COMMENT_POST_URL + postId,
@@ -102,26 +125,47 @@ $(window).ready(function () {
                     },
                     success: function (dataPostComment) {
                         responseData = dataPostComment;
+                        console.log(responseData)
+                        Handlebars.registerHelper('addLikeClass', function(likeUsers) {
+                            for (var i=0; i< likeUsers.length; i++) {
+                                if (likeUsers[i].email === current_user.email) {
+                                    return 'like-post';
+                                }
+                            }
+                            return '';
+                        });
+
+                        Handlebars.registerHelper('fromNow', function(date) {
+                            console.log(date);
+                            if (moment) {
+                                return moment(date).fromNow();
+                            } else {
+                                return date;
+                            }
+                        });
+
                         // get friends
                         let template = $('#post-modal-content').html();
                         let templateScript = Handlebars.compile(template);
                         let html = templateScript(dataPostComment);
-                        $('#modal-post-comment-content').append(html);
+
+                        $('#model-post-comment-content-child').html('');
+                        $('#model-post-comment-content-child').append(html);
 
                         // add event handle
-                        $('#like-comment-btn').click(function () {
+                        $('button[idLike="like-comment-btn"]').click(function () {
                             let commentInfo = getCommentInfo(responseData.commentInfos, $(this).attr('commentId'));
 
                             if (isLikedByCurrentUser(commentInfo)) {
-                                commentInfo.likeUsers.forEach(
-                                    u => {
+                                for (let i=0; i<commentInfo.likeUsers.length; i++) {
+                                    let u = commentInfo.likeUsers[i];
                                     if (u.email == current_user.email) {
-                                    commentInfo.likeUsers.splice(commentInfo.likeUsers.indexOf(u), 1);
-                                    commentInfo.numOfLike--;
-                                    $(this).removeClass('like-post');
-                                    $(this).next().text(commentInfo.numOfLike);
+                                        commentInfo.likeUsers.splice(commentInfo.likeUsers.indexOf(u), 1);
+                                        commentInfo.numOfLike--;
+                                        $(this).removeClass('like-post');
+                                        $(this).next().text(commentInfo.numOfLike);
+                                    }
                                 }
-                            });
                             } else {
                                 commentInfo.likeUsers.push(current_user);
                                 commentInfo.numOfLike++;
@@ -137,65 +181,71 @@ $(window).ready(function () {
                                     'Authorization': 'Bearer ' + localStorage.getItem(TOKEN_NAME)
                                 },
                                 data: JSON.stringify(commentInfo),
-                                success: function (data) {
-                                    console.log(data);
+                                success: function (likeCommentdata) {
+                                    console.log(likeCommentdata);
                                 }
                             });
 
                         });
 
-                        // $('#shareCommentPost').click(function (e) {
-                        //     console.log('Share Comment', $('#commentContent').val());
-                        //     console.log(postId);
-                        // });
-                    }
-                });
-            });
+                        $('#commentContent').keyup(function () {
+                            if($(this).val()) {
+                                $('#shareCommentPost').removeAttr("disabled");
+                            } else {
+                                $('#shareCommentPost').attr("disabled", true);
+                            }
+                        });
 
-            $('#shareCommentPost').click(function (e) {
-                console.log('Share Comment', $('#commentContent').val());
+                        $('#shareCommentPost').click(function (e) {
+                            console.log('Share Comment', $('#commentContent').val());
 
-                let comment = {
-                    commentId: '',
-                    postedDate: new Date(),
-                    postedBy: current_user,
-                    content: $('#commentContent').val(),
-                    numOfLike: 0,
-                    numOfLove: 0,
-                    likeUsers: [],
-                    loveUsers: [],
-                    commentInfos: []
-                };
-                responseData.commentInfos = [comment];
-                $.ajax({
-                    url: COMMENT_URL,
-                    type: "POST",
-                    dataType: "json",
-                    contentType: 'application/json',
-                    headers: {
-                        'Authorization': 'Bearer ' + localStorage.getItem(TOKEN_NAME)
-                    },
-                    data: JSON.stringify(responseData),
-                    success: function (updatedCommentRes) {
-                        console.log(updatedCommentRes);
+                            let comment = {
+                                commentId: '',
+                                postedDate: new Date(),
+                                postedBy: current_user,
+                                content: $('#commentContent').val(),
+                                numOfLike: 0,
+                                numOfLove: 0,
+                                likeUsers: [],
+                                loveUsers: [],
+                                commentInfos: []
+                            };
+                            responseData.commentInfos = [comment];
+                            $.ajax({
+                                url: COMMENT_URL,
+                                type: "POST",
+                                dataType: "json",
+                                contentType: 'application/json',
+                                headers: {
+                                    'Authorization': 'Bearer ' + localStorage.getItem(TOKEN_NAME)
+                                },
+                                data: JSON.stringify(responseData),
+                                success: function (updatedCommentRes) {
+                                    console.log(updatedCommentRes);
+                                    let numCommentPostId = 'numCommentPostId="' + postId + '"';
+                                    $('span['+numCommentPostId+']').text(updatedCommentRes.commentInfos.length);
+                                    $('#commentContent').val('');
+                                }
+                            });
+                        });
                     }
                 });
             });
 
             // like post
-            $('#like-post-btn').click(function () {
-                postId = $(this).attr('postId');
-                postInfo = getPostInfo(postId);
+            $('button[idLikePost="like-post-btn"]').click(function () {
+                let postId = $(this).attr('postId');
+                let postInfo = getPostInfo(postId);
                 if (isLikedByCurrentUser(postInfo)) {
-                    postInfo.likeUsers.forEach(
-                        u => {
-                            if (u.email == current_user.email) {
-                                postInfo.likeUsers.splice(postInfo.likeUsers.indexOf(u), 1);
-                                postInfo.numOfLike--;
-                                $(this).removeClass('like-post');
-                                $(this).next().text(postInfo.numOfLike);
-                            }
-                    });
+                    for (let i=0; i<postInfo.likeUsers.length; i++) {
+                        let u = postInfo.likeUsers[i];
+                        if (u.email == current_user.email) {
+                            postInfo.likeUsers.splice(postInfo.likeUsers.indexOf(u), 1);
+                            postInfo.numOfLike--;
+                            $(this).removeClass('like-post');
+                            $(this).next().text(postInfo.numOfLike);
+                        }
+                    }
                 } else {
                     postInfo.likeUsers.push(current_user);
                     postInfo.numOfLike++;
@@ -294,24 +344,22 @@ $(window).ready(function () {
 
     function getPostInfo(postId) {
         post = null;
-        timeline.posts.forEach(p => {
-            if (p.postId == postId) {
-            post = p;
-            return;
+        for (let i=0; i<timeline.posts.length; i++) {
+            if (timeline.posts[i].postId == postId) {
+                return timeline.posts[i];
+            }
         }
-    });
-        return post;
+        return null;
     }
 
     function getCommentInfo(commentInfos, commentId) {
         comment = null;
-        commentInfos.forEach(c => {
-            if (c.commentId == commentId) {
-            comment = c;
-            return;
+        for (let i=0; i<commentInfos.length; i++) {
+            if (commentInfos[i].commentId == commentId) {
+                return commentInfos[i];
+            }
         }
-    });
-        return comment;
+        return null;
     }
 
     function isLikedByCurrentUser(post) {
@@ -354,10 +402,5 @@ $(window).ready(function () {
             }
         });
     }
-
-    $('#btnSignout').click(function () {
-        localStorage.clear();
-        window.location = './login-page.html';
-    });
 
 });

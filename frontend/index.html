@@ -252,15 +252,16 @@ License: You must have a valid license purchased only from themeforest(the above
 					<!--end: Chat toggler -->
 
 					<!--begin: User Bar -->
-					<div class="kt-header__topbar-item kt-header__topbar-item--user">
+					<div class="kt-header__topbar-item kt-header__topbar-item--user" id="user-bar">
+						<script id="user-bar-template" type="text/x-handlebars-template">
 						<div class="kt-header__topbar-wrapper" data-toggle="dropdown" data-offset="0px,0px">
 							<div class="kt-header__topbar-user">
 								<span class="kt-header__topbar-welcome kt-hidden-mobile">Hi,</span>
-								<span class="kt-header__topbar-username kt-hidden-mobile">Sean</span>
-								<img class="kt-hidden" alt="Pic" src="./assets/media/users/300_25.jpg" />
+								<span class="kt-header__topbar-username kt-hidden-mobile">{{fullName}}</span>
+								<img class="kt-hidden" alt="Pic" src="./assets/media/users/{{avatar}}" />
 
 								<!--use below badge element instead the user avatar to display username's first letter(remove kt-hidden class to display it) -->
-								<span class="kt-badge kt-badge--username kt-badge--unified-success kt-badge--lg kt-badge--rounded kt-badge--bold">S</span>
+								<span class="kt-badge kt-badge--username kt-badge--unified-success kt-badge--lg kt-badge--rounded kt-badge--bold">{{firstLetter fullName}}</span>
 							</div>
 						</div>
 						<div class="dropdown-menu dropdown-menu-fit dropdown-menu-right dropdown-menu-anim dropdown-menu-top-unround dropdown-menu-xl">
@@ -268,16 +269,15 @@ License: You must have a valid license purchased only from themeforest(the above
 							<!--begin: Head -->
 							<div class="kt-user-card kt-user-card--skin-dark kt-notification-item-padding-x" style="background-image: url(./assets/media/misc/bg-1.jpg)">
 								<div class="kt-user-card__avatar">
-									<img class="kt-hidden" alt="Pic" src="./assets/media/users/300_25.jpg" />
+									<img class="kt-hidden" alt="Pic" src="./assets/media/users/{{avatar}}" />
 
 									<!--use below badge element instead the user avatar to display username's first letter(remove kt-hidden class to display it) -->
-									<span class="kt-badge kt-badge--lg kt-badge--rounded kt-badge--bold kt-font-success">S</span>
+									<span class="kt-badge kt-badge--lg kt-badge--rounded kt-badge--bold kt-font-success">{{firstLetter fullName}}</span>
 								</div>
 								<div class="kt-user-card__name">
-									Sean Stone
+									{{fullName}}
 								</div>
 								<div class="kt-user-card__badge">
-									<span class="btn btn-success btn-sm btn-bold btn-font-md">23 messages</span>
 								</div>
 							</div>
 
@@ -331,6 +331,7 @@ License: You must have a valid license purchased only from themeforest(the above
 
 							<!--end: Navigation -->
 						</div>
+						</script>
 					</div>
 
 					<!--end: User Bar -->
@@ -544,10 +545,12 @@ License: You must have a valid license purchased only from themeforest(the above
                                                             {{content}}
                                                         </p>
                                                         <div class="kt-section__content kt-section__content--solid" style="padding: 10px 15px;margin-bottom: 10px;display: inline-table;">
-                                                            <button type="button" class="btn btn-elevate-hover btn-circle btn-icon btn-outline-info btn-" postId="{{postId}}" id="like-post-btn"><i class="fa flaticon-like"></i></button>
+                                                            <button type="button" class="btn btn-elevate-hover btn-circle btn-icon btn-outline-info {{addLikeClass likeUsers}}" postId="{{postId}}" idLikePost="like-post-btn">
+																<i class="fa flaticon-like"></i>
+															</button>
                                                             <span class="text-black-50" style="margin-left: 10px; margin-right: 30px;">{{numOfLike}}</span>
                                                             <button type="button" class="btn btn-elevate btn-circle btn-icon btn-outline-success" data-toggle="modal" data-target="#kt_modal_3" postId="{{postId}}"><i class="fa flaticon-comment"></i></button>
-                                                            <span class="text-black-50" style="margin-left: 10px; margin-right: 30px;">{{numComments commentInfos}}</span>
+                                                            <span class="text-black-50" style="margin-left: 10px; margin-right: 30px;" numCommentPostId="{{postId}}">{{numComments commentInfos}}</span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -560,147 +563,6 @@ License: You must have a valid license purchased only from themeforest(the above
 
 									<!--end:: Widgets/Timeline-->
 
-									<!--begin:: Widgets/Last Updates-->
-									<div class="kt-portlet">
-										<div class="kt-portlet__head">
-											<div class="kt-portlet__head-label">
-												<h3 class="kt-portlet__head-title">
-													Latest Updates
-												</h3>
-											</div>
-											<div class="kt-portlet__head-toolbar">
-												<a href="#" class="btn btn-label-brand btn-bold btn-sm dropdown-toggle" data-toggle="dropdown">
-													Today
-												</a>
-												<div class="dropdown-menu dropdown-menu-fit dropdown-menu-md dropdown-menu-right">
-
-													<!--begin::Nav-->
-													<ul class="kt-nav">
-														<li class="kt-nav__head">
-															Export Options
-															<span data-toggle="kt-tooltip" data-placement="right" title="Click to learn more...">
-																		<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon kt-svg-icon--brand kt-svg-icon--md1">
-																			<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-																				<rect id="bound" x="0" y="0" width="24" height="24" />
-																				<circle id="Oval-5" fill="#000000" opacity="0.3" cx="12" cy="12" r="10" />
-																				<rect id="Rectangle-9" fill="#000000" x="11" y="10" width="2" height="7" rx="1" />
-																				<rect id="Rectangle-9-Copy" fill="#000000" x="11" y="7" width="2" height="2" rx="1" />
-																			</g>
-																		</svg> </span>
-														</li>
-														<li class="kt-nav__separator"></li>
-														<li class="kt-nav__item">
-															<a href="#" class="kt-nav__link">
-																<i class="kt-nav__link-icon flaticon2-drop"></i>
-																<span class="kt-nav__link-text">Activity</span>
-															</a>
-														</li>
-														<li class="kt-nav__item">
-															<a href="#" class="kt-nav__link">
-																<i class="kt-nav__link-icon flaticon2-calendar-8"></i>
-																<span class="kt-nav__link-text">FAQ</span>
-															</a>
-														</li>
-														<li class="kt-nav__item">
-															<a href="#" class="kt-nav__link">
-																<i class="kt-nav__link-icon flaticon2-link"></i>
-																<span class="kt-nav__link-text">Settings</span>
-															</a>
-														</li>
-														<li class="kt-nav__item">
-															<a href="#" class="kt-nav__link">
-																<i class="kt-nav__link-icon flaticon2-new-email"></i>
-																<span class="kt-nav__link-text">Support</span>
-																<span class="kt-nav__link-badge">
-																			<span class="kt-badge kt-badge--success kt-badge--rounded">5</span>
-																		</span>
-															</a>
-														</li>
-														<li class="kt-nav__separator"></li>
-														<li class="kt-nav__foot">
-															<a class="btn btn-label-danger btn-bold btn-sm" href="#">Upgrade plan</a>
-															<a class="btn btn-clean btn-bold btn-sm" href="#" data-toggle="kt-tooltip" data-placement="right" title="Click to learn more...">Learn more</a>
-														</li>
-													</ul>
-
-													<!--end::Nav-->
-												</div>
-											</div>
-										</div>
-										<div class="kt-portlet__body">
-
-											<!--begin::widget 12-->
-											<div class="kt-widget4">
-												<div class="kt-widget4__item">
-															<span class="kt-widget4__icon">
-																<i class="flaticon-pie-chart-1 kt-font-info"></i>
-															</span>
-													<a href="#" class="kt-widget4__title kt-widget4__title--light">
-														Metronic v6 has been arrived!
-													</a>
-													<span class="kt-widget4__number kt-font-info">+500</span>
-												</div>
-												<div class="kt-widget4__item">
-															<span class="kt-widget4__icon">
-																<i class="flaticon-safe-shield-protection  kt-font-success"></i>
-															</span>
-													<a href="#" class="kt-widget4__title kt-widget4__title--light">
-														Metronic community meet-up 2019 in Rome.
-													</a>
-													<span class="kt-widget4__number kt-font-success">+1260</span>
-												</div>
-												<div class="kt-widget4__item">
-															<span class="kt-widget4__icon">
-																<i class="flaticon2-line-chart kt-font-danger"></i>
-															</span>
-													<a href="#" class="kt-widget4__title kt-widget4__title--light">
-														Metronic Angular 8 version will be landing soon...
-													</a>
-													<span class="kt-widget4__number kt-font-danger">+1080</span>
-												</div>
-												<div class="kt-widget4__item">
-															<span class="kt-widget4__icon">
-																<i class="flaticon2-pie-chart-1 kt-font-primary"></i>
-															</span>
-													<a href="#" class="kt-widget4__title kt-widget4__title--light">
-														ale! Purchase Metronic at 70% off for limited time
-													</a>
-													<span class="kt-widget4__number kt-font-primary">70% Off!</span>
-												</div>
-												<div class="kt-widget4__item">
-															<span class="kt-widget4__icon">
-																<i class="flaticon2-rocket kt-font-brand"></i>
-															</span>
-													<a href="#" class="kt-widget4__title kt-widget4__title--light">
-														Metronic VueJS version is in progress. Stay tuned!
-													</a>
-													<span class="kt-widget4__number kt-font-brand">+134</span>
-												</div>
-												<div class="kt-widget4__item">
-															<span class="kt-widget4__icon">
-																<i class="flaticon2-notification kt-font-warning"></i>
-															</span>
-													<a href="#" class="kt-widget4__title kt-widget4__title--light">
-														Black Friday! Purchase Metronic at ever lowest 90% off for limited time
-													</a>
-													<span class="kt-widget4__number kt-font-warning">70% Off!</span>
-												</div>
-												<div class="kt-widget4__item">
-															<span class="kt-widget4__icon">
-																<i class="flaticon2-file kt-font-success"></i>
-															</span>
-													<a href="#" class="kt-widget4__title kt-widget4__title--light">
-														Metronic React version is in progress.
-													</a>
-													<span class="kt-widget4__number kt-font-success">+13%</span>
-												</div>
-											</div>
-
-											<!--end::Widget 12-->
-										</div>
-									</div>
-
-									<!--end:: Widgets/Last Updates-->
 								</div>
 								<div class="col-xl-4">
 									<!--begin:: Widgets/Requested Friends-->
@@ -897,22 +759,23 @@ License: You must have a valid license purchased only from themeforest(the above
 <!--begin::Modal-->
 <div class="modal fade" id="kt_modal_3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog modal-lg" role="document">
-		<div class="modal-content kt-portlet">
+		<div class="modal-content kt-portlet" id="modal-post-comment-content">
+			<script id="post-modal-content" type="text/x-handlebars-template">
 			<div class="modal-header kt-portlet--head">
 				<h5 class="modal-title" id="exampleModalLabel">Comment post</h5>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 				</button>
 			</div>
 			<div class="modal-body kt-widget3">
-				<div class="kt-widget3__item" id="modal-post-comment-content">
-					<script id="post-modal-content" type="text/x-handlebars-template">
+				<div class="kt-widget3__item" >
+
 					<div class="kt-widget3__header">
 						<div class="kt-widget3__user-img">
 							<img class="kt-widget3__img" src="./assets/media/users/{{postedBy.avatar}}" alt="">
 						</div>
 						<div class="kt-widget3__info">
 							<a href="#" class="kt-widget3__username">{{postedBy.fullName}}</a><br>
-							<span class="kt-widget3__time">in 5 hours</span>
+							<span class="kt-widget3__time">{{fromNow postedDate}}</span>
 						</div>
 						<span class="kt-widget3__status kt-font-info"></span>
 					</div>
@@ -930,7 +793,7 @@ License: You must have a valid license purchased only from themeforest(the above
 										<a href="#" class="kt-widget3__username">
 											{{postedBy.fullName}}
 										</a><br>
-										<span class="kt-widget3__time">in 3 hours</span>
+										<span class="kt-widget3__time">{{fromNow postedDate}}</span>
 									</div>
 									<span class="kt-widget3__status kt-font-info"></span>
 								</div>
@@ -939,7 +802,7 @@ License: You must have a valid license purchased only from themeforest(the above
 										{{content}}
 									</p>
 									<div class="kt-section__content kt-section__content--solid" style="padding: 10px 15px;margin-bottom: 10px;display: inline-table;">
-										<button type="button" class="btn btn-elevate-hover btn-circle btn-icon btn-outline-info btn-" id="like-comment-btn" commentId="{{commentId}}">
+										<button type="button" class="btn btn-elevate-hover btn-circle btn-icon btn-outline-info {{addLikeClass likeUsers}}" idLike="like-comment-btn" commentId="{{commentId}}">
 											<i class="fa flaticon-like"></i>
 										</button>
 										<span class="text-black-50" style="margin-left: 10px; margin-right: 30px;">{{numOfLike}}</span>
@@ -949,7 +812,6 @@ License: You must have a valid license purchased only from themeforest(the above
 						</div>
 						{{/each}}
 					</div>
-					</script>
 				</div>
 			</div>
 			<div class="modal-footer">
@@ -967,9 +829,11 @@ License: You must have a valid license purchased only from themeforest(the above
 					<button class="btn btn-default" type="button" aria-label="Close dialog"
 							data-dismiss="modal">Close
 					</button>
-					<button class="btn btn-primary" type="button" id="shareCommentPost"> Share</button>
+					<button class="btn btn-primary" type="button" id="shareCommentPost" disabled data-dismiss="modal"> Share</button>
 				</div>
 			</div>
+			</script>
+			<span id="model-post-comment-content-child"></span>
 		</div>
 	</div>
 </div>
