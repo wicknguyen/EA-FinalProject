@@ -747,46 +747,24 @@ License: You must have a valid license purchased only from themeforest(the above
 								<div class="kt-portlet__body kt-portlet__body--fit-y">
 
 									<!--begin::Widget -->
-									<div class="kt-widget3">
+									<div id="friends" class="kt-widget3">
+                                        <script id="handlebar-friends" type="text/x-handlebars-template">
+                                            {{#each friends}}
 										<div class="kt-widget3__item">
 											<div class="kt-widget3__header">
 												<div class="kt-widget3__user-img">
-													<img class="kt-widget3__img" src="./assets/media/users/user1.jpg" alt="">
+													<img class="kt-widget3__img" src="./assets/media/users/{{avatar}}" alt="">
 												</div>
 												<div class="kt-widget3__info">
 													<a href="#" class="kt-widget3__username">
-														Melania Trump
+														{{fullName}}
 													</a>
 												</div>
 												<span class="kt-widget3__status kt-font-info"></span>
 											</div>
 										</div>
-										<div class="kt-widget3__item">
-											<div class="kt-widget3__header">
-												<div class="kt-widget3__user-img">
-													<img class="kt-widget3__img" src="./assets/media/users/user4.jpg" alt="">
-												</div>
-												<div class="kt-widget3__info">
-													<a href="#" class="kt-widget3__username">
-														Lebron King James
-													</a>
-												</div>
-												<span class="kt-widget3__status kt-font-info"></span>
-											</div>
-										</div>
-										<div class="kt-widget3__item">
-											<div class="kt-widget3__header">
-												<div class="kt-widget3__user-img">
-													<img class="kt-widget3__img" src="./assets/media/users/user5.jpg" alt="">
-												</div>
-												<div class="kt-widget3__info">
-													<a href="#" class="kt-widget3__username">
-														Deb Gibson
-													</a>
-												</div>
-												<span class="kt-widget3__status kt-font-info"></span>
-											</div>
-										</div>
+                                            {{/each}}
+                                        </script>
 									</div>
 
 									<!--end::Widget -->
@@ -807,46 +785,24 @@ License: You must have a valid license purchased only from themeforest(the above
 								<div class="kt-portlet__body kt-portlet__body--fit-y">
 
 									<!--begin::Widget -->
-									<div class="kt-widget3">
+									<div id="followings" class="kt-widget3">
+                                        <script id="handlebar-followings" type="text/x-handlebars-template">
+                                            {{#each friends}}
 										<div class="kt-widget3__item">
 											<div class="kt-widget3__header">
 												<div class="kt-widget3__user-img">
-													<img class="kt-widget3__img" src="./assets/media/users/user1.jpg" alt="">
+													<img class="kt-widget3__img" src="./assets/media/users/{{avatar}}" alt="">
 												</div>
 												<div class="kt-widget3__info">
 													<a href="#" class="kt-widget3__username">
-														Melania Trump
+                                                        {{fullName}}
 													</a>
 												</div>
 												<span class="kt-widget3__status kt-font-info"></span>
 											</div>
 										</div>
-										<div class="kt-widget3__item">
-											<div class="kt-widget3__header">
-												<div class="kt-widget3__user-img">
-													<img class="kt-widget3__img" src="./assets/media/users/user4.jpg" alt="">
-												</div>
-												<div class="kt-widget3__info">
-													<a href="#" class="kt-widget3__username">
-														Lebron King James
-													</a>
-												</div>
-												<span class="kt-widget3__status kt-font-info"></span>
-											</div>
-										</div>
-										<div class="kt-widget3__item">
-											<div class="kt-widget3__header">
-												<div class="kt-widget3__user-img">
-													<img class="kt-widget3__img" src="./assets/media/users/user5.jpg" alt="">
-												</div>
-												<div class="kt-widget3__info">
-													<a href="#" class="kt-widget3__username">
-														Deb Gibson
-													</a>
-												</div>
-												<span class="kt-widget3__status kt-font-info"></span>
-											</div>
-										</div>
+                                            {{/each}}
+                                        </script>
 									</div>
 
 									<!--end::Widget -->

@@ -26,6 +26,20 @@ $(function () {
             var templateScript = Handlebars.compile(template);
             var html = templateScript(data);
             $('#posts').append(html);
+
+
+            // get friends
+            var template = $('#handlebar-friends').html();
+            var templateScript = Handlebars.compile(template);
+            var html = templateScript(data);
+            $('#friends').append(html);
+
+            handlebar-followings
+            // get follwing
+            var template = $('#handlebar-followings').html();
+            var templateScript = Handlebars.compile(template);
+            var html = templateScript(data);
+            $('#followings').append(html);
         }
     });
 
@@ -67,6 +81,8 @@ $(function () {
         location.reload();
 
     });
+
+
 
     function parseJwt (token) {
         var base64Url = token.split('.')[1];
