@@ -37,7 +37,7 @@ $(function () {
     //noti(data2);
     getPostNotification();
 
-    //setInterval(getPostNotification, 3000);
+    setInterval(getPostNotification, 3000);
 
 
     function noti(data2) {
@@ -89,7 +89,9 @@ $(function () {
                 var template = $('#handlebar1').html();
                 var templateScript = Handlebars.compile(template);
                 var html = templateScript(mydata);
-                $('#posts1').append(html);
+                //$('#posts1').text("");
+                $('#posts1').children().last().text("");
+                $('#posts1').children().last().append(html);
 
                 console.log(mydata);
 
