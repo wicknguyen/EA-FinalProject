@@ -11,6 +11,15 @@ $(function () {
     let userName = localStorage.getItem("personal");
     let current_user = JSON.parse(localStorage.getItem('current_user'));
 
+
+    Handlebars.registerHelper('firstLetter', function(name) {
+        return name.charAt(0).toUpperCase();
+    });
+    let user_bar_template = $('#user-bar-template').html();
+    let user_bar_templateScript = Handlebars.compile(user_bar_template);
+    let html1 = user_bar_templateScript(current_user);
+    $('#user-bar').append(html1);
+
     // get friend info
     $.ajax({
         url: "http://localhost:8080/api/user/" + userName,
@@ -27,17 +36,6 @@ $(function () {
             var templateScript = Handlebars.compile(template);
             var html = templateScript(data);
             $('#user-profile').append(html);
-
-            Handlebars.registerHelper('firstLetter', function(name) {
-                return name.charAt(0).toUpperCase();
-            });
-
-            // let template1 = $('#user-bar-template').html();
-            // let templateScript1 = Handlebars.compile(template1);
-            // let html1 = templateScript1(localStorage.getItem("current_user"));
-            // $('#user-bar').append(html1);
-
-
 
             $('#btnSignout').click(function () {
                 localStorage.clear();
