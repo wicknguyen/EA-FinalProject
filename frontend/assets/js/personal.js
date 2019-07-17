@@ -52,7 +52,7 @@ $(function () {
     });
 
     $.ajax({
-        url: "http://localhost:8080/api/timeline/" + userName,
+        url: "http://localhost:8080/api/profile/" + userName,
         type: "GET",
         dataType: "json",
         headers: {
