@@ -68,6 +68,11 @@ public class SocialNetworkController {
         return socialNetworkService.getTimelineInfoByUserEmail(email);
     }
 
+    @GetMapping("profile/{email}")
+    public TimelineInfo getProfileInfoByUserEmail(@PathVariable String email) {
+        return socialNetworkService.getProfileInfoByUserEmail(email);
+    }
+
     @PostMapping("/followUser")
     public RelationshipInfo followUser(@RequestBody RelationshipInfo relationshipInfo) {
         System.out.println(relationshipInfo);

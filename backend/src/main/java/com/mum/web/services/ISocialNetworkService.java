@@ -33,5 +33,5 @@ public interface ISocialNetworkService {
 
     TimelineInfo getTimelineInfoByUserEmail(String email);
 
-
+    public TimelineInfo getProfileInfoByUserEmail(String email);
 }
