@@ -66,12 +66,10 @@ $(function () {
             dataType: "json",
             success: function (data) {
                 //alert(data.length);
-                console.log(data);
                 $('#numberMessages').text(data.length);
                 $('#numbersMessages').text(data.length);
                 $('#numberMessages').css("color", "red");
 
-                console.log(parseJwt(token));
 
                 Handlebars.registerHelper('fromNow', function(date) {
                     if (moment) {
@@ -93,11 +91,6 @@ $(function () {
                 //$('#posts1').text("");
                 $('#posts1').children().last().text("");
                 $('#posts1').children().last().append(html);
-
-                console.log(mydata);
-
-
-                console.log(html);
 
 
 

@@ -31,10 +31,10 @@ $(function () {
                 return name.charAt(0).toUpperCase();
             });
 
-            let template1 = $('#user-bar-template').html();
-            let templateScript1 = Handlebars.compile(template1);
-            let html1 = templateScript1(localStorage.getItem("current_user"));
-            $('#user-bar').append(html1);
+            // let template1 = $('#user-bar-template').html();
+            // let templateScript1 = Handlebars.compile(template1);
+            // let html1 = templateScript1(localStorage.getItem("current_user"));
+            // $('#user-bar').append(html1);
 
 
 
