@@ -19,7 +19,7 @@ $(document).ready(function () {
             gender: form[0]['gender'].value,
             email: form[0]['email'].value,
             dob: form[0]['date-of-birth'].value,
-            password: form[0]['password'].value,
+            password: md5(form[0]['password'].value),
         }
 
         $.ajax({

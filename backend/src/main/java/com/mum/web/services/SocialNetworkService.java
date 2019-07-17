@@ -13,7 +13,9 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -278,6 +280,14 @@ public class SocialNetworkService implements ISocialNetworkService {
         List<RelationshipInfo> requestedFriends = RelationFunctionUtils.getRequestedFriends.apply(user.get());
         List<RelationshipInfo> suggestedFriends = RelationFunctionUtils.getSuggestedUserList.apply(userRepository.findAll(), user.get());
         List<UserInfo> waitingriends = AuthenticationFunctionUtils.converToListUserInfo.apply(RelationFunctionUtils.getWaitngsList.apply(user.get()));
+
+        List<RelationshipInfo> removeRelations = suggestedFriends.stream().filter(s -> {
+            if (requestedFriends.stream().anyMatch(r -> Objects.equals(r.getA().getEmail(),s.getA().getEmail()))) {
+                return true;
+            }
+            return false;
+        }).collect(Collectors.toList());
+        suggestedFriends.removeAll(removeRelations);
 
         timelineInfo.setMyProfile(myProfile);
         timelineInfo.setFriends(friends);
