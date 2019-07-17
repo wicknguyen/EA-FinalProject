@@ -5,6 +5,7 @@ import com.mum.web.functional.RelationFunctionUtils;
 import com.mum.web.functional.AuthenticationFunctionUtils;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -17,8 +18,11 @@ public class User {
     @Id
     @GeneratedValue
     private Long userId;
+    @NotBlank
     private String firstName;
+    @NotBlank
     private String lastName;
+    @NotBlank
     private String email;
     private String password;
     @Enumerated(EnumType.STRING)

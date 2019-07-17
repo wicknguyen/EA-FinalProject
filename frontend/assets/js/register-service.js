@@ -2,8 +2,15 @@ $(document).ready(function () {
     $('#registerAccount').click(function () {
         const form = $('#kt_apps_user_add_user_form');
         console.log(form);
+        if (!form[0]['first-name'].value || !form[0]['last-name'].value
+            || !form[0]['email'].value || !form[0]['date-of-birth'].value
+            || !form[0]['password'].value || !form[0]['re-password'].value) {
+            return;
+        }
         if (form[0]['password'].value !== form[0]['re-password'].value) {
-            console.log("Password not match!!!!");
+            $('#userDuplicate div.alert-text').text('Password does not match!');
+            $('#userDuplicate').removeClass('hide');
+            $('#userDuplicate').addClass('show');
             return;
         }
         let data = {
@@ -26,6 +33,12 @@ $(document).ready(function () {
             data: JSON.stringify(data),
             success: function( data, textStatus ){
                 console.log(data);
+                if(data === 'DuplicateUser') {
+                    $('#userDuplicate div.alert-text').text('Maybe email was duplicated! Please check it again!');
+                    $('#userDuplicate').removeClass('hide');
+                    $('#userDuplicate').addClass('show');
+                    return;
+                }
                 window.location = './login-page.html';
                 // localStorage.setItem(TOKEN_NAME, data.access_token);
             },
@@ -34,6 +47,8 @@ $(document).ready(function () {
                 console.log(textStatus);
                 console.log(jqXhr);
                 console.log(errorThrown);
+                $('#userDuplicate').removeClass('hide');
+                $('#userDuplicate').addClass('show');
             }
         });
 

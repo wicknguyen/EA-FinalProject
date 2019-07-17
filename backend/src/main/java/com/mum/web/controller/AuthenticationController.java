@@ -18,14 +18,15 @@ public class AuthenticationController {
     private DataProvider dataProvider;
 
     @PostMapping("/")
-    public void registerUser(@RequestBody User user) {
+    public String registerUser(@RequestBody User user) {
         if (AuthenticationFunctionUtils.isUserExisted.apply(user.getEmail(), dataProvider.getUsers())) {
-            throw new RuntimeException("User already existed");
+            return "DuplicateUser";
         }
 
         int rand = (int) Math.floor(Math.random() * 14) + 1;
         user.setAvatar("100_" + rand + ".jpg");
         dataProvider.addUsers(user);
+        return "Successfully";
     }
 
 
