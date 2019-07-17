@@ -100,7 +100,11 @@ $(function () {
             var html = templateScript(timeline);
             $('#followings').append(html);
 
-
+            // click friend profile
+            $("a[idPage^=goto-]").click(function () {
+                console.log('testQQQQ');
+                localStorage.setItem("personal", $(this).attr("name") )
+            });
 
             var responseData = null;
             // click open comment modal
