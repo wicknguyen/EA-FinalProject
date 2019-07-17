@@ -108,7 +108,7 @@ var KTLoginGeneral = function() {
             //     },
             //
             // });
-            let data = 'username=' + form[0]['username'].value + '&password=' + form[0]['password'].value + '&grant_type=password';
+            let data = 'username=' + form[0]['username'].value + '&password=' + md5(form[0]['password'].value) + '&grant_type=password';
             $.ajax({
                 url: LOGIN_URL,
                 dataType: 'json',

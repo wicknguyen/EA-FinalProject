@@ -3,9 +3,11 @@ package com.mum.web.provider;
 import com.mum.web.entities.*;
 import com.mum.web.repositories.UserRepository;
 import org.apache.commons.codec.digest.DigestUtils;
+import org.apache.commons.codec.digest.Md5Crypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.Lifecycle;
 import org.springframework.stereotype.Component;
+import sun.security.provider.MD5;
 
 import javax.annotation.PostConstruct;
 import java.time.LocalDate;
@@ -114,7 +116,7 @@ public class DataProvider {
             user.setEmail(email[i]);
             user.setFirstName(firstName[i]);
             user.setLastName(lastName[i]);
-            user.setPassword("123456");
+            user.setPassword(DigestUtils.md5Hex("123456"));
             user.setAvatar("100_" + (i + 1) + ".jpg");
             user.setDob(LocalDate.of(1977, 7,7));
             users.add(user);
