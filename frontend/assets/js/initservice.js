@@ -25,7 +25,7 @@ $(window).ready(function () {
         success: function (data) {
             console.log("Load current user successfully", data);
                 current_user = data;
-                localStorage.setItem('current_user', data);
+                localStorage.setItem('current_user', JSON.stringify(data));
                 let template = $('#user-profile-template').html();
                 let templateScript = Handlebars.compile(template);
                 let html = templateScript(data);

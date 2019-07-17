@@ -9,6 +9,7 @@ $(function () {
     let LIKE_COMMENT_URL = "http://localhost:8080/api/like-comment";
     let COMMENT_URL = "http://localhost:8080/api/comment";
     let userName = localStorage.getItem("personal");
+    let current_user = JSON.parse(localStorage.getItem('current_user'));
 
     // get friend info
     $.ajax({
@@ -71,7 +72,7 @@ $(function () {
 
             Handlebars.registerHelper('addLikeClass', function(likeUsers) {
                 for (var i=0; i< likeUsers.length; i++) {
-                    if (likeUsers[i].email === friend_user.email) {
+                    if (likeUsers[i].email === current_user.email) {
                         return 'like-post';
                     }
                 }
@@ -123,7 +124,7 @@ $(function () {
                         console.log(responseData)
                         Handlebars.registerHelper('addLikeClass', function(likeUsers) {
                             for (var i=0; i< likeUsers.length; i++) {
-                                if (likeUsers[i].email === friend_user.email) {
+                                if (likeUsers[i].email === current_user.email) {
                                     return 'like-post';
                                 }
                             }
@@ -154,7 +155,7 @@ $(function () {
                             if (isLikedByCurrentUser(commentInfo)) {
                                 for (let i=0; i<commentInfo.likeUsers.length; i++) {
                                     let u = commentInfo.likeUsers[i];
-                                    if (u.email == friend_user.email) {
+                                    if (u.email == current_user.email) {
                                         commentInfo.likeUsers.splice(commentInfo.likeUsers.indexOf(u), 1);
                                         commentInfo.numOfLike--;
                                         $(this).removeClass('like-post');
@@ -162,7 +163,7 @@ $(function () {
                                     }
                                 }
                             } else {
-                                commentInfo.likeUsers.push(friend_user);
+                                commentInfo.likeUsers.push(current_user);
                                 commentInfo.numOfLike++;
                                 $(this).addClass('like-post');
                                 $(this).next().text(commentInfo.numOfLike);
@@ -231,10 +232,11 @@ $(function () {
             $('button[idLikePost="like-post-btn"]').click(function () {
                 let postId = $(this).attr('postId');
                 let postInfo = getPostInfo(postId);
+                console.log("POST-INFO", postInfo);
                 if (isLikedByCurrentUser(postInfo)) {
                     for (let i=0; i<postInfo.likeUsers.length; i++) {
                         let u = postInfo.likeUsers[i];
-                        if (u.email == friend_user.email) {
+                        if (u.email == current_user.email) {
                             postInfo.likeUsers.splice(postInfo.likeUsers.indexOf(u), 1);
                             postInfo.numOfLike--;
                             $(this).removeClass('like-post');
@@ -242,7 +244,7 @@ $(function () {
                         }
                     }
                 } else {
-                    postInfo.likeUsers.push(friend_user);
+                    postInfo.likeUsers.push(current_user);
                     postInfo.numOfLike++;
                     $(this).addClass('like-post');
                     $(this).next().text(postInfo.numOfLike);
@@ -294,7 +296,7 @@ $(function () {
     function isLikedByCurrentUser(post) {
         if (post && post.likeUsers) {
             return post.likeUsers.some((u) => {
-                return u.email === friend_user.email;
+                return u.email === current_user.email;
             });
         }
         return false;
