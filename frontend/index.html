@@ -626,7 +626,7 @@ License: You must have a valid license purchased only from themeforest(the above
 																<a name="{{a.email}}" id="goto-{{a.email}}" href="personal.html" class="kt-widget4__username">
                                                                     {{a.fullName}}
 																</a>
-																<p class="kt-widget4__text">
+																<p class="kt-widget4__text" data-toggle="modal" data-target="#kt_modal_1">
                                                                     Mutual friends: {{mutualFriends}}
 																</p>
 															</div>
@@ -688,6 +688,42 @@ License: You must have a valid license purchased only from themeforest(the above
 </div>
 
 <!-- end::Scrolltop -->
+
+
+<!--begin::Modal Mutual Friends-->
+<div class="modal fade" id="kt_modal_1" tabindex="-1" role="dialog" aria-labelledby="mutualModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-sm" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="mutualModalLabel">Mutual Friends</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				</button>
+			</div>
+			<script id="mutual-friend-modal" type="text/x-handlebars-template">
+				{{#each users}}
+			<div id="" class="kt-widget4 kt-padding-5">
+				<div class="kt-widget4__item">
+					<div class="kt-widget4__pic kt-widget4__pic--pic">
+						<img src="./assets/media/users/{{avatar}}" alt="">
+					</div>
+					<div class="kt-widget4__info">
+						<a name="{{email}}" id="goto-{{email}}" href="personal.html" class="kt-widget4__username">
+							{{fullName}}
+						</a>
+						<p class="kt-widget4__text">
+							{{email}}
+						</p>
+					</div>
+				</div>
+			</div>
+				{{/each}}
+			</script>
+			<span id="mutual-friend-modal-content"></span>
+		</div>
+	</div>
+</div>
+
+<!--end::Modal Mutual Friends-->
 
 
 <!--begin::Modal-->

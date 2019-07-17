@@ -187,6 +187,27 @@ $(window).ready(function () {
                 location.reload();
             });
 
+            // show mutual friends
+            $('p[data-target="#kt_modal_1"]').click(function () {
+               let email = $(this).prev().attr('name');
+               let suggest = null;
+               timeline.suggestedFriends.forEach(s=>{
+                   if(s.a.email===email) {
+                    suggest = s;
+                }
+               });
+                let mutualTemplate = $('#mutual-friend-modal').html();
+                let mutualTemplateScript = Handlebars.compile(mutualTemplate);
+                var html = mutualTemplateScript(suggest);
+                $('#mutual-friend-modal-content').text('');
+                $('#mutual-friend-modal-content').append(html);
+
+                // click friend profile
+                $("a[id^=goto-]").click(function () {
+                    localStorage.setItem("personal", $(this).attr("name") )
+                });
+            });
+
             var responseData = null;
             // click open comment modal
             $("button[data-target='#kt_modal_3']").click(function () {
