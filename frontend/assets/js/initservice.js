@@ -82,11 +82,16 @@ $(window).ready(function () {
 
             // for button name
             Handlebars.registerHelper('add', function(email) {
-                if (data.waitingriends.some( x => x.email === email)) {
-                    return "Friend Requested";
-                } else {
+                if (data.waitingriends.length>0)
+                    if (data.waitingriends.some( x => x.email === email)) {
+                        return "Friend Requested";
+                    }
+                if (data.requestedFriends.length>0)
+                    if (data.requestedFriends.some( x => x.a.email === email)) {
+                        //console.log("ddddd");
+                        return "Waiting";
+                    }
                     return "Add Friend";
-                }
             });
             // for button name
             Handlebars.registerHelper('following', function(email) {
@@ -105,7 +110,12 @@ $(window).ready(function () {
                 if (data.waitingriends.some( x => x.email === email)) {
                     return "disabled";
                 } else {
-                    return "";
+                    if (data.requestedFriends.some( x => x.a.email === email)) {
+                        return "disabled";
+                    }
+                        else
+
+                        return "";
                 }
             });
 
