@@ -252,7 +252,7 @@ public class SocialNetworkService implements ISocialNetworkService {
         Optional<User> user = AuthenticationFunctionUtils.getUserByMail.apply(email, userRepository.findAll());
         if (!user.isPresent()) return null;
         UserInfo profile = AuthenticationFunctionUtils.convertToUserInfo.apply(user.get());
-        List<Post> posts = user.get().getPosts();
+        List<Post> posts = PostFunctionUtils.getProfile.apply(user.get());
         List<PostInfo> postInfos = PostFunctionUtils.convertToListPostInfo.apply(posts);
         List<UserInfo> friends = AuthenticationFunctionUtils.converToListUserInfo.apply(RelationFunctionUtils.getFriendsList.apply(user.get()));
         List<UserInfo> followings = AuthenticationFunctionUtils.converToListUserInfo.apply(RelationFunctionUtils.getFollowingsList.apply(user.get()));
