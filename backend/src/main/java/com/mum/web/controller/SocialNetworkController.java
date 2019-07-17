@@ -78,8 +78,6 @@ public class SocialNetworkController {
         System.out.println(relationshipInfo);
         socialNetworkService.followUser(relationshipInfo);
         return null;
-        //socialNetworkService.updateLikeCommentOfPost(RelationshipInfo);
-        //return socialNetworkService.loadPostByUserEmail(postInfo.getPostedBy().getEmail());
     }
 
     @PostMapping("/makeFriend")
@@ -88,9 +86,6 @@ public class SocialNetworkController {
         User user = socialNetworkService.makeFriend(relationshipInfo);
         List<UserInfo> userInfos = AuthenticationFunctionUtils.converToListUserInfo.apply(RelationFunctionUtils.getFriendsList.apply(user));
         return userInfos;
-        //return null;
-        //socialNetworkService.updateLikeCommentOfPost(RelationshipInfo);
-        //return socialNetworkService.loadPostByUserEmail(postInfo.getPostedBy().getEmail());
     }
 
     @PostMapping("/acceptFriend")
@@ -99,8 +94,6 @@ public class SocialNetworkController {
         User user = socialNetworkService.acceptFriend(relationshipInfo);
         List<UserInfo> userInfos = AuthenticationFunctionUtils.converToListUserInfo.apply(RelationFunctionUtils.getFriendsList.apply(user));
         return userInfos;
-        //socialNetworkService.updateLikeCommentOfPost(RelationshipInfo);
-        //return socialNetworkService.loadPostByUserEmail(postInfo.getPostedBy().getEmail());
     }
 
     @PostMapping("/rejectFriend")
@@ -109,8 +102,6 @@ public class SocialNetworkController {
         User user = socialNetworkService.rejectFriend(relationshipInfo);
         List<UserInfo> userInfos = AuthenticationFunctionUtils.converToListUserInfo.apply(RelationFunctionUtils.getFriendsList.apply(user));
         return userInfos;
-        //socialNetworkService.updateLikeCommentOfPost(RelationshipInfo);
-        //return socialNetworkService.loadPostByUserEmail(postInfo.getPostedBy().getEmail());
     }
 
     @PostMapping("/post")
@@ -125,8 +116,6 @@ public class SocialNetworkController {
         if (!user.isPresent()) return null;
         List<Post> posts = PostFunctionUtils.getTimeline.apply(dataProvider.getUsers(), user.get());
         return posts;
-
-        //return PostFunctionUtils.convertToListPostInfo.apply( posts);
     }
 
     @GetMapping("/testGetPostInfo/{userId}")
