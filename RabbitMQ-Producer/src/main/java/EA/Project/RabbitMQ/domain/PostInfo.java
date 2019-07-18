@@ -1,6 +1,5 @@
 package EA.Project.RabbitMQ.domain;
 
-import javax.persistence.Id;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;

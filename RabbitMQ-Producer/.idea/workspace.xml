@@ -2,36 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e0666dfd-1be2-432d-915e-2915ba0fe3db" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../RabbitMQ-Consumer/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../RabbitMQ-Consumer/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../RabbitMQ-Consumer/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../RabbitMQ-Consumer/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../RabbitMQ-Consumer/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../RabbitMQ-Consumer/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../RabbitMQ-Consumer/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../RabbitMQ-Consumer/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../RabbitMQ-Consumer/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../RabbitMQ-Consumer/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../RabbitMQ-Consumer/src/main/java/EA/Project/RabbitMQ/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/../RabbitMQ-Consumer/src/main/java/EA/Project/RabbitMQ/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../RabbitMQ-Consumer/src/main/java/EA/Project/RabbitMQ/BookService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../RabbitMQ-Consumer/src/main/java/EA/Project/RabbitMQ/IBookDao.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../RabbitMQ-Consumer/src/main/java/EA/Project/RabbitMQ/domain/Book.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../RabbitMQ-Consumer/src/main/java/EA/Project/RabbitMQ/domain/PostInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/../RabbitMQ-Consumer/src/main/java/EA/Project/RabbitMQ/domain/PostInfo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../RabbitMQ-Consumer/src/main/java/EA/Project/RabbitMQ/listener/BookListener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../RabbitMQ-Consumer/src/main/java/EA/Project/RabbitMQ/listener/UserListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/../RabbitMQ-Consumer/src/main/java/EA/Project/RabbitMQ/listener/UserListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RabbitMQ-Consumer/src/main/java/EA/Project/RabbitMQ/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/../RabbitMQ-Consumer/src/main/java/EA/Project/RabbitMQ/ConsumerApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../RabbitMQ-Consumer/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../RabbitMQ-Consumer/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../RabbitMQ-Consumer/src/main/resources/import.sql" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/EA/Project/RabbitMQ/DemoApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/EA/Project/RabbitMQ/DemoApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/EA/Project/RabbitMQ/controller/BookController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/EA/Project/RabbitMQ/controller/PersonController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/EA/Project/RabbitMQ/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/EA/Project/RabbitMQ/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/EA/Project/RabbitMQ/domain/Book.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/EA/Project/RabbitMQ/domain/Person.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/EA/Project/RabbitMQ/producer/Sender.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/EA/Project/RabbitMQ/producer/Sender.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/EA/Project/RabbitMQ/repository/BookRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/EA/Project/RabbitMQ/repository/PersonRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/EA/Project/RabbitMQ/service/BookServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/EA/Project/RabbitMQ/service/IBookService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/EA/Project/RabbitMQ/service/IPersonService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/EA/Project/RabbitMQ/service/PersonServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/assets/js/notification.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/assets/js/notification.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/EA/Project/RabbitMQ/DemoApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/EA/Project/RabbitMQ/ProducerApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/EA/Project/RabbitMQ/domain/PostInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/EA/Project/RabbitMQ/domain/PostInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/EA/Project/RabbitMQ/DemoApplicationTests.java" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/classes/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -47,28 +26,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/EA/Project/RabbitMQ/domain/UserInfo.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="12" column="24" selection-start-line="12" selection-start-column="24" selection-end-line="12" selection-end-column="24" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/EA/Project/RabbitMQ/controller/UserController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="11" selection-start-line="11" selection-end-line="11" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/EA/Project/RabbitMQ/domain/RelationshipInfo.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="8" column="23" selection-start-line="8" selection-start-column="23" selection-end-line="8" selection-end-column="23" />
+            <state relative-caret-position="143">
+              <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -77,10 +38,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/EA/Project/RabbitMQ/domain/RelationStatus.java">
+        <entry file="file://$PROJECT_DIR$/server.iml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="2" column="12" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
+            <state relative-caret-position="120">
+              <caret line="8" column="9" selection-start-line="8" selection-start-column="9" selection-end-line="8" selection-end-column="9" />
             </state>
           </provider>
         </entry>
@@ -100,17 +61,38 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="9" column="30" selection-start-line="9" selection-start-column="30" selection-end-line="9" selection-end-column="30" />
+            <state relative-caret-position="120">
+              <caret line="8" selection-start-line="8" selection-end-line="8" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/EA/Project/RabbitMQ/DemoApplication.java">
+        <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/boot/spring-boot-autoconfigure/2.1.6.RELEASE/spring-boot-autoconfigure-2.1.6.RELEASE.jar!/org/springframework/boot/autoconfigure/jdbc/XADataSourceAutoConfiguration.class">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="16" column="5" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
+            <state relative-caret-position="151">
+              <caret line="52" column="22" selection-start-line="52" selection-start-column="22" selection-end-line="52" selection-end-column="22" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/EA/Project/RabbitMQ/domain/PostInfo.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="82">
+              <caret line="17" column="29" selection-start-line="17" selection-start-column="29" selection-end-line="17" selection-end-column="29" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/EA/Project/RabbitMQ/ProducerApplication.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="105">
+              <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -121,18 +103,13 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-514">
-              <caret line="18" column="17" selection-start-line="18" selection-start-column="17" selection-end-line="18" selection-end-column="17" />
+            <state relative-caret-position="121">
+              <caret line="21" column="8" selection-start-line="21" selection-start-column="8" selection-end-line="21" selection-end-column="8" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/server.iml">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/RabbitMQ-Producer.iml">
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
@@ -164,7 +141,6 @@
         <option value="$PROJECT_DIR$/src/main/java/server/demo/service/BookServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/server/demo/domain/Book.java" />
         <option value="$PROJECT_DIR$/src/main/java/server/demo/DemoApplication.java" />
-        <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/RabbitMQ/Producer/producer/Sender.java" />
         <option value="$PROJECT_DIR$/src/main/java/RabbitMQ/Producer/controller/BookController.java" />
         <option value="$PROJECT_DIR$/src/main/java/RabbitMQ/Producer/domain/Book.java" />
@@ -173,14 +149,15 @@
         <option value="$PROJECT_DIR$/src/main/java/EA/Project/RabbitMQ/domain/Book.java" />
         <option value="$PROJECT_DIR$/src/main/java/EA/Project/RabbitMQ/controller/BookController.java" />
         <option value="$PROJECT_DIR$/src/main/java/EA/Project/RabbitMQ/domain/RelationStatus.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
         <option value="$PROJECT_DIR$/src/main/java/EA/Project/RabbitMQ/domain/RelationshipInfo.java" />
         <option value="$PROJECT_DIR$/src/main/java/EA/Project/RabbitMQ/domain/CommentInfo.java" />
         <option value="$PROJECT_DIR$/src/main/java/EA/Project/RabbitMQ/domain/UserInfo.java" />
-        <option value="$PROJECT_DIR$/src/main/java/EA/Project/RabbitMQ/domain/PostInfo.java" />
         <option value="$PROJECT_DIR$/src/main/java/EA/Project/RabbitMQ/producer/Sender.java" />
         <option value="$PROJECT_DIR$/src/main/java/EA/Project/RabbitMQ/controller/UserController.java" />
         <option value="$PROJECT_DIR$/src/main/java/EA/Project/RabbitMQ/DemoApplication.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
+        <option value="$PROJECT_DIR$/src/main/java/EA/Project/RabbitMQ/domain/PostInfo.java" />
+        <option value="$PROJECT_DIR$/pom.xml" />
       </list>
     </option>
   </component>
@@ -328,7 +305,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.DemoApplication (4)">
+  <component name="RunManager">
     <configuration name="DemoApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <module name="Lab13-RestServer" />
       <extension name="coverage">
@@ -368,19 +345,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DemoApplication (4)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
-      <module name="RabbitMQ-Producer" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="EA.Project.RabbitMQ.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="SPRING_BOOT_MAIN_CLASS" value="EA.Project.RabbitMQ.DemoApplication" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="DemoApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="demo" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="server.demo.DemoApplication" />
@@ -388,9 +352,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="ProducerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="RabbitMQ-Producer" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="EA.Project.RabbitMQ.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="SPRING_BOOT_MAIN_CLASS" value="EA.Project.RabbitMQ.ProducerApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Spring Boot.DemoApplication (4)" />
+        <item itemvalue="Spring Boot.ProducerApplication" />
         <item itemvalue="Spring Boot.DemoApplication (3)" />
         <item itemvalue="Spring Boot.DemoApplication (2)" />
         <item itemvalue="Spring Boot.DemoApplication (1)" />
@@ -415,7 +392,7 @@
       <workItem from="1563212462084" duration="133000" />
       <workItem from="1563212742148" duration="10931000" />
       <workItem from="1563292700078" duration="3864000" />
-      <workItem from="1563321843889" duration="2826000" />
+      <workItem from="1563321843889" duration="4147000" />
     </task>
     <task id="LOCAL-00001" summary="Lab 13B1">
       <created>1563146558182</created>
@@ -435,13 +412,12 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="49903000" />
+    <option name="totallyTimeSpent" value="51224000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="813" extended-state="0" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26752505" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26752505" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -451,7 +427,7 @@
       <window_info id="Web" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.33287102" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.35367545" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39971346" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -635,13 +611,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/EA/Project/RabbitMQ/domain/PostInfo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="25" selection-start-line="25" selection-end-line="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/EA/Project/RabbitMQ/domain/RelationshipInfo.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
@@ -676,24 +645,54 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/EA/Project/RabbitMQ/controller/UserController.java">
+    <entry file="file://$PROJECT_DIR$/RabbitMQ-Producer.iml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/boot/spring-boot-autoconfigure/2.1.6.RELEASE/spring-boot-autoconfigure-2.1.6.RELEASE.jar!/org/springframework/boot/autoconfigure/jdbc/XADataSourceAutoConfiguration.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" selection-start-line="11" selection-end-line="11" />
+        <state relative-caret-position="151">
+          <caret line="52" column="22" selection-start-line="52" selection-start-column="22" selection-end-line="52" selection-end-column="22" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="30" selection-start-line="9" selection-start-column="30" selection-end-line="9" selection-end-column="30" />
+        <state relative-caret-position="120">
+          <caret line="8" selection-start-line="8" selection-end-line="8" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/EA/Project/RabbitMQ/DemoApplication.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/EA/Project/RabbitMQ/controller/UserController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="143">
+          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server.iml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="9" selection-start-line="8" selection-start-column="9" selection-end-line="8" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/EA/Project/RabbitMQ/domain/PostInfo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="82">
+          <caret line="17" column="29" selection-start-line="17" selection-start-column="29" selection-end-line="17" selection-end-column="29" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/EA/Project/RabbitMQ/DemoApplicationTests.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
-          <caret line="16" column="5" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
+          <caret line="16" selection-start-line="16" selection-end-line="16" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -702,16 +701,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-514">
-          <caret line="18" column="17" selection-start-line="18" selection-start-column="17" selection-end-line="18" selection-end-column="17" />
+        <state relative-caret-position="121">
+          <caret line="21" column="8" selection-start-line="21" selection-start-column="8" selection-end-line="21" selection-end-column="8" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server.iml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/RabbitMQ-Producer.iml">
-      <provider selected="true" editor-type-id="text-editor" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/EA/Project/RabbitMQ/ProducerApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
     </entry>
   </component>
   <component name="masterDetails">
