@@ -9,7 +9,7 @@ Enterprise Architecture final project - MUM social network
     - "rabbitMQ": use for notification service. [Please update DB info in the RabbitMQ-Consumer module]
     
 ## Start application:
-- Open and start the RabbitMQ-Producer application (ProducerApplication.java)
-- Open and start the RabbitMQ-Consumer aplication (ConsumerApplication.java)
+- Open and start the RabbitMQ-Producer application at path "./EA-FinalProject/RabbitMQ-Producer/.../ProducerApplication.java"
+- Open and start the RabbitMQ-Consumer aplication at path "./EA-FinalProject/RabbitMQ-Producer/.../ConsumerApplication.java"
 - Open index.html at path "./EA-FinalProject/frontend/index.html".
     - User can register new account or use some existing account: bao@mum.edu/123456 or quy@mum.edu/123456
