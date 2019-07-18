@@ -5,8 +5,8 @@ Enterprise Architecture final project - MUM social network
 #How to setting up application:
 ## Database
 - Databases:
-    - "web": use for main application (store business data). [Please update DB info the application.properties file in the backend module]
-    - "rabbitMQ": use for notification service. [Please update DB info in the application.properties file in the RabbitMQ-Consumer module]
+    - "web": use for main application (store business data). [Please update DB info in the backend module]
+    - "rabbitMQ": use for notification service. [Please update DB info in the RabbitMQ-Consumer module]
     
 ## Start application:
 - Open and start the RabbitMQ-Producer application (ProducerApplication.java)
