@@ -60,10 +60,6 @@ public class PostInfo implements Serializable {
         this.numOfLove = numOfLove;
     }
 
-    //List<UserInfo> likeUsers;
-    //List<UserInfo> loveUsers;
-    //List<Comment> comments;
-
     public String getPostId() {
         return postId;
     }
@@ -98,7 +94,6 @@ public class PostInfo implements Serializable {
     }
 
 
-    //List<Comment> comments;
     public PostInfo()
     {
 
@@ -129,18 +124,4 @@ public class PostInfo implements Serializable {
         this.commentInfos = commentInfos;
     }
 
-
-    /*
-
-    public PostInfo(String postId, LocalDateTime postedDate, UserInfo postedBy, int numOfLike, int numOfLove, List<UserInfo> likeUsers, List<UserInfo> loveUsers, List<CommentInfo> commentInfos) {
-        this.postId = postId;
-        this.postedDate = postedDate;
-        this.postedBy = postedBy;
-        this.numOfLike = numOfLike;
-        this.numOfLove = numOfLove;
-        this.likeUsers = likeUsers;
-        this.loveUsers = loveUsers;
-        this.commentInfos = commentInfos;
-    }
-    */
 }

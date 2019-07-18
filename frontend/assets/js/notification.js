@@ -9,55 +9,15 @@ $(function () {
         return JSON.parse(jsonPayload);
     }
 
-
     console.log("564555454545545");
     let token = localStorage.getItem('access_token');
     let userName = parseJwt(token).user_name;
     let current_user = localStorage.getItem('current_user');
 
 
-
-    let data2=  {
-        "postId": "post1",
-        "content": "Bao test post notificatio",
-        "avatar": "10",
-        "email": "email@com.com",
-        "postedDate":"2019-07-14T17:27:26.575",
-        "postedBy":{
-            "userId": current_user.email,
-            "fullName": current_user.fullName,
-            "avatar": current_user.avatar,
-            "email": current_user.email,
-            "dob":current_user.dob
-        },
-        "numOfLike":0,
-        "numOfLove":0,
-        "likeUsers":[],
-        "loveUsers":[]
-    };
-    //noti(data2);
     getPostNotification();
 
     setInterval(getPostNotification, 1000);
-
-
-    function noti(data2) {
-        console.log("noti sent1111111");
-        $.ajax({
-            url: "http://localhost:8899/posts/add",
-            dataType: 'json',
-            type: 'post',
-            contentType: 'application/json',
-            data: JSON.stringify(data2),
-            success: function( data, textStatus ){
-                console.log("noti sent");
-
-            },
-            error: function( jqXhr, textStatus, errorThrown ){
-                console.log( errorThrown );
-            }
-        });
-    }
 
     function getPostNotification(){
         $.ajax({

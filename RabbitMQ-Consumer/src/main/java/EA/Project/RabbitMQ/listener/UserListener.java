@@ -1,7 +1,6 @@
 package EA.Project.RabbitMQ.listener;
 
 
-
 import EA.Project.RabbitMQ.domain.PostInfo;
 import EA.Project.RabbitMQ.domain.RelationshipInfo;
 import EA.Project.RabbitMQ.domain.UserInfo;
@@ -19,7 +18,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-@RabbitListener(queues = {"RBUserInfo","RBUsers","RBPost"})
+@RabbitListener(queues = {"RBUserInfo", "RBUsers", "RBPost"})
 public class UserListener {
 
     @Autowired
@@ -33,17 +32,18 @@ public class UserListener {
     public void save(@Payload UserInfo userInfo, @Header("operation") String operation) {
         System.out.println("received: " + userInfo.getFullName());
     }
+
     @RabbitHandler
     public void requestFriend(@Payload RelationshipInfo relationshipInfo, @Header("MessageType") String operation) {
         System.out.println("relationshipInfo: " + relationshipInfo.getA().getFullName());
         System.out.println("relationshipInfo: " + relationshipInfo.getB().getFullName());
 
     }
+
     @RabbitHandler
     public void post(@Payload PostInfo postInfo, @Header("MessageType") String operation) {
         System.out.println("postInfo: " + postInfo.getContent());
         System.out.println("postInfo: " + postInfo.getPostedBy().getFullName());
-
 
 
         List<UserInfo> userInfoList = postMessageInfoService.getAll(postInfo.getPostedBy().getEmail());
@@ -51,10 +51,9 @@ public class UserListener {
         System.out.println(userInfoList);
         postInfoRepository.save(postInfo);
 
-        for(UserInfo userInfo:userInfoList)
-        {
+        for (UserInfo userInfo : userInfoList) {
 
-            postMessageInfoRepository.save(new PostMessageInfo(postInfo,userInfo.getEmail(),1));
+            postMessageInfoRepository.save(new PostMessageInfo(postInfo, userInfo.getEmail(), 1));
         }
 
 

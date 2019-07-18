@@ -1,6 +1,5 @@
 package EA.Project.RabbitMQ.producer;
 
-import EA.Project.RabbitMQ.domain.Book;
 import EA.Project.RabbitMQ.domain.PostInfo;
 import EA.Project.RabbitMQ.domain.RelationshipInfo;
 import EA.Project.RabbitMQ.domain.UserInfo;
@@ -46,16 +45,5 @@ public class Sender {
         System.out.println("Sent: " + msg + " to: " + queue);
     }
 
-    public void SendMessage(Book msg) {
-        String queue = "RBbook";
-        msg.setISBN("978-0-306-40615-7");
 
-        template.convertAndSend(queue, msg, m -> {
-
-            m.getMessageProperties().getHeaders().put("operation", "add");
-            return m;
-        });
-        System.out.println("Sent: " + msg + " to: " + queue);
-
-    }
 }
