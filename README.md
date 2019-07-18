@@ -10,6 +10,6 @@ Enterprise Architecture final project - MUM social network
     
 ## Start application:
 - Open and start the RabbitMQ-Producer application at path "./EA-FinalProject/RabbitMQ-Producer/.../ProducerApplication.java"
-- Open and start the RabbitMQ-Consumer aplication at path "./EA-FinalProject/RabbitMQ-Producer/.../ConsumerApplication.java"
+- Open and start the RabbitMQ-Consumer aplication at path "./EA-FinalProject/RabbitMQ-Consumer/.../ConsumerApplication.java"
 - Open index.html at path "./EA-FinalProject/frontend/index.html".
     - User can register new account or use some existing account: bao@mum.edu/123456 or quy@mum.edu/123456
